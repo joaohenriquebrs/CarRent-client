@@ -122,28 +122,8 @@ export const Menu = styled.div`
   font-weight: 700;
   letter-spacing: 0.4px;
 
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 9px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 8px;
-  }
-
-  @media (min-width: 350px) and (max-width: 400px) {
-    font-size: 6px;
-  }
-
-  @media (min-width: 300px) and (max-width: 350px) {
-    font-size: 5px;
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -185,41 +165,23 @@ export const LinkMenu = styled.a`
 
 export const PhoneLinkMenu = styled.a`
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  padding-top: 5px;
   cursor: pointer;
   margin-right: 30px;
   color: #212121;
   text-decoration: none;
   transition: transform 0.3s ease;
+  text-align: bottom;
 
   &:hover {
     color: #6a6c6a;
     transform: scale(1.07);
   }
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    margin-right: 26px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    margin-right: 24px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    margin-right: 22px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    margin-right: 10px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    margin-right: 8px;
-  }
 `;
 
-export const LogoWppPhone = styled.div`
-  margin-right: 1px;
+export const IconLink = styled.div`
+  margin-right: 2px;
   
   @media (min-width: 700px) {
     min-width: 23px;
@@ -284,9 +246,11 @@ export const LinkMenuAdm = styled.a`
   text-decoration: none;
   background: #6A6C6A;
   font-size: 16px;
-  padding: 10px;
+  padding: 10px 8px 6px 8px;
   border-radius: 5px;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: row;
 
   &:hover {
     color: #000;
@@ -314,3 +278,75 @@ export const LinkMenuAdm = styled.a`
   }
 `;
 
+
+/* Menu Hamburguer */
+
+
+export const HamburgerContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 88%;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const HamburgerIcon = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 20px;
+  height: 15px;
+  cursor: pointer;
+`;
+
+export const HamburgerBar = styled.div`
+  width: 100%;
+  height: 2px;
+  background: #212121;
+`;
+
+export const MobileMenu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+`;
+
+export const MobileMenuLink = styled.a`
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid #ddd;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const PhoneMobileMenuLink = styled.a`
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #212121;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+
+  &:hover {
+    color: #6a6a6a;
+    transform: scale(1.07);
+  }
+`;
