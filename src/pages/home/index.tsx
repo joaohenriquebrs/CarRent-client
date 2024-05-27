@@ -58,7 +58,7 @@ export default function Home() {
           </OrderByContainer>
         </SearchContainer>
         <MainContent>
-          Conteudo
+          Teste
         </MainContent>
 
         <Footer />
