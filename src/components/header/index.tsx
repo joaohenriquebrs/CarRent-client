@@ -10,12 +10,11 @@ import {
   Menu,
   LinkMenu,
   PhoneLinkMenu,
-  LogoWpp,
   ContentSecondHeader,
   LogoWppPhone,
   LinkMenuAdm
 } from './styles';
-import { LogoHeader, WppLogo, WppLogo2 } from 'assets';
+import { LogoHeader, WppLogo } from 'assets';
 
 export default function Header() {
   return (
