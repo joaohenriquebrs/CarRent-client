@@ -88,7 +88,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
               <CarPrice>
                 R$ <PriceEmphasis>{carData.price}</PriceEmphasis>
               </CarPrice>
-              <SeeMore href="#">Ver mais</SeeMore>
+              <SeeMore href="/carPage">Ver mais</SeeMore>
             </FooterCard>
           </ContentContainer>
         </>

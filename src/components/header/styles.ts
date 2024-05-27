@@ -5,9 +5,6 @@ export const HeaderContainer = styled.div`
   width: 100%;
   top: 0;
   z-index: 999;
-
-  @media (min-width: 800px) and (max-width: 1000px) {
-  }
 `;
 
 export const FirstHeader = styled.div`
@@ -17,6 +14,7 @@ export const FirstHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 20px;
 `;
 
 export const SecondHeader = styled.div`
@@ -90,11 +88,11 @@ export const OpeningHoursInfo = styled.div`
 export const LogoHeaderContainer = styled.a`
   margin-left: 2.4%;
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     min-width: 147px;
   }
 
-  @media (min-width: 700px) and (max-width: 800px) {
+  @media (min-width: 700px) and (max-width: 768px) {
     min-width: 127px;
   }
 
@@ -121,7 +119,6 @@ export const Menu = styled.div`
   font-size: 15px;
   justify-content: flex-end;
   width: 88%;
-  text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.4px;
 
@@ -278,6 +275,7 @@ export const ContentSecondHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 95%;
+  padding-left: 2.4%;
 `;
 
 export const LinkMenuAdm = styled.a`
@@ -286,7 +284,7 @@ export const LinkMenuAdm = styled.a`
   text-decoration: none;
   background: #6A6C6A;
   font-size: 16px;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   transition: transform 0.3s ease;
 

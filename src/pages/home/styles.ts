@@ -16,6 +16,12 @@ export const ContentMain = styled.div`
   justify-content: center;
 `;
 
+export const AdjustMargin = styled.div`
+  width: 95%;
+  margin-left: 2.4%;
+`;
+
+
 /* Carousel */
 
 export const CarouselMain = styled.div`
@@ -50,12 +56,12 @@ export const BannerContainer = styled.div`
 `;
 
 export const SearchContainer = styled.div`
-  width: 96.3%;
   height: 200px;
   margin-top: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 2.4%;
 
   @media (min-width: 600px) and (max-width: 700px) {
     margin-top: 80px;
@@ -73,7 +79,6 @@ export const SearchBar = styled.div`
   width: 29%;
   height: 50px;
   border-radius: 5px;
-  margin-left: 30px;
   border: 1px solid #e0e0e0;
 
   @media (min-width: 700px) and (max-width: 800px) {
@@ -207,38 +212,25 @@ export const OrderByText = styled.div`
 `;
 
 export const MainContent = styled.div`
-  margin: 35px 0px 70px 0px;
+  margin-bottom: 70px;
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  @media (min-width: 600px) and (max-width: 800px) {
-    margin: 15px 0px 30px 0px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    margin: 15px 0px 20px 0px;
-  }
-
-  @media (min-width: 300px) and (max-width: 500px) {
-    margin: 15px 0px 10px 0px;
-  }
 `;
 
 export const BlockCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 30px;
+  margin: 0 2.4%;
 `;
 
 export const ProductsFound = styled.div`
   color: #616161;
   font-size: 18px;
-  margin-bottom: 35px;
+  margin: 0 2.4% 35px 2.4%;
   display: flex;
   flex-direction: row;
-  margin-left: 30px;
 `;
 
 export const Emphasis = styled.div`

@@ -15,7 +15,8 @@ import {
   OrderByText,
   BlockCards,
   ProductsFound,
-  Emphasis
+  Emphasis,
+  AdjustMargin
 } from './styles';
 import { BannerFirst, Lupa, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/carouselBrands';
@@ -54,39 +55,43 @@ export default function Home() {
           />
         </BannerContainer>
 
-        <ContentMain>
-          <CarouselMain>
-            <CarouselComponent />
-          </CarouselMain>
-        </ContentMain>
+        <AdjustMargin>
 
-        <SearchContainer>
-          <SearchBar>
-            <SearchInput placeholder="Pesquisar..." />
-            <SearchIcon>
-              <Image src={Lupa} alt="Lupa de pesquisa" layout='responsive' />
-            </SearchIcon>
-          </SearchBar>
+          <ContentMain>
+            <CarouselMain>
+              <CarouselComponent />
+            </CarouselMain>
+          </ContentMain>
 
-          <OrderByContainer>
-            <OrderByText>Ordernar por</OrderByText>
-            <Image
-              src={OrderIcon}
-              alt="Icone de ordenamento"
-              layout="Responsive"
-            />
-          </OrderByContainer>
-        </SearchContainer>
-        <MainContent>
-          <ProductsFound>
-            <Emphasis>{fakeData.length}</Emphasis> veículos encontrados
-          </ProductsFound>
-          <BlockCards>
-            {fakeData.map((carItemData) => (
-              <CardCentral key={carItemData.id} carData={carItemData} />
-            ))}
-          </BlockCards>
-        </MainContent>
+          <SearchContainer>
+            <SearchBar>
+              <SearchInput placeholder="Pesquisar..." />
+              <SearchIcon>
+                <Image src={Lupa} alt="Lupa de pesquisa" layout='responsive' />
+              </SearchIcon>
+            </SearchBar>
+
+            <OrderByContainer>
+              <OrderByText>Ordernar por</OrderByText>
+              <Image
+                src={OrderIcon}
+                alt="Icone de ordenamento"
+                layout="Responsive"
+              />
+            </OrderByContainer>
+          </SearchContainer>
+          <MainContent>
+            <ProductsFound>
+              <Emphasis>{fakeData.length}</Emphasis> veículos encontrados
+            </ProductsFound>
+            <BlockCards>
+              {fakeData.map((carItemData) => (
+                <CardCentral key={carItemData.id} carData={carItemData} />
+              ))}
+            </BlockCards>
+          </MainContent>
+
+        </AdjustMargin>
 
         <Footer />
       </PageContainer>
