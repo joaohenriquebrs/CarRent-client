@@ -62,8 +62,6 @@ import BvLogo from './bvLogo.png';
 import IconLupaFinance from './iconLupaFinance.png';
 import IconPencilDocument from './iconPencilDocument.png';
 import IconProfileDocument from './iconProfileDocument.png';
-import IconHamburger from './iconHamburger.png';
-import IconUser from './iconUser.png';
 
 export {
   User,
@@ -130,6 +128,4 @@ export {
   IconLupaFinance,
   IconPencilDocument,
   IconProfileDocument,
-  IconHamburger,
-  IconUser
 };

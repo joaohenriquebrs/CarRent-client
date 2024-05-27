@@ -17,7 +17,8 @@ import {
   MobileMenu,
   MobileMenuLink,
   HamburgerContainer,
-  HamburgerBar
+  HamburgerBar,
+  MobileIconMenuLink
 } from './styles';
 import { LogoHeader } from 'assets';
 import { FaPhone, FaUser } from 'react-icons/fa';
@@ -73,8 +74,17 @@ export default function Header() {
           <MobileMenuLink href="/sellYourCar">Venda seu carro</MobileMenuLink>
           <MobileMenuLink href="/finance">Financie</MobileMenuLink>
           <MobileMenuLink href="/about">Sobre</MobileMenuLink>
-          <MobileMenuLink href="#">Telefone</MobileMenuLink>
-          <MobileMenuLink href="/adminLogin">Login</MobileMenuLink>
+          <MobileIconMenuLink href="#">
+            <IconLink>
+              <FaPhone />
+            </IconLink>
+            Telefone
+          </MobileIconMenuLink>
+          <MobileIconMenuLink href="/adminLogin">
+            <IconLink>
+              <FaUser />
+            </IconLink>Login
+          </MobileIconMenuLink>
         </MobileMenu>
       )}
     </HeaderContainer>

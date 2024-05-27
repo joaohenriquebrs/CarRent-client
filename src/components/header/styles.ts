@@ -181,32 +181,7 @@ export const PhoneLinkMenu = styled.a`
 `;
 
 export const IconLink = styled.div`
-  margin-right: 2px;
-  
-  @media (min-width: 700px) {
-    min-width: 23px;
-    min-height: 23px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    min-width: 20px;
-    min-height: 20px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    min-width: 18px;
-    min-height: 18px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 14px;
-    min-height: 14px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    min-width: 13px;
-    min-height: 13px;
-  }
+  margin-right: 3px;
 `;
 
 export const LogoWpp = styled.a`
@@ -311,7 +286,7 @@ export const MobileMenu = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background: #f5f5f5;
   position: absolute;
   top: 100%;
   left: 0;
@@ -328,12 +303,13 @@ export const MobileMenuLink = styled.a`
   color: black;
   border-bottom: 1px solid #ddd;
 
-  &:last-child {
-    border-bottom: none;
+  &:hover {
+    color: #FFF;
+    transform: scale(1.07);
   }
 `;
 
-export const PhoneMobileMenuLink = styled.a`
+export const MobileIconMenuLink = styled.a`
   display: flex;
   padding: 10px 0;
   align-items: center;
@@ -346,7 +322,11 @@ export const PhoneMobileMenuLink = styled.a`
   width: 100%;
 
   &:hover {
-    color: #6a6a6a;
+    color: #FFF;
     transform: scale(1.07);
+  }
+
+  &:last-child {
+    border-bottom: none;
   }
 `;
