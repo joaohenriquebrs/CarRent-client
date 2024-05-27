@@ -18,10 +18,29 @@ import {
   Emphasis
 } from './styles';
 import { BannerFirst, Lupa, OrderIcon } from 'assets';
+import { CarouselComponent } from 'components/carouselBrands';
+import { CardCentral, CarData } from 'components/cardCentral';
 import Header from 'components/header';
 import Footer from 'components/footer';
 
 export default function Home() {
+  const [fakeData, setFakeData] = useState<CarData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<CarData[]>(
+          'http://localhost:3000/static/test.json'
+        );
+        const data = response.data;
+        setFakeData(data);
+      } catch (error) {
+        console.error('Erro ao obter dados:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -37,6 +56,7 @@ export default function Home() {
 
         <ContentMain>
           <CarouselMain>
+            <CarouselComponent />
           </CarouselMain>
         </ContentMain>
 
@@ -58,7 +78,14 @@ export default function Home() {
           </OrderByContainer>
         </SearchContainer>
         <MainContent>
-          Teste
+          <ProductsFound>
+            <Emphasis>{fakeData.length}</Emphasis> veículos encontrados
+          </ProductsFound>
+          <BlockCards>
+            {fakeData.map((carItemData) => (
+              <CardCentral key={carItemData.id} carData={carItemData} />
+            ))}
+          </BlockCards>
         </MainContent>
 
         <Footer />
