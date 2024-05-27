@@ -15,7 +15,8 @@ import {
   BlockLogoCar,
   BlockIconYearKm,
   PriceEmphasis,
-  BlockIconKm
+  BlockIconKm,
+  TopContentContainer
 } from './styles';
 import { YearIcon, KmIcon, JeepLogo, RenagadeImage } from 'assets';
 
@@ -55,35 +56,37 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
           </BlockImageCard>
 
           <ContentContainer>
-            <TitleCard>
-              <BlockLogoCar>
-                <Image src={JeepLogo} alt="Imagem da logo da Jeep" layout='responsive' />
-              </BlockLogoCar>
-              {carData.brand} {carData.name}
-            </TitleCard>
-            <CarSpecifications>{carData.specifications}</CarSpecifications>
-            <YearKmContainer>
-              <CarDate>
-                <BlockIconYearKm>
-                  <Image
-                    src={YearIcon}
-                    alt="Ícone de um calendário"
-                    layout="responsive"
-                  />
-                </BlockIconYearKm>
-                {carData.year}
-              </CarDate>
-              <KmText>
-                <BlockIconKm>
-                  <Image
-                    src={KmIcon}
-                    alt="Ícone de um calendário"
-                    layout="responsive"
-                  />
-                </BlockIconKm>
-                {carData.km} km
-              </KmText>
-            </YearKmContainer>
+            <TopContentContainer>
+              <TitleCard>
+                <BlockLogoCar>
+                  <Image src={JeepLogo} alt="Imagem da logo da Jeep" layout='responsive' />
+                </BlockLogoCar>
+                {carData.brand} {carData.name}
+              </TitleCard>
+              <CarSpecifications>{carData.specifications}</CarSpecifications>
+              <YearKmContainer>
+                <CarDate>
+                  <BlockIconYearKm>
+                    <Image
+                      src={YearIcon}
+                      alt="Ícone de um calendário"
+                      layout="responsive"
+                    />
+                  </BlockIconYearKm>
+                  {carData.year}
+                </CarDate>
+                <KmText>
+                  <BlockIconKm>
+                    <Image
+                      src={KmIcon}
+                      alt="Ícone de um calendário"
+                      layout="responsive"
+                    />
+                  </BlockIconKm>
+                  {carData.km} km
+                </KmText>
+              </YearKmContainer>
+            </TopContentContainer>
             <FooterCard>
               <CarPrice>
                 R$ <PriceEmphasis>{carData.price}</PriceEmphasis>

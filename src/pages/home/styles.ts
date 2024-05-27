@@ -31,14 +31,6 @@ export const CarouselMain = styled.div`
   margin-top: 50px;
   background: #fff;
 
-  @media (min-width: 800px) and (max-width: 900px) {
-    margin-top: 60px;
-  }
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    margin-top: 50px;
-  }
-
   @media (min-width: 600px) and (max-width: 700px) {
     margin-top: 40px;
   }
@@ -58,6 +50,7 @@ export const BannerContainer = styled.div`
 export const SearchContainer = styled.div`
   height: 200px;
   margin-top: 100px;
+  margin-bottom: -100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
