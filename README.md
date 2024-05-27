@@ -1,4 +1,4 @@
-# Next.js Boilerplate
+# CarRent-client
 Description
 
 ## Running the project
