@@ -311,9 +311,14 @@ export const MobileMenuLink = styled.a`
   text-decoration: none;
   color: black;
   border-bottom: 1px solid #ddd;
+  font-size: 16px;
 
   &:hover {
     transform: scale(1.07);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
   }
 `;
 
@@ -328,6 +333,7 @@ export const MobileIconMenuLink = styled.a`
   transition: transform 0.3s ease;
   border-bottom: 1px solid #ddd;
   width: 100%;
+  font-size: 16px;
 
   &:hover {
     transform: scale(1.07);
@@ -335,5 +341,9 @@ export const MobileIconMenuLink = styled.a`
 
   &:last-child {
     border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
   }
 `;

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import {
     HeaderAdm,
     LogoHeaderContainer,
     MenuAdm,
-    LinkMenu
+    LinkMenu,
+    HamburgerContainer,
+    HamburgerIcon,
+    HamburgerBar,
+    MobileMenu,
+    MobileMenuLink,
 } from './styles';
 import { LogoHeader } from 'assets';
 
 export default function HeaderAdmin() {
+    const [showHamburger, setShowHamburger] = useState(false);
+
+    const toggleHamburger = () => {
+        setShowHamburger(!showHamburger);
+    };
 
     return (
         <HeaderAdm>
@@ -16,9 +26,24 @@ export default function HeaderAdmin() {
                 <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
             </LogoHeaderContainer>
             <MenuAdm>
-                <LinkMenu href='#'>Minha Conta</LinkMenu>
+                <LinkMenu href='/Home'>Home</LinkMenu>
+                <LinkMenu href='/CreateCar'>Adicionar carro</LinkMenu>
                 <LinkMenu href='#'>Sair</LinkMenu>
             </MenuAdm>
+            <HamburgerContainer>
+                <HamburgerIcon onClick={toggleHamburger}>
+                    <HamburgerBar />
+                    <HamburgerBar />
+                    <HamburgerBar />
+                </HamburgerIcon>
+            </HamburgerContainer>
+            {showHamburger && (
+                <MobileMenu>
+                    <MobileMenuLink href="/Home">Home</MobileMenuLink>
+                    <MobileMenuLink href="/CreateCar">Adicionar carro</MobileMenuLink>
+                    <MobileMenuLink href="#">Sair</MobileMenuLink>
+                </MobileMenu>
+            )}
         </HeaderAdm>
     );
 }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'datatables.net-dt/css/dataTables.dataTables.min.css';
-import 'datatables.net-responsive-dt';
-import 'datatables.net';
-import $ from 'jquery';
+import DataTable, { TableColumn } from 'react-data-table-component';
 import {
     MainContent,
     PageContainer,
-    ButtonActions
+    SearchContainer,
+    SearchInput,
+    ButtonActions,
+    ActionButtonsWrapper,
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
 
@@ -16,11 +16,9 @@ interface CarData {
     brand: string;
     name: string;
     price: number;
-    beforePrice: number;
     specifications: string;
     km: string;
     year: string;
-    type: string;
     image: string;
     color: string;
     fuel: string;
@@ -31,19 +29,19 @@ interface CarData {
 
 export default function AdminLogin() {
     const [data, setData] = useState<CarData[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [filterText, setFilterText] = useState('');
+    const [filteredData, setFilteredData] = useState<CarData[]>([]);
+    const [editableRowId, setEditableRowId] = useState<string | null>(null);
+    const [editData, setEditData] = useState<Partial<CarData>>({});
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get<CarData[]>('http://localhost:3000/static/test.json');
                 setData(response.data);
-                setIsLoading(false);
+                setFilteredData(response.data);
             } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('Error fetching data. Please try again later.');
-                setIsLoading(false);
+                console.error('Erro ao buscar dados:', error);
             }
         };
 
@@ -51,106 +49,126 @@ export default function AdminLogin() {
     }, []);
 
     useEffect(() => {
-        if (!isLoading) {
-            $('#myTable').DataTable({
-                responsive: true,
-                pageLength: 10
-            });
-        }
-    }, [isLoading]);
+        const filteredItems = data.filter(
+            item =>
+                item.id.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.brand.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.name.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.price.toString().includes(filterText) ||
+                item.specifications.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.km.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.year.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.color.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.fuel.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.fuelUrban.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.fuelRoad.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.dataSheet.toLowerCase().includes(filterText.toLowerCase())
+        );
+        setFilteredData(filteredItems);
+    }, [filterText, data]);
 
-    const deleteRow = async (index: number) => {
-        const confirmation = window.confirm('Tem certeza que deseja excluir?');
-        if (confirmation) {
+    const handleEditRow = (id: string, rowData: CarData) => {
+        setEditableRowId(id);
+        setEditData(rowData);
+    };
+
+    const handleCancelEditRow = () => {
+        setEditableRowId(null);
+        setEditData({});
+    };
+
+    const handleConfirmEditRow = async () => {
+        if (editableRowId) {
             try {
-                const id = data[index].id;
-                await axios.delete(`http://localhost:3000/api/data/${id}`);
-                setData(prevData => prevData.filter((_, i) => i !== index));
-                alert('Row deleted successfully!');
+                await axios.put(`http://localhost:3000/cars/${editableRowId}`, editData);
+                const updatedData = data.map(item =>
+                    item.id === editableRowId ? { ...item, ...editData } : item
+                );
+                setData(updatedData);
+                setFilteredData(updatedData);
+                setEditableRowId(null);
+                setEditData({});
+                alert('Carro editado com sucesso!');
             } catch (error) {
-                console.error('Error deleting row:', error);
-                alert('Error deleting row. Please try again later.');
+                console.error('Erro ao editar carro:', error);
+                alert('Erro ao editar carro. Por favor, tente novamente mais tarde.');
             }
         }
     };
 
-    const editRow = (index: number) => {
+    const handleDeleteRow = async (id: string) => {
+        try {
+            await axios.delete(`http://localhost:3000/cars/${id}`);
+            const updatedData = data.filter(item => item.id !== id);
+            setData(updatedData);
+            setFilteredData(updatedData);
+            alert('Carro excluído com sucesso!');
+        } catch (error) {
+            console.error('Erro ao excluir carro:', error);
+            alert('Erro ao excluir carro. Por favor, tente novamente mais tarde.');
+        }
     };
 
-    const confirmEdit = async (index: number) => {
-        // Implementar lógica para confirmar a edição de uma linha
-    };
+    const columns: TableColumn<CarData>[] = [
+        { name: 'ID', selector: (row: CarData) => row.id, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.id} onChange={(e) => setEditData({ ...editData, id: e.target.value })} /> : row.id) },
+        { name: 'Marca', selector: (row: CarData) => row.brand, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.brand} onChange={(e) => setEditData({ ...editData, brand: e.target.value })} /> : row.brand) },
+        { name: 'Nome', selector: (row: CarData) => row.name, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} /> : row.name) },
+        { name: 'Preço', selector: (row: CarData) => row.price, cell: (row: CarData) => (editableRowId === row.id ? <input type="number" value={editData.price} onChange={(e) => setEditData({ ...editData, price: parseFloat(e.target.value) })} /> : row.price) },
+        { name: 'Especificações', selector: (row: CarData) => row.specifications, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.specifications} onChange={(e) => setEditData({ ...editData, specifications: e.target.value })} /> : row.specifications) },
+        { name: 'Quilometragem', selector: (row: CarData) => row.km, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.km} onChange={(e) => setEditData({ ...editData, km: e.target.value })} /> : row.km) },
+        { name: 'Ano', selector: (row: CarData) => row.year, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.year} onChange={(e) => setEditData({ ...editData, year: e.target.value })} /> : row.year) },
+        { name: 'Imagem', selector: (row: CarData) => row.image, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.image} onChange={(e) => setEditData({ ...editData, image: e.target.value })} /> : row.image) },
+        { name: 'Cor', selector: (row: CarData) => row.color, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.color} onChange={(e) => setEditData({ ...editData, color: e.target.value })} /> : row.color) },
+        { name: 'Combustível', selector: (row: CarData) => row.fuel, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuel} onChange={(e) => setEditData({ ...editData, fuel: e.target.value })} /> : row.fuel) },
+        { name: 'Consumo Urbano', selector: (row: CarData) => row.fuelUrban, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuelUrban} onChange={(e) => setEditData({ ...editData, fuelUrban: e.target.value })} /> : row.fuelUrban) },
+        { name: 'Consumo Rodoviário', selector: (row: CarData) => row.fuelRoad, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuelRoad} onChange={(e) => setEditData({ ...editData, fuelRoad: e.target.value })} /> : row.fuelRoad) },
+        { name: 'Ficha Técnica', selector: (row: CarData) => row.dataSheet, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.dataSheet} onChange={(e) => setEditData({ ...editData, dataSheet: e.target.value })} /> : row.dataSheet) },
+        {
+            name: 'Ações',
+            cell: (row: CarData) =>
+                editableRowId === row.id ? (
+                    <ActionButtonsWrapper>
+                        <ButtonActions onClick={handleConfirmEditRow}>Confirmar</ButtonActions>
+                        <ButtonActions onClick={handleCancelEditRow}>Cancelar</ButtonActions>
+                    </ActionButtonsWrapper>
+                ) : (
+                    <ButtonActions onClick={() => handleEditRow(row.id, row)}>Editar</ButtonActions>
+                ),
+        },
+        {
+            name: 'Excluir',
+            cell: (row: CarData) => (
+                <ButtonActions onClick={() => handleDeleteRow(row.id)}>Excluir</ButtonActions>
+            ),
+        },
+    ];
 
-    const cancelEdit = () => {
-        // Implementar lógica para cancelar a edição de uma linha
-    };
-
-    const addRow = () => {
-        // Implementar lógica para adicionar uma nova linha
-    };
-
-    const cancelAdd = () => {
-        // Implementar lógica para cancelar adição
-    };
-
-    const confirmAdd = async () => {
-        // Implementar lógica para confirmar a adição de uma nova linha
+    const paginationComponentOptions = {
+        rowsPerPageText: 'Linhas por página',
+        rangeSeparatorText: 'de',
+        noRowsPerPage: false,
+        selectAllRowsItem: true,
+        selectAllRowsItemText: 'Todos',
     };
 
     return (
         <PageContainer>
             <HeaderAdmin />
             <MainContent>
-                <table id="myTable" className="display">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Marca</th>
-                            <th>Nome</th>
-                            <th>Preço</th>
-                            <th>Preço Antes</th>
-                            <th>Especificações</th>
-                            <th>Quilometragem</th>
-                            <th>Ano</th>
-                            <th>Tipo</th>
-                            <th>Imagem</th>
-                            <th>Cor</th>
-                            <th>Combustível</th>
-                            <th>Consumo Urbano</th>
-                            <th>Consumo Rodoviário</th>
-                            <th>Ficha Técnica</th>
-                            <th>Excluir</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, index) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.brand}</td>
-                                <td>{item.name}</td>
-                                <td>{item.price}</td>
-                                <td>{item.beforePrice}</td>
-                                <td>{item.specifications}</td>
-                                <td>{item.km}</td>
-                                <td>{item.year}</td>
-                                <td>{item.type}</td>
-                                <td>{item.image}</td>
-                                <td>{item.color}</td>
-                                <td>{item.fuel}</td>
-                                <td>{item.fuelUrban}</td>
-                                <td>{item.fuelRoad}</td>
-                                <td>{item.dataSheet}</td>
-                                <td>
-                                    <ButtonActions onClick={() => deleteRow(index)}>Excluir</ButtonActions>
-                                </td>
-                                <td>
-                                    <ButtonActions onClick={() => editRow(index)}>Editar</ButtonActions>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <SearchContainer>
+                    <SearchInput
+                        type="text"
+                        placeholder="Buscar..."
+                        value={filterText}
+                        onChange={e => setFilterText(e.target.value)}
+                    />
+                </SearchContainer>
+                <DataTable
+                    columns={columns}
+                    data={filteredData}
+                    pagination
+                    paginationComponentOptions={paginationComponentOptions}
+                />
             </MainContent>
         </PageContainer>
     );
