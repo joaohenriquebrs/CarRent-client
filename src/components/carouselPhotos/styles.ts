@@ -33,7 +33,7 @@ export const CardCarousel = styled.div`
   scroll-behavior: smooth;
   overflow: hidden;
   width: 90vw;
-
+  
   @media (min-width: 950px) and (max-width: 1200px) {
     width: 80vw;
     margin-left: 40px;
@@ -51,10 +51,15 @@ export const CardCarousel = styled.div`
 
   @media (min-width: 500px) and (max-width: 650px) {
     width: 65vw;
-    margin-left: 70px;
+    margin-left: 80px;
   }
 
-  @media (min-width: 300px) and (max-width: 500px) {
+  @media (min-width: 400px) and (max-width: 500px) {
+    width: 60vw;
+    margin-left: 75px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
     width: 60vw;
     margin-left: 60px;
   }
@@ -81,6 +86,30 @@ export const Card = styled.div`
 
   &:hover {
     transform: scale(1.03);
+  }
+
+  @media (min-width: 768px) and (max-width: 1400px) {
+    width: 52%;
+  }
+
+  @media (min-width: 700px) and (max-width: 768px) {
+    width: 68%;
+  }
+
+  @media (min-width: 600px) and (max-width: 700px) {
+    width: 78%;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    width: 78%;
+  }
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    width: 88%;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    width: 100%;
   }
 `;
 
@@ -129,27 +158,43 @@ export const ButtonContainer = styled.div`
     margin-top: -120px;
   }
 
-  @media (min-width: 800px) and (max-width: 950px) {
+  @media (min-width: 768px) and (max-width: 950px) {
     width: 78vw;
     margin-left: 45px;
-    margin-top: -70px;
+    margin-top: -95px;
   }
 
-  @media (min-width: 650px) and (max-width: 800px) {
-    width: 70vw;
-    margin-left: 70px;
-    margin-top: -50px;
+  @media (min-width: 700px) and (max-width: 768px) {
+    width: 78vw;
+    margin-left: 45px;
+    margin-top: -100px;
   }
 
-  @media (min-width: 500px) and (max-width: 650px) {
+  @media (min-width: 600px) and (max-width: 700px) {
+    width: 78vw;
+    margin-left: 45px;
+    margin-top: -130px;
+    margin-bottom: 150px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    width: 78vw;
+    margin-left: 45px;
+    margin-top: -105px;
+    margin-bottom: 150px;
+  }
+
+  @media (min-width: 400px) and (max-width: 500px) {
     width: 60vw;
-    margin-left: 75px;
-    margin-top: -40px;
+    margin-left: 73px;
+    margin-top: -90px;
+    margin-bottom: 120px;
   }
 
-  @media (min-width: 300px) and (max-width: 500px) {
+  @media (min-width: 300px) and (max-width: 400px) {
     width: 50vw;
-    margin-left: 75px;
-    margin-top: -25px;
+    margin-left: 78px;
+    margin-top: -90px;
+    margin-bottom: 110px;
   }
 `;
