@@ -72,7 +72,6 @@ type Car = {
   brand: string;
   name: string;
   price: number;
-  beforePrice: number;
   specifications: string;
   dataSheet: string;
   year: number;

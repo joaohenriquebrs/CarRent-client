@@ -24,11 +24,9 @@ export interface CarData {
   id: string;
   brand: string;
   name: string;
-  type: string;
   year: string;
   km: string;
   price: number;
-  beforePrice: number;
   specifications: string;
   image: string;
   color: string;
