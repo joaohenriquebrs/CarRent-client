@@ -16,7 +16,7 @@ export default function HeaderAdmin() {
                 <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
             </LogoHeaderContainer>
             <MenuAdm>
-                <LinkMenu href='#'>Minha Conta</LinkMenu>
+                <LinkMenu href='/Home'>Home</LinkMenu>
                 <LinkMenu href='#'>Sair</LinkMenu>
             </MenuAdm>
         </HeaderAdm>
