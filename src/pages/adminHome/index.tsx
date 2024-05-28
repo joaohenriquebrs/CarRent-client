@@ -10,6 +10,7 @@ import {
     ActionButtonsWrapper,
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
+import Alert from 'components/alert';
 
 interface CarData {
     id: string;
@@ -33,6 +34,8 @@ export default function AdminLogin() {
     const [filteredData, setFilteredData] = useState<CarData[]>([]);
     const [editableRowId, setEditableRowId] = useState<string | null>(null);
     const [editData, setEditData] = useState<Partial<CarData>>({});
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -88,10 +91,12 @@ export default function AdminLogin() {
                 setFilteredData(updatedData);
                 setEditableRowId(null);
                 setEditData({});
-                alert('Carro editado com sucesso!');
+                setAlertMessage('Carro editado com sucesso!');
+                setShowAlert(true);
             } catch (error) {
-                console.error('Erro ao editar carro:', error);
-                alert('Erro ao editar carro. Por favor, tente novamente mais tarde.');
+                console.error('Erro ao editar carro:', error);;
+                setAlertMessage('Erro ao editar carro. Por favor, tente novamente mais tarde.');
+                setShowAlert(true);
             }
         }
     };
@@ -102,11 +107,17 @@ export default function AdminLogin() {
             const updatedData = data.filter(item => item.id !== id);
             setData(updatedData);
             setFilteredData(updatedData);
-            alert('Carro excluído com sucesso!');
+            setAlertMessage('Carro excluído com sucesso!');
+            setShowAlert(true);
         } catch (error) {
             console.error('Erro ao excluir carro:', error);
-            alert('Erro ao excluir carro. Por favor, tente novamente mais tarde.');
+            setAlertMessage('Erro ao excluir carro. Por favor, tente novamente mais tarde.');
+            setShowAlert(true);
         }
+    };
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
     };
 
     const columns: TableColumn<CarData>[] = [
@@ -151,6 +162,18 @@ export default function AdminLogin() {
         selectAllRowsItemText: 'Todos',
     };
 
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+
+        if (showAlert) {
+            timer = setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+        }
+
+        return () => clearTimeout(timer);
+    }, [showAlert]);
+
     return (
         <PageContainer>
             <HeaderAdmin />
@@ -170,6 +193,9 @@ export default function AdminLogin() {
                     paginationComponentOptions={paginationComponentOptions}
                 />
             </MainContent>
+            {showAlert && (
+                <Alert message={alertMessage} onClose={handleCloseAlert} />
+            )}
         </PageContainer>
     );
 }

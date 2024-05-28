@@ -124,8 +124,16 @@ export const MobileMenu = styled.nav`
   justify-content: center; 
   z-index: 1000;
 
+  @media (min-width: 901px) {
+    display: none;
+  }
+
   @media (max-width: 768px) {
     font-size: 12px;
+  }
+
+  @media (max-width: 400px) {
+    margin-top: -10px;
   }
 `;
 

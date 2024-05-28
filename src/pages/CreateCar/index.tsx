@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
     MainContent,
@@ -12,6 +12,7 @@ import {
     Form
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
+import Alert from 'components/alert';
 
 export default function AdminLogin() {
     const [carData, setCarData] = useState({
@@ -29,25 +30,43 @@ export default function AdminLogin() {
         dataSheet: '',
     });
 
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+
     const handleChange = (e: any) => {
         setCarData({ ...carData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => { // Ajuste do tipo de evento para React.FormEvent<HTMLFormElement>
         e.preventDefault();
         try {
             await axios.post('http://localhost:3000/cars', carData);
-            alert('Carro adicionado com sucesso!');
+            setAlertMessage('Carro adicionado com sucesso!');
+            setShowAlert(true);
         } catch (error) {
             console.error('Erro ao adicionar carro:', error);
-            alert('Erro ao adicionar carro. Por favor, tente novamente mais tarde.');
+            setAlertMessage('Erro ao adicionar carro. Por favor, tente novamente mais tarde.');
+            setShowAlert(true);
         }
     };
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+
+        if (showAlert) {
+            timer = setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+        }
+
+        return () => clearTimeout(timer);
+    }, [showAlert]);
 
     return (
         <PageContainer>
             <HeaderAdmin />
             <MainContent>
+                {showAlert && <Alert message={alertMessage} onClose={() => setShowAlert(false)} />}
                 <Form onSubmit={handleSubmit}>
                     <BlockLeft>
                         <CarBlock>

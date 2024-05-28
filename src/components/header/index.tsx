@@ -45,7 +45,6 @@ export default function Header() {
           </LogoHeaderContainer>
           <Menu>
             <LinkMenu href="/Home">Home</LinkMenu>
-            <LinkMenu href="/SellYourCar">Venda seu carro</LinkMenu>
             <LinkMenu href="/Finance">Financie</LinkMenu>
             <LinkMenu href="/About">Sobre</LinkMenu>
             <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
@@ -73,7 +72,6 @@ export default function Header() {
       {showHamburger && (
         <MobileMenu>
           <MobileMenuLink href="/Home">Home</MobileMenuLink>
-          <MobileMenuLink href="/SellYourCar">Venda seu carro</MobileMenuLink>
           <MobileMenuLink href="/Finance">Financie</MobileMenuLink>
           <MobileMenuLink href="/About">Sobre</MobileMenuLink>
           <MobileIconMenuLink href="https://wa.me/55119983251154" target='_blank'>
