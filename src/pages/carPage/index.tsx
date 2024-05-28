@@ -333,7 +333,7 @@ export default function CarPage() {
           </LeftContainer>
           <RightContainer>
             <CardContact>
-              <ButtonSendMessage href='https://wa.me/55119983251154'>Enviar mensagem</ButtonSendMessage>
+              <ButtonSendMessage href='https://wa.me/55119983251154' target='_blank'>Enviar mensagem</ButtonSendMessage>
               <ContactWpp>
                 <BlockIconContainer>
                   <Image src={IconWpp} alt="Ícone do whatsapp" />
@@ -359,13 +359,13 @@ export default function CarPage() {
                 </BlockIconContainer>
                 GRUPO AUTOS
               </TextCarLocation>
-              <ButtonContactDown href="/SellYourCar">Avalie seu carro</ButtonContactDown>
+              <ButtonContactDown href="https://wa.me/55119983251154" target='_blank'>Avalie seu carro</ButtonContactDown>
             </CardContact>
           </RightContainer>
         </MainContent>
         <CardContactMobile>
           <CardContact>
-            <ButtonSendMessage href='https://wa.me/55119983251154'>Enviar mensagem</ButtonSendMessage>
+            <ButtonSendMessage href='https://wa.me/55119983251154' target='_blank'>Enviar mensagem</ButtonSendMessage>
             <ContactWpp>
               <BlockIconContainer>
                 <Image src={IconWpp} alt="Ícone do whatsapp" />
@@ -391,7 +391,7 @@ export default function CarPage() {
               </BlockIconContainer>
               GRUPO AUTOS
             </TextCarLocation>
-            <ButtonContactDown href="/SellYourCar">Avalie seu carro</ButtonContactDown>
+            <ButtonContactDown href="https://wa.me/55119983251154r" target='_blank'>Avalie seu carro</ButtonContactDown>
           </CardContact>
         </CardContactMobile>
         <Footer />

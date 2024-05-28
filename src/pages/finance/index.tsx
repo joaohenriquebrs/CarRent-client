@@ -26,24 +26,7 @@ import {
   CardImage,
   Title,
   Description,
-  FormsContainer,
-  FormsLeft,
-  FormsRight,
-  CarDatas,
-  TitleCarDatas,
-  InputCarDatas,
-  ExampleCarDatas,
-  ContactDatas,
-  TitleContactDatas,
-  ContactNameContainer,
-  TitlesContact,
-  InputContainer,
-  ContactPhoneContainer,
-  ContactEmailContainer,
-  ButtonSend,
-  ContentRight,
-  TextLeft,
-  SubTitleCarDatas
+  ContentRight
 } from './styles';
 import {
   BradescoLogo,
@@ -80,37 +63,37 @@ export default function Finance() {
             <BlockFinanciers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={BradescoLogo} alt="Logo do banco Bradesco" />
+                  <Image src={BradescoLogo} alt="Logo do banco Bradesco" layout='responsive' />
                 </BlockImageFinanciers>
                 <FinanciersName>Bradesco</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={ItauLogo} alt="Logo do banco Itaú" />
+                  <Image src={ItauLogo} alt="Logo do banco Itaú" layout='responsive' />
                 </BlockImageFinanciers>
                 <FinanciersName>Itaú</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={SantanderLogo} alt="Logo do banco Santander" />
+                  <Image src={SantanderLogo} alt="Logo do banco Santander" layout='responsive' />
                 </BlockImageFinanciers>
                 <FinanciersName>Santander</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={PanLogo} alt="Logo do banco Pan" />
+                  <Image src={PanLogo} alt="Logo do banco Pan" layout='responsive' />
                 </BlockImageFinanciers>
                 <FinanciersName>Banco Pan</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={SafraLogo} alt="Logo do banco Safra" />
+                  <Image src={SafraLogo} alt="Logo do banco Safra" layout='responsive' />
                 </BlockImageFinanciers>
                 <FinanciersName>Banco Safra</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={BvLogo} alt="Logo do banco BV Financeira" />
+                  <Image src={BvLogo} alt="Logo do banco BV Financeira" layout='responsive' />
                 </BlockImageFinanciers>
                 <FinanciersName>BV Financeira</FinanciersName>
               </Financiers>
@@ -122,7 +105,7 @@ export default function Finance() {
                 Nossos consultores avaliam qual é a{' '}
                 <strong>melhor taxa de juros para o seu perfil.</strong>
               </TitleDescriptionRight>
-              <ButtonDescription>Enviar mensagem</ButtonDescription>
+              <ButtonDescription href="https://wa.me/55119983251154" target='_blank'>Enviar mensagem</ButtonDescription>
             </ContentRight>
           </DescriptionRight>
         </FinanceDescriptionContainer>
@@ -165,51 +148,6 @@ export default function Finance() {
             </Process>
           </BlockProcess>
         </ProcessContainer>
-
-        <FormsContainer>
-          <FormsLeft>
-            <TextLeft>Entre em contato com um de nossos consultores</TextLeft>
-          </FormsLeft>
-          <FormsRight>
-            <CarDatas>
-              <TitleCarDatas>DADOS DO VEÍCULO</TitleCarDatas>
-              <SubTitleCarDatas>Seu veículo</SubTitleCarDatas>
-              <InputCarDatas></InputCarDatas>
-              <ExampleCarDatas>Ex: Gol 2018</ExampleCarDatas>
-            </CarDatas>
-            <ContactDatas>
-              <TitleContactDatas>DADOS DE CONTATO</TitleContactDatas>
-              <ContactNameContainer>
-                <TitlesContact>Seu nome</TitlesContact>
-                <InputContainer></InputContainer>
-              </ContactNameContainer>
-
-              <ContactPhoneContainer>
-                <TitlesContact>Seu celular</TitlesContact>
-                <InputContainer></InputContainer>
-              </ContactPhoneContainer>
-
-              <ContactEmailContainer>
-                <TitlesContact>Seu e-mail</TitlesContact>
-                <InputContainer></InputContainer>
-              </ContactEmailContainer>
-
-              <ContactEmailContainer>
-                <TitlesContact>
-                  Data de Nascimento &#40;opcional&#41;
-                </TitlesContact>
-                <InputContainer></InputContainer>
-              </ContactEmailContainer>
-
-              <ContactEmailContainer>
-                <TitlesContact>CPF &#40;opcional&#41;</TitlesContact>
-                <InputContainer></InputContainer>
-              </ContactEmailContainer>
-            </ContactDatas>
-
-            <ButtonSend>Solicitar análise</ButtonSend>
-          </FormsRight>
-        </FormsContainer>
       </MainContent>
       <Footer />
     </PageContainer>
