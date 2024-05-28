@@ -6,6 +6,9 @@ import {
     PageContainer,
     SearchContainer,
     SearchInput,
+    ButtonActions,
+    ActionButtonsWrapper,
+    InputField,
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
 
@@ -31,6 +34,8 @@ export default function AdminLogin() {
     const [data, setData] = useState<CarData[]>([]);
     const [filterText, setFilterText] = useState('');
     const [filteredData, setFilteredData] = useState<CarData[]>([]);
+    const [editableRowId, setEditableRowId] = useState<string | null>(null);
+    const [editData, setEditData] = useState<Partial<CarData>>({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -67,6 +72,40 @@ export default function AdminLogin() {
         setFilteredData(filteredItems);
     }, [filterText, data]);
 
+    const handleEditRow = (id: string, rowData: CarData) => {
+        setEditableRowId(id);
+        setEditData(rowData);
+    };
+
+    const handleCancelEditRow = () => {
+        setEditableRowId(null);
+        setEditData({});
+    };
+
+    const handleConfirmEditRow = () => {
+        if (editableRowId) {
+            const updatedData = data.map(item =>
+                item.id === editableRowId ? { ...item, ...editData } : item
+            );
+            setData(updatedData);
+            setEditableRowId(null);
+            setEditData({});
+        }
+    };
+
+    const handleDeleteRow = async (id: string) => {
+        try {
+            await axios.delete(`http://localhost:3000/cars/${id}`);
+            const updatedData = data.filter(item => item.id !== id);
+            setData(updatedData);
+            setFilteredData(updatedData);
+            alert('Carro excluído com sucesso!');
+        } catch (error) {
+            console.error('Erro ao excluir carro:', error);
+            alert('Erro ao excluir carro. Por favor, tente novamente mais tarde.');
+        }
+    };
+
     const columns: TableColumn<CarData>[] = [
         { name: 'ID', selector: (row: CarData) => row.id },
         { name: 'Marca', selector: (row: CarData) => row.brand },
@@ -83,6 +122,24 @@ export default function AdminLogin() {
         { name: 'Consumo Urbano', selector: (row: CarData) => row.fuelUrban },
         { name: 'Consumo Rodoviário', selector: (row: CarData) => row.fuelRoad },
         { name: 'Ficha Técnica', selector: (row: CarData) => row.dataSheet },
+        {
+            name: 'Ações',
+            cell: (row: CarData) =>
+                editableRowId === row.id ? (
+                    <ActionButtonsWrapper>
+                        <ButtonActions onClick={handleConfirmEditRow}>Confirmar</ButtonActions>
+                        <ButtonActions onClick={handleCancelEditRow}>Cancelar</ButtonActions>
+                    </ActionButtonsWrapper>
+                ) : (
+                    <ButtonActions onClick={() => handleEditRow(row.id, row)}>Editar</ButtonActions>
+                ),
+        },
+        {
+            name: 'Excluir',
+            cell: (row: CarData) => (
+                <ButtonActions onClick={() => handleDeleteRow(row.id)}>Excluir</ButtonActions>
+            ),
+        },
     ];
 
     const paginationComponentOptions = {
@@ -90,7 +147,7 @@ export default function AdminLogin() {
         rangeSeparatorText: 'de',
         noRowsPerPage: false,
         selectAllRowsItem: true,
-        selectAllRowsItemText: 'Todos'
+        selectAllRowsItemText: 'Todos',
     };
 
     return (

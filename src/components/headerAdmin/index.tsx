@@ -17,6 +17,7 @@ export default function HeaderAdmin() {
             </LogoHeaderContainer>
             <MenuAdm>
                 <LinkMenu href='/Home'>Home</LinkMenu>
+                <LinkMenu href='#'>Adicionar carro</LinkMenu>
                 <LinkMenu href='#'>Sair</LinkMenu>
             </MenuAdm>
         </HeaderAdm>

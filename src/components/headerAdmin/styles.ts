@@ -8,6 +8,14 @@ export const HeaderAdm = styled.div`
   flex-direction: row;
   flex-direction: space-between;
   align-items: center;
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const LogoHeaderContainer = styled.a`
@@ -66,28 +74,8 @@ export const LinkMenu = styled.a`
     color: #6a6c6a;
   }
 
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-    margin-right: 30px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-    margin-right: 25px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-    margin-right: 20px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 8px;
-    margin-right: 10px;
-  }
-
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 7px;
-    margin-right: 10px;
+    font-size: 15px;
+    margin-right: 20px;
   }
 `;
