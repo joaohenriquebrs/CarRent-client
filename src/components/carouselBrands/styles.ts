@@ -60,7 +60,7 @@ export const BlockImage = styled.div`
 }
 `;
 
-export const Card = styled.a`
+export const Card = styled.div`
   width: 100px;
   height: 83px;
   background-color: #fff;

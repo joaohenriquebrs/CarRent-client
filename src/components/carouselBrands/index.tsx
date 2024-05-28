@@ -94,7 +94,7 @@ export const CarouselComponent = () => {
         {data.map((item) => {
           const { id, brand } = item;
           return (
-            <Card key={id} href="#">
+            <Card key={id}>
               <BlockImage>
                 <Image
                   src={logoMappings[brand]}
