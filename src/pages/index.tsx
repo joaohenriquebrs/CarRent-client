@@ -172,7 +172,7 @@ export default function Home() {
 
   const handleCardsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCardsPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to the first page when changing cards per page
+    setCurrentPage(1);
   };
 
   return (

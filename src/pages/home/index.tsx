@@ -21,7 +21,8 @@ import {
 } from './styles';
 import { BannerFirst, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/CarouselBrands';
-import { CardCentral, CarData } from 'components/CardCentral';
+import { CardCentral } from 'components/CardCentral';
+import { CarData } from 'services/interfaces';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import { getCarsData } from 'services/api';
@@ -69,7 +70,7 @@ export default function Home() {
   const [fakeData, setFakeData] = useState<CarData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ascendingOrder, setAscendingOrder] = useState(false);
-  const [cardsPerPage, setCardsPerPage] = useState(6); // Default value
+  const [cardsPerPage, setCardsPerPage] = useState(6);
   const mainContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

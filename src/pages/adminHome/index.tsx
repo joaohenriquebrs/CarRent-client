@@ -12,22 +12,7 @@ import {
 import HeaderAdmin from 'components/HeaderAdmin';
 import Alert from 'components/Alert';
 import { editCarData, deleteCar } from 'services/api';
-
-interface CarData {
-    id: string;
-    brand: string;
-    name: string;
-    price: number;
-    specifications: string;
-    km: string;
-    year: string;
-    image: string;
-    color: string;
-    fuel: string;
-    fuelUrban: string;
-    fuelRoad: string;
-    dataSheet: string;
-}
+import { CarData } from 'services/interfaces';
 
 export default function AdminLogin() {
     const [data, setData] = useState<CarData[]>([]);
