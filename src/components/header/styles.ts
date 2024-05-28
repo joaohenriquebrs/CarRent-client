@@ -304,7 +304,6 @@ export const MobileMenuLink = styled.a`
   border-bottom: 1px solid #ddd;
 
   &:hover {
-    color: #FFF;
     transform: scale(1.07);
   }
 `;
@@ -322,7 +321,6 @@ export const MobileIconMenuLink = styled.a`
   width: 100%;
 
   &:hover {
-    color: #FFF;
     transform: scale(1.07);
   }
 

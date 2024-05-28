@@ -47,7 +47,7 @@ export default function Header() {
             <LinkMenu href="/sellYourCar">Venda seu carro</LinkMenu>
             <LinkMenu href="/finance">Financie</LinkMenu>
             <LinkMenu href="/about">Sobre</LinkMenu>
-            <PhoneLinkMenu href="#">
+            <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
               <IconLink>
                 <FaPhone />
               </IconLink>
@@ -74,7 +74,7 @@ export default function Header() {
           <MobileMenuLink href="/sellYourCar">Venda seu carro</MobileMenuLink>
           <MobileMenuLink href="/finance">Financie</MobileMenuLink>
           <MobileMenuLink href="/about">Sobre</MobileMenuLink>
-          <MobileIconMenuLink href="#">
+          <MobileIconMenuLink href="https://wa.me/55119983251154" target='_blank'>
             <IconLink>
               <FaPhone />
             </IconLink>
