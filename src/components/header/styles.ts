@@ -24,6 +24,7 @@ export const SecondHeader = styled.div`
   border-bottom: 1px solid #f5f5f5;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: -1px;
 `;
 
@@ -86,7 +87,6 @@ export const OpeningHoursInfo = styled.div`
 `;
 
 export const LogoHeaderContainer = styled.a`
-  margin-left: 2.4%;
 
   @media (min-width: 768px) {
     min-width: 147px;
@@ -118,11 +118,10 @@ export const Menu = styled.div`
   align-items: center;
   font-size: 15px;
   justify-content: flex-end;
-  width: 88%;
   font-weight: 700;
   letter-spacing: 0.4px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -210,9 +209,9 @@ export const LogoWpp = styled.a`
 
 export const ContentSecondHeader = styled.div`
   display: flex;
-  justify-content: flex-end;
-  width: 95%;
-  padding-left: 2.4%;
+  align-items: center;
+  justify-content: space-between;
+  width: 91%;
 `;
 
 export const LinkMenuAdm = styled.a`
@@ -260,10 +259,20 @@ export const LinkMenuAdm = styled.a`
 export const HamburgerContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 88%;
 
-  @media (min-width: 768px) {
+  @media (min-width: 901px) {
     display: none;
+  }
+
+  @media (min-width: 700px) and (max-width: 901px) {
+  }
+
+  @media (min-width: 400px) and (max-width: 500px) {
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
   }
 `;
 

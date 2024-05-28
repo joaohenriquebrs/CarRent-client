@@ -44,6 +44,7 @@ export default function Header() {
             <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
           </LogoHeaderContainer>
           <Menu>
+            <LinkMenu href="/Home">Home</LinkMenu>
             <LinkMenu href="/SellYourCar">Venda seu carro</LinkMenu>
             <LinkMenu href="/Finance">Financie</LinkMenu>
             <LinkMenu href="/About">Sobre</LinkMenu>
@@ -71,6 +72,7 @@ export default function Header() {
       </SecondHeader>
       {showHamburger && (
         <MobileMenu>
+          <MobileMenuLink href="/Home">Home</MobileMenuLink>
           <MobileMenuLink href="/SellYourCar">Venda seu carro</MobileMenuLink>
           <MobileMenuLink href="/Finance">Financie</MobileMenuLink>
           <MobileMenuLink href="/About">Sobre</MobileMenuLink>

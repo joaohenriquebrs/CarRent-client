@@ -617,7 +617,10 @@ export const CardContact = styled.div`
   overflow-y: auto;
 `;
 
-export const ButtonSendMessage = styled.button`
+export const ButtonSendMessage = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   cursor: pointer;
   background: #6a6c6a;
@@ -628,6 +631,7 @@ export const ButtonSendMessage = styled.button`
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 25px;
+  text-decoration: none;
 
   transition:
     transform 0.4s ease,
@@ -712,6 +716,9 @@ export const TextCarLocation = styled.div`
 `;
 
 export const ButtonContactDown = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   cursor: pointer;
   background: #000;
@@ -723,8 +730,6 @@ export const ButtonContactDown = styled.a`
   font-weight: 600;
   margin-bottom: 25px;
   text-decoration: none;
-  display: flex;
-  justify-content: center;
 
   transition:
     transform 0.4s ease,

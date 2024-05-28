@@ -334,7 +334,7 @@ export default function CarPage() {
           </LeftContainer>
           <RightContainer>
             <CardContact>
-              <ButtonSendMessage>Enviar mensagem</ButtonSendMessage>
+              <ButtonSendMessage href='https://wa.me/55119983251154'>Enviar mensagem</ButtonSendMessage>
               <ContactWpp>
                 <BlockIconContainer>
                   <Image src={IconWpp} alt="Ícone do whatsapp" />
@@ -360,14 +360,13 @@ export default function CarPage() {
                 </BlockIconContainer>
                 GRUPO AUTOS
               </TextCarLocation>
-              <ButtonContactDown href="#">Avalie seu carro</ButtonContactDown>
-              <ButtonContactDown href="#">Ver parcelas</ButtonContactDown>
+              <ButtonContactDown href="/SellYourCar">Avalie seu carro</ButtonContactDown>
             </CardContact>
           </RightContainer>
         </MainContent>
         <CardContactMobile>
           <CardContact>
-            <ButtonSendMessage>Enviar mensagem</ButtonSendMessage>
+            <ButtonSendMessage href='https://wa.me/55119983251154'>Enviar mensagem</ButtonSendMessage>
             <ContactWpp>
               <BlockIconContainer>
                 <Image src={IconWpp} alt="Ícone do whatsapp" />
@@ -393,8 +392,7 @@ export default function CarPage() {
               </BlockIconContainer>
               GRUPO AUTOS
             </TextCarLocation>
-            <ButtonContactDown href="#">Avalie seu carro</ButtonContactDown>
-            <ButtonContactDown href="#">Ver parcelas</ButtonContactDown>
+            <ButtonContactDown href="/SellYourCar">Avalie seu carro</ButtonContactDown>
           </CardContact>
         </CardContactMobile>
         <Footer />
