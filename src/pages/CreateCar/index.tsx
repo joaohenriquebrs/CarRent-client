@@ -87,12 +87,12 @@ export default function AdminLogin() {
                             <CarInput name="fuel" value={carData.fuel} onChange={handleChange} placeholder='Diesel' />
                         </CarBlock>
                         <CarBlock>
-                            <CarTitle>Km/l Cidade</CarTitle>
-                            <CarInput name="fuelUrban" value={carData.fuelUrban} onChange={handleChange} placeholder='13km/l urbano' />
+                            <CarTitle>Km/l urbano</CarTitle>
+                            <CarInput name="fuelUrban" value={carData.fuelUrban} onChange={handleChange} placeholder='13km/l' />
                         </CarBlock>
                         <CarBlock>
                             <CarTitle>Km/l rodovia</CarTitle>
-                            <CarInput name="fuelRoad" value={carData.fuelRoad} onChange={handleChange} placeholder='15km/l rodovia' />
+                            <CarInput name="fuelRoad" value={carData.fuelRoad} onChange={handleChange} placeholder='15km/l' />
                         </CarBlock>
                         <CarBlock>
                             <CarTitle>Marcha</CarTitle>

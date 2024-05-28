@@ -67,7 +67,7 @@ export const CarInput = styled.input`
   border-radius: 10px;
   border: none;
   background: #f5f5f5;
-  padding-left: 10px;
+  padding: 0px 10px;
 `;
 
 export const SubmitButton = styled.button`

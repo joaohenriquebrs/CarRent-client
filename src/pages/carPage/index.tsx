@@ -172,8 +172,8 @@ export default function CarPage() {
                     </BlockIconContainer>
                     {carData.fuel}
                   </FuelType>
-                  <ConsuptionUrban>{carData.fuelUrban}</ConsuptionUrban>
-                  <ConsuptionHighway>{carData.fuelRoad}</ConsuptionHighway>
+                  <ConsuptionUrban>{carData.fuelUrban} urbano</ConsuptionUrban>
+                  <ConsuptionHighway>{carData.fuelRoad} rodovia</ConsuptionHighway>
                 </Info5Datasheet>
               </DetailsDatasheet>
             </DatasheetContainer>
