@@ -9,7 +9,6 @@ import {
   TitleCar,
   UnderContent,
   TitleCarText,
-  BeforePrice,
   NewPrice,
   DatasheetContainer,
   TitleDatasheet,
@@ -36,8 +35,7 @@ import {
   ContactNumber,
   AdressText,
   TitleCarLocation,
-  ButtonEvaluate,
-  ButtonInstallments,
+  ButtonContactDown,
   BlockLogoCar,
   BorderTitleContainer,
   ContentTitle,
@@ -66,8 +64,8 @@ import {
 } from 'assets';
 
 import { CarCarouselComponent } from 'components';
-import Header from 'components/header';
-import Footer from 'components/footer';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 type Car = {
   id: string;
@@ -132,7 +130,6 @@ export default function CarPage() {
                     </TitleCarText>
                   </NamesCarContainer>
                   <PricesBlock>
-                    <BeforePrice>de R$ {carData.beforePrice}</BeforePrice>
                     <NewPrice>
                       por R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
                     </NewPrice>
@@ -363,8 +360,8 @@ export default function CarPage() {
                 </BlockIconContainer>
                 GRUPO AUTOS
               </TextCarLocation>
-              <ButtonEvaluate href="#">Avalie seu carro</ButtonEvaluate>
-              <ButtonInstallments href="#">Ver parcelas</ButtonInstallments>
+              <ButtonContactDown href="#">Avalie seu carro</ButtonContactDown>
+              <ButtonContactDown href="#">Ver parcelas</ButtonContactDown>
             </CardContact>
           </RightContainer>
         </MainContent>
@@ -396,8 +393,8 @@ export default function CarPage() {
               </BlockIconContainer>
               GRUPO AUTOS
             </TextCarLocation>
-            <ButtonEvaluate href="#">Avalie seu carro</ButtonEvaluate>
-            <ButtonInstallments href="#">Ver parcelas</ButtonInstallments>
+            <ButtonContactDown href="#">Avalie seu carro</ButtonContactDown>
+            <ButtonContactDown href="#">Ver parcelas</ButtonContactDown>
           </CardContact>
         </CardContactMobile>
         <Footer />

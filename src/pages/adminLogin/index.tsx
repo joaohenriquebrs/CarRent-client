@@ -11,7 +11,7 @@ import {
     InputPassword,
     AcessButton
 } from './styles';
-import Header from 'components/header';
+import Header from 'components/Header';
 
 export default function AdminLogin() {
 
@@ -29,7 +29,7 @@ export default function AdminLogin() {
                         <InputPasswordTitle>Senha</InputPasswordTitle>
                         <InputPassword type='password' placeholder='Informe a senha' />
                     </BlockInputPassword>
-                    <AcessButton href='/adminHome'>Acessar</AcessButton>
+                    <AcessButton href="/AdminHome">Acessar</AcessButton>
                 </MainContent>
             </PageContainer>
         </>

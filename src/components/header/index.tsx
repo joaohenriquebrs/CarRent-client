@@ -40,20 +40,20 @@ export default function Header() {
       </FirstHeader>
       <SecondHeader>
         <ContentSecondHeader>
-          <LogoHeaderContainer href="/home">
+          <LogoHeaderContainer href="/Home">
             <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
           </LogoHeaderContainer>
           <Menu>
-            <LinkMenu href="/sellYourCar">Venda seu carro</LinkMenu>
-            <LinkMenu href="/finance">Financie</LinkMenu>
-            <LinkMenu href="/about">Sobre</LinkMenu>
+            <LinkMenu href="/SellYourCar">Venda seu carro</LinkMenu>
+            <LinkMenu href="/Finance">Financie</LinkMenu>
+            <LinkMenu href="/About">Sobre</LinkMenu>
             <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
               <IconLink>
                 <FaPhone />
               </IconLink>
               Telefone
             </PhoneLinkMenu>
-            <LinkMenuAdm href="/adminLogin">
+            <LinkMenuAdm href="/AdminLogin">
               <IconLink>
                 <FaUser />
               </IconLink>
@@ -71,16 +71,16 @@ export default function Header() {
       </SecondHeader>
       {showHamburger && (
         <MobileMenu>
-          <MobileMenuLink href="/sellYourCar">Venda seu carro</MobileMenuLink>
-          <MobileMenuLink href="/finance">Financie</MobileMenuLink>
-          <MobileMenuLink href="/about">Sobre</MobileMenuLink>
+          <MobileMenuLink href="/SellYourCar">Venda seu carro</MobileMenuLink>
+          <MobileMenuLink href="/Finance">Financie</MobileMenuLink>
+          <MobileMenuLink href="/About">Sobre</MobileMenuLink>
           <MobileIconMenuLink href="https://wa.me/55119983251154" target='_blank'>
             <IconLink>
               <FaPhone />
             </IconLink>
             Telefone
           </MobileIconMenuLink>
-          <MobileIconMenuLink href="/adminLogin">
+          <MobileIconMenuLink href="/AdminLogin">
             <IconLink>
               <FaUser />
             </IconLink>Login

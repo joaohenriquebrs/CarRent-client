@@ -47,7 +47,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
     <CardContainer>
       {carData && (
         <>
-          <BlockImageCard href="/carPage">
+          <BlockImageCard href="/CarPage">
             <Image
               src={RenagadeImage}
               alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}
@@ -91,7 +91,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
               <CarPrice>
                 R$ <PriceEmphasis>{carData.price}</PriceEmphasis>
               </CarPrice>
-              <SeeMore href="/carPage">Ver mais</SeeMore>
+              <SeeMore href="/CarPage">Ver mais</SeeMore>
             </FooterCard>
           </ContentContainer>
         </>

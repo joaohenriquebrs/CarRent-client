@@ -64,41 +64,6 @@ export const SearchContainer = styled.div`
   }
 `;
 
-export const SearchBar = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  width: 29%;
-  height: 50px;
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    width: 38%;
-    height: 48px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    width: 42%;
-    height: 44px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    width: 42%;
-    height: 40px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    width: 38%;
-    height: 36px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    width: 38%;
-    height: 32px;
-  }
-`;
-
 export const CardsPerPage = styled.div`
   font-size: 16px;
   background: #f5f5f5;
@@ -136,60 +101,6 @@ export const CardsPerPage = styled.div`
 
 export const LabelCards = styled.label`
   margin-right: 5px;
-`;
-
-export const SearchIcon = styled.button`
-  background: #6a6c6a;
-  width: 60px;
-  height: 100%;
-  border: none;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    background: #555655;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    max-width: 32px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    max-width: 32px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    max-width: 32px;
-  }
-`;
-
-export const SearchInput = styled.input`
-  border: none;
-  outline: none;
-  width: 100%;
-  margin-left: 20px;
-  color: #000;
-  font-size: 16px;
-  ::placeholder {
-    color: #b3b3b3;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 14px;
-    margin-left: 15px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 12px;
-    margin-left: 10px;
-  }
 `;
 
 export const OrderByContainer = styled.button`
