@@ -154,31 +154,6 @@ export const TitleCarText = styled.div`
   }
 `;
 
-export const BeforePrice = styled.div`
-  font-size: 16px;
-  color: #616161;
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 14px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 10px;
-  }
-`;
-
 export const NewPrice = styled.div`
   font-size: 16px;
   color: rgba(0, 0, 0, 0.5);
@@ -186,7 +161,6 @@ export const NewPrice = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-left: 40px;
   font-weight: 600;
 
   @media (min-width: 700px) and (max-width: 800px) {
@@ -245,10 +219,10 @@ export const PricesBlock = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-left: 70px;
+  margin-left: 60px;
 
   @media (min-width: 500px) and (max-width: 600px) {
-    margin-left: 50px;
+    margin-left: 30px;
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
@@ -352,6 +326,9 @@ export const InfoDatasheet = styled.div`
 
 export const BlockIconContainer = styled.div`
   margin-right: 8px;
+
+  @media (min-width: 300px) and (max-width: 400px) {
+  }
 `;
 
 export const Info5Datasheet = styled.div`
@@ -660,24 +637,9 @@ export const ButtonSendMessage = styled.button`
     transform: scale(1.07);
   }
 
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+  @media (min-width: 300px) and (max-width: 800px) {
+    font-size: 15px;
+    padding: 12px 0px;
   }
 `;
 
@@ -688,25 +650,10 @@ export const ContactWpp = styled.div`
   padding-left: 20px;
   display: flex;
   flex-direction: row;
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
+  align-items: center;
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+    font-size: 12px;
   }
 `;
 
@@ -717,25 +664,10 @@ export const ContactNumber = styled.div`
   padding-left: 20px;
   display: flex;
   flex-direction: row;
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
+  align-items: center;
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+    font-size: 12px;
   }
 `;
 
@@ -746,25 +678,10 @@ export const AdressText = styled.div`
   padding-left: 20px;
   display: flex;
   flex-direction: row;
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
+  align-items: center;
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+    font-size: 11px;
   }
 `;
 
@@ -775,24 +692,8 @@ export const TitleCarLocation = styled.div`
   font-weight: 600;
   margin-bottom: 5px;
 
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
-
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+    font-size: 12px;
   }
 `;
 
@@ -803,29 +704,14 @@ export const TextCarLocation = styled.div`
   padding-left: 20px;
   display: flex;
   flex-direction: row;
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
+  align-items: center;
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+    font-size: 11px;
   }
 `;
 
-export const ButtonEvaluate = styled.a`
+export const ButtonContactDown = styled.a`
   border: none;
   cursor: pointer;
   background: #000;
@@ -848,68 +734,9 @@ export const ButtonEvaluate = styled.a`
     transform: scale(1.07);
   }
 
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
-  }
-`;
-
-export const ButtonInstallments = styled.a`
-  border: none;
-  cursor: pointer;
-  background: #000;
-  margin: 0px 20px;
-  border-radius: 5px;
-  padding: 14px 0px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.3s ease;
-
-  &:hover {
-    transform: scale(1.07);
-  }
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    font-size: 13px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    font-size: 12px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 9px;
+  @media (min-width: 300px) and (max-width: 800px) {
+    font-size: 15px;
+    padding: 12px 0px;
   }
 `;
 

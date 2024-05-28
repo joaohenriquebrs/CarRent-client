@@ -7,24 +7,8 @@ export const CarouselContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  @media (min-width: 700px) and (max-width: 800px) {
-    margin-bottom: 120px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    margin-bottom: 100px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    margin-bottom: 90px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    margin-bottom: 70px;
-  }
-
   @media (min-width: 300px) and (max-width: 400px) {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -92,6 +76,16 @@ export const ButtonRight = styled.button`
   width: 50px;
   height: 50px;
   transition: transform 0.3s ease;
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 export const ButtonLeft = styled.button`
@@ -101,6 +95,16 @@ export const ButtonLeft = styled.button`
   cursor: pointer;
   width: 50px;
   height: 50px;
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
