@@ -24,6 +24,7 @@ import { CarouselComponent } from 'components/CarouselBrands';
 import { CardCentral, CarData } from 'components/CardCentral';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import { getCarsData } from 'services/api';
 
 const MAX_PAGES_DISPLAYED = 3;
 
@@ -74,10 +75,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<CarData[]>(
-          'http://localhost:3000/static/test.json'
-        );
-        const data = response.data;
+        const data = await getCarsData();
         setFakeData(data);
       } catch (error) {
         console.error('Erro ao obter dados:', error);

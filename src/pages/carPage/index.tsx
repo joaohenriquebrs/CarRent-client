@@ -47,7 +47,7 @@ import {
   TextCarLocation,
   PhotosCarContainer,
   PhotoMainContainer,
-  CardContactMobile
+  CardContactMobile,
 } from './styles';
 
 import {
@@ -66,6 +66,9 @@ import {
 import { CarCarouselComponent } from 'components';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import { getCarsData } from 'services/api';
+import Loading from 'components/Loading';
+
 
 type Car = {
   id: string;
@@ -99,7 +102,7 @@ export default function CarPage() {
     fetchCarData();
   }, []);
 
-  if (!carData) return <div>Loading...</div>;
+  if (!carData) return <Loading />;
 
   return (
     <>

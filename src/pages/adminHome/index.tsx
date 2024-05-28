@@ -10,7 +10,8 @@ import {
     ActionButtonsWrapper,
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
-import Alert from 'components/alert';
+import Alert from 'components/Alert';
+import { editCarData, deleteCar } from 'services/api';
 
 interface CarData {
     id: string;
@@ -81,9 +82,9 @@ export default function AdminLogin() {
     };
 
     const handleConfirmEditRow = async () => {
-        if (editableRowId) {
+        if (editableRowId && editData) {
             try {
-                await axios.put(`http://localhost:3000/cars/${editableRowId}`, editData);
+                await editCarData(editableRowId, editData);
                 const updatedData = data.map(item =>
                     item.id === editableRowId ? { ...item, ...editData } : item
                 );
@@ -94,7 +95,7 @@ export default function AdminLogin() {
                 setAlertMessage('Carro editado com sucesso!');
                 setShowAlert(true);
             } catch (error) {
-                console.error('Erro ao editar carro:', error);;
+                console.error('Erro ao editar carro:', error);
                 setAlertMessage('Erro ao editar carro. Por favor, tente novamente mais tarde.');
                 setShowAlert(true);
             }
@@ -103,7 +104,7 @@ export default function AdminLogin() {
 
     const handleDeleteRow = async (id: string) => {
         try {
-            await axios.delete(`http://localhost:3000/cars/${id}`);
+            await deleteCar(id);
             const updatedData = data.filter(item => item.id !== id);
             setData(updatedData);
             setFilteredData(updatedData);
