@@ -16,7 +16,8 @@ import {
   ButtonWppContact,
   ContactSecondText,
   ButtonNumberContact,
-  BlockImage
+  BlockImage,
+  ParagraphSpacing
 } from './styles';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -31,8 +32,7 @@ export default function About() {
         <TextAboutContent>
           Em nossa década de atuação, ultrapassamos a marca de 5000 veículos
           vendidos, transformando clientes em parceiros!
-          <br />
-          <br />
+          <ParagraphSpacing />
           Com o compromisso de oferecer veículos seminovos de alta qualidade e
           procedência, o Grupo Autos expandiu sua presença, dando origem à R3
           Multimarcas e à R5, que hoje se unem sob a bandeira do GRUPO AUTOS,
@@ -41,19 +41,16 @@ export default function About() {
           SHOPPING, localizada na Avenida Goés Terceiro, na Imbiribeira, também
           em São Paulo/SP, CEP 61172000, juntas com um estoque que ultrapassa 80
           veículos, de todas as marcas e modelos.
-          <br />
-          <br />
+          <ParagraphSpacing />
           Nosso compromisso com a QUALIDADE é evidente desde a avaliação dos
           veículos até a preparação para venda, garantindo que nossos clientes
           encontrem o seminovo dos sonhos em nossas lojas.
-          <br />
-          <br />
+          <ParagraphSpacing />
           Além disso, o GRUPO AUTOS é composto por entusiastas e especialistas
           em automóveis. Nossa equipe de consultores está pronta para oferecer o
           melhor atendimento e negociação, proporcionando transparência e
           confiança em todas as etapas da compra.
-          <br />
-          <br />
+          <ParagraphSpacing />
           Visite-nos ou entre em contato conosco através de nossos canais: site,
           WhatsApp, Instagram e Facebook.
         </TextAboutContent>
@@ -73,7 +70,7 @@ export default function About() {
               <ContactText>
                 Entre em contato pelo Whatsapp do GRUPO AUTOS
               </ContactText>
-              <ButtonWppContact href="#">
+              <ButtonWppContact href="https://wa.me/55119983251154" target='_blank'>
                 <BlockImage>
                   <Image src={LogoWppService} alt="Logo do Whatsapp" />
                 </BlockImage>
