@@ -48,9 +48,8 @@ export const BannerContainer = styled.div`
 `;
 
 export const SearchContainer = styled.div`
-  height: 200px;
   margin-top: 100px;
-  margin-bottom: -100px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -98,6 +97,45 @@ export const SearchBar = styled.div`
     width: 38%;
     height: 32px;
   }
+`;
+
+export const CardsPerPage = styled.div`
+  font-size: 16px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 15px;
+  border-radius: 10px;
+
+  @media (min-width: 700px) and (max-width: 800px) {
+    padding: 10px;
+  }
+
+  @media (min-width: 600px) and (max-width: 700px) {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    padding: 8px;
+    font-size: 10px;
+    max-width: 100px;
+  }
+`;
+
+export const LabelCards = styled.label`
+  margin-right: 5px;
 `;
 
 export const SearchIcon = styled.button`
@@ -155,14 +193,13 @@ export const SearchInput = styled.input`
 `;
 
 export const OrderByContainer = styled.button`
-  width: 140px;
-  height: 45px;
   border: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
   border-radius: 7px;
+  padding: 15px;
 
   &:hover {
     cursor: pointer;
@@ -173,34 +210,48 @@ export const OrderByContainer = styled.button`
     border: 5px solid #e0e0e0;
   }
 
-  @media (min-width: 500px) and (max-width: 800px) {
-    width: 130px;
-    height: 40px;
+  @media (min-width: 700px) and (max-width: 800px) {
+    padding: 10px;
+  }
+
+  @media (min-width: 600px) and (max-width: 700px) {
+    padding: 8px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    padding: 8px;
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    width: 120px;
-    height: 35px;
+    padding: 8px;
   }
 
-  @media (min-width: 300px) and (max-width: 400px) {
-    width: 100px;
-    height: 25px;
+  @media (min-width: 300px) and (max-width: 500px) {
+    padding: 8px;
   }
 `;
 
 export const OrderByText = styled.div`
-  margin: 6px;
   font-size: 16px;
   font-weight: 700;
   color: #616161;
+  margin-right: 5px;
 
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 13px;
+  @media (min-width: 700px) and (max-width: 800px) {
+    font-size: 14px;
   }
 
-  @media (min-width: 300px) and (max-width: 400px) {
+  @media (min-width: 600px) and (max-width: 700px) {
+    font-size: 12px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
     font-size: 10px;
+  }
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    font-size: 10px;
+    max-width: 100px;
   }
 `;
 
@@ -237,9 +288,4 @@ export const PaginationContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-`;
-
-export const PaginationButton = styled.button`
-  padding: 10px;
-  cursor: pointer;
 `;
