@@ -231,3 +231,15 @@ export const Emphasis = styled.div`
   margin-right: 5px;
   font-weight: bold;
 `;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+`;
+
+export const PaginationButton = styled.button`
+  padding: 10px;
+  cursor: pointer;
+`;

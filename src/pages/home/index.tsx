@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import {
@@ -16,7 +16,9 @@ import {
   BlockCards,
   ProductsFound,
   Emphasis,
-  AdjustMargin
+  AdjustMargin,
+  PaginationContainer,
+  PaginationButton
 } from './styles';
 import { BannerFirst, Lupa, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/carouselBrands';
@@ -24,8 +26,12 @@ import { CardCentral, CarData } from 'components/cardCentral';
 import Header from 'components/header';
 import Footer from 'components/footer';
 
+const CARDS_PER_PAGE = 6;
+
 export default function Home() {
   const [fakeData, setFakeData] = useState<CarData[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const mainContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +49,31 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const nextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+    scrollToMainContent();
+  };
+
+  const prevPage = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+    scrollToMainContent();
+  };
+
+  const scrollToMainContent = () => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const startIndex = (currentPage - 1) * CARDS_PER_PAGE;
+  let endIndex = startIndex + CARDS_PER_PAGE;
+  if (endIndex > fakeData.length) {
+    endIndex = fakeData.length;
+  }
+
   return (
     <>
       <PageContainer>
@@ -57,7 +88,7 @@ export default function Home() {
 
         <AdjustMargin>
 
-          <ContentMain>
+          <ContentMain ref={mainContentRef}>
             <CarouselMain>
               <CarouselComponent />
             </CarouselMain>
@@ -85,10 +116,14 @@ export default function Home() {
               <Emphasis>{fakeData.length}</Emphasis> veículos encontrados
             </ProductsFound>
             <BlockCards>
-              {fakeData.map((carItemData) => (
+              {fakeData.slice(startIndex, endIndex).map((carItemData) => (
                 <CardCentral key={carItemData.id} carData={carItemData} />
               ))}
             </BlockCards>
+            <PaginationContainer>
+              <PaginationButton onClick={prevPage}>Anterior</PaginationButton>
+              <PaginationButton onClick={nextPage}>Próxima</PaginationButton>
+            </PaginationContainer>
           </MainContent>
 
         </AdjustMargin>
@@ -98,3 +133,5 @@ export default function Home() {
     </>
   );
 }
+
+
