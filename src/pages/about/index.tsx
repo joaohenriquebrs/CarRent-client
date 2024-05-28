@@ -18,8 +18,8 @@ import {
   ButtonNumberContact,
   BlockImage
 } from './styles';
-import Header from 'components/header';
-import Footer from 'components/footer';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 import { IconPhone, LogoWppService, ServiceImage } from 'assets';
 
 export default function About() {

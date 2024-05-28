@@ -9,7 +9,7 @@ import {
     PageContainer,
     ButtonActions
 } from './styles';
-import HeaderAdmin from 'components/headerAdmin';
+import HeaderAdmin from 'components/HeaderAdmin';
 
 interface CarData {
     id: string;

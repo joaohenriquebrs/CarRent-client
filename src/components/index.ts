@@ -1,4 +1,4 @@
-import { CarouselComponent } from './carouselBrands';
-import { CarCarouselComponent } from './carouselPhotos';
+import { CarouselComponent } from './CarouselBrands';
+import { CarCarouselComponent } from './CarouselPhotos';
 
 export { CarouselComponent, CarCarouselComponent };

@@ -77,10 +77,10 @@ export const Card = styled.div`
   text-decoration: none;
   color: #424242;
   cursor: pointer;
+  transition: transform 0.3s ease;
 
   &:hover {
-    border: 1px solid #000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03);
   }
 `;
 

@@ -9,9 +9,6 @@ import {
   ContentMain,
   BannerContainer,
   SearchContainer,
-  SearchBar,
-  SearchIcon,
-  SearchInput,
   OrderByContainer,
   OrderByText,
   BlockCards,
@@ -23,10 +20,10 @@ import {
   LabelCards
 } from './styles';
 import { BannerFirst, OrderIcon } from 'assets';
-import { CarouselComponent } from 'components/carouselBrands';
-import { CardCentral, CarData } from 'components/cardCentral';
-import Header from 'components/header';
-import Footer from 'components/footer';
+import { CarouselComponent } from 'components/CarouselBrands';
+import { CardCentral, CarData } from 'components/CardCentral';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 const MAX_PAGES_DISPLAYED = 3;
 
