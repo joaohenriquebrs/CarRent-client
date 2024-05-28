@@ -135,31 +135,31 @@ export const ContentFooterContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 500px;
+  padding: 50px 30px;
+  gap: 40px;
   background: linear-gradient(to bottom, #fff, #f0f0f0);
 
-  @media (min-width: 500px) and (max-width: 600px) {
-    height: 480px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    height: 460px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    height: 440px;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
 export const LeftContent = styled.div`
-  margin-right: 40px;
   width: 50%;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const MapStyle = styled.iframe`
   width: 100%;
   height: 400px;
   border: none;
+
+  @media (max-width: 768px) {
+    height: 200px;
+  }
 `;
 
 export const RightContent = styled.div`

@@ -127,5 +127,5 @@ export {
   BvLogo,
   IconLupaFinance,
   IconPencilDocument,
-  IconProfileDocument
+  IconProfileDocument,
 };

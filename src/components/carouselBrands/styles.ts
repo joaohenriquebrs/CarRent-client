@@ -11,30 +11,30 @@ export const CardCarousel = styled.div`
   overflow-x: auto;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  max-width: 85vw;
+  max-width: 76vw;
 
   @media (min-width: 800px) and (max-width: 900px) {
-    max-width: 80vw;
+    max-width: 62vw;
   }
 
   @media (min-width: 700px) and (max-width: 800px) {
-    max-width: 75vw;
+    max-width: 58vw;
   }
 
   @media (min-width: 600px) and (max-width: 700px) {
-    max-width: 75vw;
+    max-width: 54vw;
   }
 
   @media (min-width: 500px) and (max-width: 600px) {
-    max-width: 70vw;
+    max-width: 50vw;
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    max-width: 65vw;
+    max-width: 46vw;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    max-width: 60vw;
+    max-width: 42vw;
   }
 `;
 
@@ -95,7 +95,7 @@ export const Card = styled.a`
   @media (min-width: 400px) and (max-width: 500px) {
     width: 70px;
     height: 53px;
-    margin-right: 16px;
+    margin-right: 12px;
     padding-top: 13px;
   }
 
@@ -136,8 +136,9 @@ export const ButtonRight = styled.button`
   max-height: 40px;
 
   @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 25px;
-    min-height: 25px;
+    min-width: 20px;
+    min-height: 20px;
+    right: -40px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
@@ -161,8 +162,9 @@ export const ButtonLeft = styled.button`
   max-height: 40px;
 
   @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 25px;
-    min-height: 25px;
+    min-width: 20px;
+    min-height: 20px;
+    left: -40px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import {
   HeaderContainer,
@@ -11,12 +11,25 @@ import {
   LinkMenu,
   PhoneLinkMenu,
   ContentSecondHeader,
-  LogoWppPhone,
-  LinkMenuAdm
+  IconLink,
+  LinkMenuAdm,
+  HamburgerIcon,
+  MobileMenu,
+  MobileMenuLink,
+  HamburgerContainer,
+  HamburgerBar,
+  MobileIconMenuLink
 } from './styles';
-import { LogoHeader, WppLogo } from 'assets';
+import { LogoHeader } from 'assets';
+import { FaPhone, FaUser } from 'react-icons/fa';
 
 export default function Header() {
+  const [showHamburger, setShowHamburger] = useState(false);
+
+  const toggleHamburger = () => {
+    setShowHamburger(!showHamburger);
+  };
+
   return (
     <HeaderContainer>
       <FirstHeader>
@@ -34,15 +47,46 @@ export default function Header() {
             <LinkMenu href="/sellYourCar">Venda seu carro</LinkMenu>
             <LinkMenu href="/finance">Financie</LinkMenu>
             <LinkMenu href="/about">Sobre</LinkMenu>
-            <PhoneLinkMenu href="#">
-              <LogoWppPhone><Image src={WppLogo} alt="Imagem da logo do WhatsApp" layout='responsive' /></LogoWppPhone>
+            <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
+              <IconLink>
+                <FaPhone />
+              </IconLink>
               Telefone
             </PhoneLinkMenu>
-            <LinkMenuAdm href="/adminLogin">Login</LinkMenuAdm>
+            <LinkMenuAdm href="/adminLogin">
+              <IconLink>
+                <FaUser />
+              </IconLink>
+              Login
+            </LinkMenuAdm>
           </Menu>
+          <HamburgerContainer>
+            <HamburgerIcon onClick={toggleHamburger}>
+              <HamburgerBar />
+              <HamburgerBar />
+              <HamburgerBar />
+            </HamburgerIcon>
+          </HamburgerContainer>
         </ContentSecondHeader>
       </SecondHeader>
+      {showHamburger && (
+        <MobileMenu>
+          <MobileMenuLink href="/sellYourCar">Venda seu carro</MobileMenuLink>
+          <MobileMenuLink href="/finance">Financie</MobileMenuLink>
+          <MobileMenuLink href="/about">Sobre</MobileMenuLink>
+          <MobileIconMenuLink href="https://wa.me/55119983251154" target='_blank'>
+            <IconLink>
+              <FaPhone />
+            </IconLink>
+            Telefone
+          </MobileIconMenuLink>
+          <MobileIconMenuLink href="/adminLogin">
+            <IconLink>
+              <FaUser />
+            </IconLink>Login
+          </MobileIconMenuLink>
+        </MobileMenu>
+      )}
     </HeaderContainer>
-
   );
 }
