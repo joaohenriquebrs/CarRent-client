@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import axios from 'axios';
 import styled, { css } from 'styled-components';
 import {
   MainContent,

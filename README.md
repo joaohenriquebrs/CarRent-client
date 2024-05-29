@@ -1,12 +1,26 @@
-# CarRent-client
-Description
+# Catálogo de Carros
+
+## Back-end
+- #### Repository: https://github.com/joaohenriquebrs/CarRent-server
+
+## Tools
+- React
+- Next
+- Simple-react-lightbox
+- React-icons
+- React-data-table-component
+- Styled-components
+
+## Make login using:
+- Email = admin@email.com
+- PASSWORD = admin123
 
 ## Running the project
 
 1. Be sure you have **node** and **yarn** (or **npm**, if you use it) installed.
 2. Clone the repository by running
 ```bash
-git clone github.com/joaohenriquebrs/CarRent-client.git
+git clone https://github.com/joaohenriquebrs/CarRent-client.git
 ```
 3. Install all the dependencies by running
 ```bash
@@ -17,12 +31,12 @@ npm install
 4. To run the development server, run
 ```bash
 yarn run dev
-# or  
+# or
 npm dev
 ```
-5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Development team
-
-## Design team
-
+5. Open  with your browser to see the result.
+```bash
+http://localhost:3000
+# or
+http://localhost:3001
+```

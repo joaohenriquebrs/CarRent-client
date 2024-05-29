@@ -25,11 +25,11 @@ const RotatingSpinner = styled(FaSpinner)`
 `;
 
 const Loading = () => {
-    return (
-        <LoadingContainer>
-            <RotatingSpinner /> {/* Usando o ícone com a animação de rotação */}
-        </LoadingContainer>
-    );
+  return (
+    <LoadingContainer>
+      <RotatingSpinner />
+    </LoadingContainer>
+  );
 };
 
 export default Loading;
