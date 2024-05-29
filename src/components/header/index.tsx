@@ -44,7 +44,7 @@ export default function Header() {
             <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
           </LogoHeaderContainer>
           <Menu>
-            <LinkMenu href="/CreateCar">Home</LinkMenu>
+            <LinkMenu href="/">Home</LinkMenu>
             <LinkMenu href="/Finance">Financie</LinkMenu>
             <LinkMenu href="/About">Sobre</LinkMenu>
             <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
