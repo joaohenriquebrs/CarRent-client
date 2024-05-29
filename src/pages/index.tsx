@@ -22,9 +22,10 @@ import {
 import { BannerFirst, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/CarouselBrands';
 import { CardCentral } from 'components/CardCentral';
+import { CarData } from 'services/interfaces';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import { CarData } from 'services/interfaces';
+import { getCarsData } from 'services/api';
 
 const MAX_PAGES_DISPLAYED = 3;
 
@@ -69,16 +70,13 @@ export default function Home() {
   const [fakeData, setFakeData] = useState<CarData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ascendingOrder, setAscendingOrder] = useState(false);
-  const [cardsPerPage, setCardsPerPage] = useState(6); // Default value
+  const [cardsPerPage, setCardsPerPage] = useState(6);
   const mainContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<CarData[]>(
-          'http://localhost:3001/cars'
-        );
-        const data = response.data;
+        const data = await getCarsData();
         setFakeData(data);
       } catch (error) {
         console.error('Erro ao obter dados:', error);

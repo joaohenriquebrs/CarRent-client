@@ -40,11 +40,11 @@ export default function Header() {
       </FirstHeader>
       <SecondHeader>
         <ContentSecondHeader>
-          <LogoHeaderContainer href="/Home">
+          <LogoHeaderContainer href="/">
             <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
           </LogoHeaderContainer>
           <Menu>
-            <LinkMenu href="/Home">Home</LinkMenu>
+            <LinkMenu href="/">Home</LinkMenu>
             <LinkMenu href="/Finance">Financie</LinkMenu>
             <LinkMenu href="/About">Sobre</LinkMenu>
             <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
@@ -71,7 +71,7 @@ export default function Header() {
       </SecondHeader>
       {showHamburger && (
         <MobileMenu>
-          <MobileMenuLink href="/Home">Home</MobileMenuLink>
+          <MobileMenuLink href="/">Home</MobileMenuLink>
           <MobileMenuLink href="/Finance">Financie</MobileMenuLink>
           <MobileMenuLink href="/About">Sobre</MobileMenuLink>
           <MobileIconMenuLink href="https://wa.me/55119983251154" target='_blank'>
