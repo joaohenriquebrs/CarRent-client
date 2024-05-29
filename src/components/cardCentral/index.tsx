@@ -26,11 +26,14 @@ interface CardCentralProps {
 }
 
 export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
+  const handleClick = () => {
+    console.log('ID do carro:', carData.id);
+  };
   return (
     <CardContainer>
       {carData && (
         <>
-          <BlockImageCard href="/CarPage">
+          <BlockImageCard href={`http://localhost:3000/CarPage?id=${carData.id}`} onClick={handleClick}>
             <Image
               src={RenagadeImage}
               alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}

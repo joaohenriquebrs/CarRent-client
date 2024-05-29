@@ -64,6 +64,7 @@ import Footer from 'components/Footer';
 import { getCarsData } from 'services/api';
 import Loading from 'components/Loading';
 import OthersDetailsComponent from 'components/OthersDetails';
+import { useRouter } from 'next/router';
 
 
 type Car = {
@@ -83,20 +84,31 @@ type Car = {
 
 export default function CarPage() {
   const [carData, setCarData] = useState<Car | null>(null);
+  const router = useRouter();
+
 
   useEffect(() => {
     const fetchCarData = async () => {
       try {
+        const { id } = router.query;
+        console.log('ID do carro:', id);
         const response = await axios.get('http://localhost:3000/static/test.json');
-        console.log('Fetched data:', response.data);
-        setCarData(response.data[0]);
+        const car = response.data.find((car: Car) => car.id === id);
+        if (car) {
+          setCarData(car);
+        } else {
+          console.error('Carro não encontrado');
+        }
       } catch (error) {
-        console.error('Error fetching car data:', error);
+        console.error('Erro ao buscar os dados do carro:', error);
       }
     };
 
-    fetchCarData();
-  }, []);
+    if (router.query.id) {
+      fetchCarData();
+    }
+  }, [router.query]);
+
 
   if (!carData) return <Loading />;
 
