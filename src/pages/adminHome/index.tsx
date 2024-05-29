@@ -26,7 +26,7 @@ export default function AdminHome() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get<CarData[]>('http://localhost:3000/static/test.json');
+                const response = await axios.get<CarData[]>('http://localhost:3001/cars');
                 setData(response.data);
                 setFilteredData(response.data);
             } catch (error) {

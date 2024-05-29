@@ -21,9 +21,10 @@ import {
 } from './style';
 import { BannerFirst, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/CarouselBrands';
-import { CardCentral, CarData } from 'components/CardCentral';
+import { CardCentral } from 'components/CardCentral';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import { CarData } from 'services/interfaces';
 
 const MAX_PAGES_DISPLAYED = 3;
 
@@ -75,7 +76,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get<CarData[]>(
-          'http://localhost:3000/static/test.json'
+          'http://localhost:3001/cars'
         );
         const data = response.data;
         setFakeData(data);

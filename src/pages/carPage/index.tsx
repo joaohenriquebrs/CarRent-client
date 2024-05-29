@@ -91,7 +91,7 @@ export default function CarPage() {
   useEffect(() => {
     const fetchCarData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/static/test.json');
+        const response = await axios.get('http://localhost:3001/cars');
         console.log('Fetched data:', response.data);
         setCarData(response.data[0]);
       } catch (error) {

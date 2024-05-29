@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { CarData } from './interfaces';
 
 const api = axios.create({
   baseURL: 'http://localhost:3000'
 });
 
-export const createCar = async (carData: any) => {
+export const createCar = async (carData: CarData): Promise<CarData> => {
   try {
     const response = await api.post('/cars', carData);
     return response.data;
@@ -13,16 +14,16 @@ export const createCar = async (carData: any) => {
   }
 };
 
-export const getCarsData = async () => {
+export const getCarsData = async (): Promise<CarData[]> => {
   try {
-    const response = await axios.get('/static/test.json');
+    const response = await api.get('/static/test.json');
     return response.data;
   } catch (error) {
     throw new Error('Error fetching data');
   }
 };
 
-export const editCarData = async (id: string, carData: any) => {
+export const editCarData = async (id: string, carData: Partial<CarData>): Promise<void> => {
   try {
     await api.put(`/cars/${id}`, carData);
   } catch (error) {
@@ -30,7 +31,7 @@ export const editCarData = async (id: string, carData: any) => {
   }
 };
 
-export const deleteCar = async (id: string) => {
+export const deleteCar = async (id: string): Promise<void> => {
   try {
     await api.delete(`/cars/${id}`);
   } catch (error) {
