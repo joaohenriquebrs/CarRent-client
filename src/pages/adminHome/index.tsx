@@ -14,7 +14,7 @@ import Alert from 'components/Alert';
 import { editCarData, deleteCar } from 'services/api';
 import { CarData } from 'services/interfaces';
 
-export default function AdminLogin() {
+export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
     const [filterText, setFilterText] = useState('');
     const [filteredData, setFilteredData] = useState<CarData[]>([]);
