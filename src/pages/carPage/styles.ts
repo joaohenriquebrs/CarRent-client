@@ -192,6 +192,7 @@ export const EmphasisPrice = styled.div`
   margin-left: 5px;
   font-size: 28px;
   color: #6a6c6a;
+  margin-bottom: -3px;
 
   @media (min-width: 700px) and (max-width: 800px) {
     font-size: 24px;

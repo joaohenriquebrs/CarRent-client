@@ -128,8 +128,7 @@ export default function CarPage() {
                     </TitleCarText>
                   </NamesCarContainer>
                   <PricesBlock>
-                    <NewPrice>
-                      por R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
+                    <NewPrice> R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
                     </NewPrice>
                   </PricesBlock>
                 </UnderContent>
