@@ -19,33 +19,21 @@ import {
   TopContentContainer
 } from './styles';
 import { YearIcon, KmIcon, JeepLogo, RenagadeImage } from 'assets';
-
-export interface CarData {
-  id: string;
-  brand: string;
-  name: string;
-  year: string;
-  km: string;
-  price: number;
-  specifications: string;
-  image: string;
-  color: string;
-  fuel: string;
-  fuelUrban: string;
-  fuelRoad: string;
-  dataSheet: string;
-}
+import { CarData } from 'services/interfaces';
 
 interface CardCentralProps {
   carData: CarData;
 }
 
 export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
+  const handleClick = () => {
+    console.log('ID do carro:', carData.id);
+  };
   return (
     <CardContainer>
       {carData && (
         <>
-          <BlockImageCard href="/CarPage">
+          <BlockImageCard href={`/CarPage?id=${carData.id}`} onClick={handleClick}>
             <Image
               src={RenagadeImage}
               alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}

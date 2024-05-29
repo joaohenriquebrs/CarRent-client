@@ -18,10 +18,6 @@ import {
   FuelType,
   ConsuptionUrban,
   ConsuptionHighway,
-  OthersDetailsContainer,
-  TitleOthers,
-  OthersContainer,
-  InfoOthers,
   GuaranteeContainer,
   TitleGuarantee,
   TextGuarantee,
@@ -47,7 +43,7 @@ import {
   TextCarLocation,
   PhotosCarContainer,
   PhotoMainContainer,
-  CardContactMobile
+  CardContactMobile,
 } from './styles';
 
 import {
@@ -57,7 +53,6 @@ import {
   IconColor,
   IconKm,
   IconDiesel,
-  IconOk,
   IconWpp,
   IconPhone,
   IconLocation
@@ -66,40 +61,41 @@ import {
 import { CarCarouselComponent } from 'components';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
-type Car = {
-  id: string;
-  brand: string;
-  name: string;
-  price: number;
-  specifications: string;
-  dataSheet: string;
-  year: number;
-  km: number;
-  color: string;
-  fuel: string;
-  fuelUrban: string;
-  fuelRoad: string;
-};
+import { getCarsData } from 'services/api';
+import Loading from 'components/Loading';
+import OthersDetailsComponent from 'components/OthersDetails';
+import { useRouter } from 'next/router';
+import { fetchCarDataById, Car } from 'services/api';
 
 export default function CarPage() {
   const [carData, setCarData] = useState<Car | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCarData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/static/test.json');
-        console.log('Fetched data:', response.data);
-        setCarData(response.data[0]);
+        const { id } = router.query;
+        console.log('ID do carro:', id);
+        if (typeof id === 'string') {
+          const car = await fetchCarDataById(id);
+          if (car) {
+            setCarData(car);
+          } else {
+            console.error('Carro não encontrado');
+          }
+        }
       } catch (error) {
-        console.error('Error fetching car data:', error);
+        console.error('Erro ao buscar os dados do carro:', error);
       }
     };
 
-    fetchCarData();
-  }, []);
+    if (router.query.id) {
+      fetchCarData();
+    }
+  }, [router.query]);
 
-  if (!carData) return <div>Loading...</div>;
+
+  if (!carData) return <Loading />;
 
   return (
     <>
@@ -129,8 +125,7 @@ export default function CarPage() {
                     </TitleCarText>
                   </NamesCarContainer>
                   <PricesBlock>
-                    <NewPrice>
-                      por R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
+                    <NewPrice> R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
                     </NewPrice>
                   </PricesBlock>
                 </UnderContent>
@@ -177,149 +172,7 @@ export default function CarPage() {
                 </Info5Datasheet>
               </DetailsDatasheet>
             </DatasheetContainer>
-            <OthersDetailsContainer>
-              <TitleOthers>OPCIONAIS</TitleOthers>
-              <OthersContainer>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Airbag motorista
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Airbag passageiro
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Ar-condicionado
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Bancos de couro
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Computador de bordo
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Direção elétrica
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Distribuição eletrônica de frenagem
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Escapamento Esportivo
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Farol de neblina
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Freios ABS
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Rodas de liga leve
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Ajuste de altura
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Alarme
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Aquecimento dos bancos
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Ar Condicionado Digital
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Ar-quente
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Assistente de Partida em Rampa
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Câmbio automático
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Câmera de Ré
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Chamada assistência de emergência
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Chave presença
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Comando de áudio e telefone no volante
-                </InfoOthers>
-                <InfoOthers>
-                  <BlockIconContainer>
-                    <Image src={IconOk} alt="Ícone de um símbolo de ok" />
-                  </BlockIconContainer>
-                  Conexão Bluetooth
-                </InfoOthers>
-              </OthersContainer>
-            </OthersDetailsContainer>
+            <OthersDetailsComponent />
             <GuaranteeContainer>
               <TitleGuarantee>GARANTIA</TitleGuarantee>
               <TextGuarantee>Garantia da Loja (3 meses)</TextGuarantee>

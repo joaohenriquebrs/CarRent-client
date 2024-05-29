@@ -22,7 +22,7 @@ export default function HeaderAdmin() {
 
     return (
         <HeaderAdm>
-            <LogoHeaderContainer href="/Home">
+            <LogoHeaderContainer href="/">
                 <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
             </LogoHeaderContainer>
             <MenuAdm>

@@ -62,7 +62,7 @@ export const InputPassword = styled.input`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export const AcessButton = styled.a`
+export const AcessButton = styled.button`
   padding: 10px 15px;
   border: 1px solid #FFF;
   background: #5AAAFF;
@@ -72,8 +72,21 @@ export const AcessButton = styled.a`
   cursor: pointer;
   transition: transform 0.3s ease;
   text-decoration: none;
+  width: 100%;
 
   &:hover {
     transform: scale(1.07);
   }
+`;
+
+export const ParagraphError = styled.div`
+  margin: 10px 0px;
+  color: red;
+`;
+
+export const FormContainer = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;

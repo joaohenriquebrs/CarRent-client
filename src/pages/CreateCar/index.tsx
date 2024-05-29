@@ -12,7 +12,8 @@ import {
     Form
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
-import Alert from 'components/alert';
+import Alert from 'components/Alert';
+import { createCar } from 'services/api';
 
 export default function AdminLogin() {
     const [carData, setCarData] = useState({
@@ -37,10 +38,14 @@ export default function AdminLogin() {
         setCarData({ ...carData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => { // Ajuste do tipo de evento para React.FormEvent<HTMLFormElement>
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000/cars', carData);
+            const carDataWithParsedPrice = {
+                ...carData,
+                price: parseFloat(carData.price)
+            };
+            await createCar(carDataWithParsedPrice);
             setAlertMessage('Carro adicionado com sucesso!');
             setShowAlert(true);
         } catch (error) {

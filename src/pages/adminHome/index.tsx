@@ -10,25 +10,12 @@ import {
     ActionButtonsWrapper,
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
-import Alert from 'components/alert';
+import Alert from 'components/Alert';
+import { editCarData, deleteCar } from 'services/api';
+import { CarData } from 'services/interfaces';
+import { fetchCarsData } from 'services/api';
 
-interface CarData {
-    id: string;
-    brand: string;
-    name: string;
-    price: number;
-    specifications: string;
-    km: string;
-    year: string;
-    image: string;
-    color: string;
-    fuel: string;
-    fuelUrban: string;
-    fuelRoad: string;
-    dataSheet: string;
-}
-
-export default function AdminLogin() {
+export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
     const [filterText, setFilterText] = useState('');
     const [filteredData, setFilteredData] = useState<CarData[]>([]);
@@ -38,17 +25,17 @@ export default function AdminLogin() {
     const [alertMessage, setAlertMessage] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchDataAndSetState = async () => {
             try {
-                const response = await axios.get<CarData[]>('http://localhost:3000/static/test.json');
-                setData(response.data);
-                setFilteredData(response.data);
+                const fetchedData = await fetchCarsData();
+                setData(fetchedData);
+                setFilteredData(fetchedData);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
         };
 
-        fetchData();
+        fetchDataAndSetState();
     }, []);
 
     useEffect(() => {
@@ -81,9 +68,9 @@ export default function AdminLogin() {
     };
 
     const handleConfirmEditRow = async () => {
-        if (editableRowId) {
+        if (editableRowId && editData) {
             try {
-                await axios.put(`http://localhost:3000/cars/${editableRowId}`, editData);
+                await editCarData(editableRowId, editData);
                 const updatedData = data.map(item =>
                     item.id === editableRowId ? { ...item, ...editData } : item
                 );
@@ -94,7 +81,7 @@ export default function AdminLogin() {
                 setAlertMessage('Carro editado com sucesso!');
                 setShowAlert(true);
             } catch (error) {
-                console.error('Erro ao editar carro:', error);;
+                console.error('Erro ao editar carro:', error);
                 setAlertMessage('Erro ao editar carro. Por favor, tente novamente mais tarde.');
                 setShowAlert(true);
             }
@@ -103,7 +90,7 @@ export default function AdminLogin() {
 
     const handleDeleteRow = async (id: string) => {
         try {
-            await axios.delete(`http://localhost:3000/cars/${id}`);
+            await deleteCar(id);
             const updatedData = data.filter(item => item.id !== id);
             setData(updatedData);
             setFilteredData(updatedData);

@@ -28,24 +28,23 @@ import {
   ToyotaLogo,
   VolkswagenLogo
 } from 'assets';
+import { fetchCarData } from 'services/api';
 
 export const CarouselComponent = () => {
   const [data, setData] = useState([]);
   const carousel = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataAndSetState = async () => {
       try {
-        const response = await axios.get(
-          'http://localhost:3000/static/test.json'
-        );
-        setData(response.data);
+        const data = await fetchCarData();
+        setData(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error setting car data:', error);
       }
     };
 
-    fetchData();
+    fetchDataAndSetState();
   }, []);
 
   const handleLeftClick = (e: React.MouseEvent) => {
@@ -70,7 +69,6 @@ export const CarouselComponent = () => {
     }
   };
 
-  // Mapeamento entre nomes de marca e imagens correspondentes
   const logoMappings = {
     Chevrolet: ChrevroletLogo,
     Fiat: FiatLogo,

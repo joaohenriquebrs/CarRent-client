@@ -177,7 +177,7 @@ export const PriceEmphasis = styled.div`
   font-size: 24px;
   margin-left: 7px;
   font-weight: 700;
-  margin-bottom: -2px;
+  margin-bottom: -3px;
 
   @media (min-width: 768px) and (max-width: 800px) {
     font-size: 22px;
