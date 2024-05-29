@@ -70,7 +70,6 @@ export const CarouselComponent = () => {
     }
   };
 
-  // Mapeamento entre nomes de marca e imagens correspondentes
   const logoMappings = {
     Chevrolet: ChrevroletLogo,
     Fiat: FiatLogo,
