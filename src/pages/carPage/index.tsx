@@ -65,39 +65,24 @@ import { getCarsData } from 'services/api';
 import Loading from 'components/Loading';
 import OthersDetailsComponent from 'components/OthersDetails';
 import { useRouter } from 'next/router';
-
-
-type Car = {
-  id: string;
-  brand: string;
-  name: string;
-  price: number;
-  specifications: string;
-  dataSheet: string;
-  year: number;
-  km: number;
-  color: string;
-  fuel: string;
-  fuelUrban: string;
-  fuelRoad: string;
-};
+import { fetchCarDataById, Car } from 'services/api';
 
 export default function CarPage() {
   const [carData, setCarData] = useState<Car | null>(null);
   const router = useRouter();
-
 
   useEffect(() => {
     const fetchCarData = async () => {
       try {
         const { id } = router.query;
         console.log('ID do carro:', id);
-        const response = await axios.get('http://localhost:3000/static/test.json');
-        const car = response.data.find((car: Car) => car.id === id);
-        if (car) {
-          setCarData(car);
-        } else {
-          console.error('Carro não encontrado');
+        if (typeof id === 'string') {
+          const car = await fetchCarDataById(id);
+          if (car) {
+            setCarData(car);
+          } else {
+            console.error('Carro não encontrado');
+          }
         }
       } catch (error) {
         console.error('Erro ao buscar os dados do carro:', error);

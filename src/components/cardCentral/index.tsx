@@ -33,7 +33,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
     <CardContainer>
       {carData && (
         <>
-          <BlockImageCard href={`http://localhost:3000/CarPage?id=${carData.id}`} onClick={handleClick}>
+          <BlockImageCard href={`/CarPage?id=${carData.id}`} onClick={handleClick}>
             <Image
               src={RenagadeImage}
               alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}

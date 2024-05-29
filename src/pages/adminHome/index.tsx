@@ -13,6 +13,7 @@ import HeaderAdmin from 'components/HeaderAdmin';
 import Alert from 'components/Alert';
 import { editCarData, deleteCar } from 'services/api';
 import { CarData } from 'services/interfaces';
+import { fetchCarsData } from 'services/api';
 
 export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
@@ -24,17 +25,17 @@ export default function AdminHome() {
     const [alertMessage, setAlertMessage] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchDataAndSetState = async () => {
             try {
-                const response = await axios.get<CarData[]>('http://localhost:3001/cars');
-                setData(response.data);
-                setFilteredData(response.data);
+                const fetchedData = await fetchCarsData();
+                setData(fetchedData);
+                setFilteredData(fetchedData);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
         };
 
-        fetchData();
+        fetchDataAndSetState();
     }, []);
 
     useEffect(() => {

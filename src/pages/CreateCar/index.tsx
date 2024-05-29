@@ -41,7 +41,11 @@ export default function AdminLogin() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await createCar(carData);
+            const carDataWithParsedPrice = {
+                ...carData,
+                price: parseFloat(carData.price)
+            };
+            await createCar(carDataWithParsedPrice);
             setAlertMessage('Carro adicionado com sucesso!');
             setShowAlert(true);
         } catch (error) {
