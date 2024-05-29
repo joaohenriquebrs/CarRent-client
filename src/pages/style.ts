@@ -118,7 +118,7 @@ export const OrderByContainer = styled.button`
   }
 
   &:active {
-    border: 5px solid #e0e0e0;
+    border: 2px solid #e0e0e0;
   }
 
   @media (min-width: 700px) and (max-width: 800px) {

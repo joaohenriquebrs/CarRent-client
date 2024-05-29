@@ -209,8 +209,8 @@ export default function Home() {
               </select>
             </CardsPerPage>
 
-            <OrderByContainer>
-              <OrderByText onClick={toggleOrder}>
+            <OrderByContainer onClick={toggleOrder}>
+              <OrderByText>
                 Ordenar por preço: {ascendingOrder ? 'maior a menor' : 'menor a maior'}
               </OrderByText>
               <Image

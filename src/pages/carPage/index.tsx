@@ -60,7 +60,6 @@ import {
 import { CarCarouselComponent } from 'components';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import { getCarsData } from 'services/api';
 import Loading from 'components/Loading';
 import OthersDetailsComponent from 'components/OthersDetails';
 import { useRouter } from 'next/router';

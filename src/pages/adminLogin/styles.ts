@@ -62,7 +62,7 @@ export const InputPassword = styled.input`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export const AcessButton = styled.button`
+export const AcessButton = styled.a`
   padding: 10px 15px;
   border: 1px solid #FFF;
   background: #5AAAFF;
@@ -72,7 +72,6 @@ export const AcessButton = styled.button`
   cursor: pointer;
   transition: transform 0.3s ease;
   text-decoration: none;
-  width: 100%;
 
   &:hover {
     transform: scale(1.07);
