@@ -12,13 +12,13 @@ import {
   ContentContainer,
   YearKmContainer,
   KmText,
-  BlockLogoCar,
   BlockIconYearKm,
   PriceEmphasis,
   BlockIconKm,
-  TopContentContainer
+  TopContentContainer,
+  ImgCard
 } from './styles';
-import { YearIcon, KmIcon, JeepLogo, RenagadeImage } from 'assets';
+import { YearIcon, KmIcon } from 'assets';
 import { CarData } from 'services/interfaces';
 
 interface CardCentralProps {
@@ -29,17 +29,15 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
   const handleClick = () => {
     console.log('ID do carro:', carData.id);
   };
+
   return (
     <CardContainer>
       {carData && (
         <>
           <BlockImageCard href={`/CarPage?id=${carData.id}`} onClick={handleClick}>
-            <Image
-              src={RenagadeImage}
-              alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}
+            <ImgCard src={carData.image}
               style={{
                 width: '100%',
-                height: 'auto',
               }}
             />
           </BlockImageCard>
@@ -47,13 +45,6 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
           <ContentContainer>
             <TopContentContainer>
               <TitleCard>
-                <BlockLogoCar>
-                  <Image src={JeepLogo} alt="Imagem da logo da Jeep"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                    }} />
-                </BlockLogoCar>
                 {carData.brand} {carData.name}
               </TitleCard>
               <CarSpecifications>{carData.specifications}</CarSpecifications>

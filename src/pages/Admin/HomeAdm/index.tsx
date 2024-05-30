@@ -87,17 +87,20 @@ export default function AdminHome() {
     };
 
     const handleDeleteRow = async (id: number) => {
-        try {
-            await deleteCar(id);
-            const updatedData = data.filter(item => item.id !== id);
-            setData(updatedData);
-            setFilteredData(updatedData);
-            setAlertMessage('Carro excluído com sucesso!');
-            setShowAlert(true);
-        } catch (error) {
-            console.error('Erro ao excluir carro:', error);
-            setAlertMessage('Erro ao excluir carro. Por favor, tente novamente mais tarde.');
-            setShowAlert(true);
+        const confirmDelete = window.confirm('Tem certeza de que deseja excluir este carro?');
+        if (confirmDelete) {
+            try {
+                await deleteCar(id);
+                const updatedData = data.filter(item => item.id !== id);
+                setData(updatedData);
+                setFilteredData(updatedData);
+                setAlertMessage('Carro excluído com sucesso!');
+                setShowAlert(true);
+            } catch (error) {
+                console.error('Erro ao excluir carro:', error);
+                setAlertMessage('Erro ao excluir carro. Por favor, tente novamente mais tarde.');
+                setShowAlert(true);
+            }
         }
     };
 
@@ -123,12 +126,10 @@ export default function AdminHome() {
             name: '',
             cell: (row: CarData) =>
                 editableRowId === row.id ? (
-                    <ActionButtonsWrapper>
-                        <ButtonActions onClick={handleConfirmEditRow}>Confirmar</ButtonActions>
-                        <ButtonActions onClick={handleCancelEditRow}>Cancelar</ButtonActions>
-                    </ActionButtonsWrapper>
+                    <></>
                 ) : (
-                    <ButtonActions onClick={() => handleEditRow(row.id, row)}>Editar</ButtonActions>
+                    <ButtonActions onClick={() => handleEditRow(row.id, row)
+                    } > Editar</ButtonActions >
                 ),
         },
         {
@@ -170,6 +171,12 @@ export default function AdminHome() {
                         value={filterText}
                         onChange={e => setFilterText(e.target.value)}
                     />
+                    {editableRowId && (
+                        <ActionButtonsWrapper>
+                            <ButtonActions onClick={handleConfirmEditRow}>Confirmar</ButtonActions>
+                            <ButtonActions onClick={handleCancelEditRow}>Cancelar</ButtonActions>
+                        </ActionButtonsWrapper>
+                    )}
                 </SearchContainer>
                 <DataTable
                     columns={columns}

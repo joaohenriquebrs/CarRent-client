@@ -22,9 +22,11 @@ export const MainContent = styled.div`
 `;
 
 export const ButtonActions = styled.button`
-  padding: 8px;
+  padding: 8px 14px;
   margin-bottom: 3px;
   cursor: pointer;
+  border-radius: 5px;
+  border: none;
 
   @media (max-width: 768px) {
     font-size: 12px;
@@ -33,6 +35,9 @@ export const ButtonActions = styled.button`
 
 export const SearchContainer = styled.div`
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 
   @media (max-width: 768px) {
     margin-bottom: 10px;

@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent, useContext } from 'react';
 import Header from 'components/Header';
 import { MainContent, PageContainer, LoginTitle, BlockInputUser, InputUserTitle, InputUser, BlockInputPassword, InputPasswordTitle, InputPassword, AcessButton, ParagraphError, FormContainer } from './styles';
-import AdminHome from 'pages/AdminHome';
+import AdminHome from 'pages/Admin/HomeAdm';
 import { AuthContext, TSignInData } from 'services/contexts/AuthContext';
 import { signInRequest } from 'services/AuthenticationService';
 import Router from 'next/router';
@@ -31,7 +31,7 @@ export default function AdminLogin() {
 
             console.log('Is Admin', isAdmin)
 
-            Router.push('/AdminHome');
+            Router.push('/Admin/HomeAdm');
         } catch (error: any) {
             console.log(error.data)
             setError(error?.response?.data?.message ?? 'Erro na requisiçao')

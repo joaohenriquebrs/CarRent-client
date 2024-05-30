@@ -14,7 +14,11 @@ export const FirstHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 20px;
+  padding: 20px;
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    padding: 15px;
+  }
 `;
 
 export const SecondHeader = styled.div`
@@ -53,6 +57,7 @@ export const OpeningHoursLabel = styled.div`
 
   @media (min-width: 300px) and (max-width: 400px) {
     font-size: 8px;
+    margin-right: 2px;
   }
 `;
 

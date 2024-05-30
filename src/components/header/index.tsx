@@ -57,7 +57,7 @@ export default function Header() {
               </IconLink>
               Telefone
             </PhoneLinkMenu>
-            <LinkMenuAdm href="/AdminLogin">
+            <LinkMenuAdm href="/Login">
               <IconLink>
                 <FaUser />
               </IconLink>
@@ -84,7 +84,7 @@ export default function Header() {
             </IconLink>
             Telefone
           </MobileIconMenuLink>
-          <MobileIconMenuLink href="/AdminLogin">
+          <MobileIconMenuLink href="/Login">
             <IconLink>
               <FaUser />
             </IconLink>Login

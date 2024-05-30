@@ -58,6 +58,47 @@ export const BlockImageCard = styled.a`
   width: 100%;
 `;
 
+export const ImgCard = styled.img`
+  width: 100%;
+  height: 320px;
+
+  @media (min-width: 2200px) {
+    height: 380px;
+  }
+
+  @media (min-width: 1400px) and (max-width: 1600px) {
+    height: 270px;
+  }
+
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    height: 230px;
+  }
+
+  @media (min-width: 1000px) and (max-width: 1200px) {
+    height: 200px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1000px) {
+    height: 170px;
+  }
+
+  @media (min-width: 600px) and (max-width: 768px) {
+    height: 180px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    height: 150px;
+  }
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    height: 250px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    height: 200px;
+  }
+`;
+
 export const TitleCard = styled.div`
   display: flex;
   flex-direction: row;
@@ -75,17 +116,6 @@ export const TitleCard = styled.div`
 
   @media (min-width: 300px) and (max-width: 500px) {
     font-size: 23px;
-  }
-`;
-
-export const BlockLogoCar = styled.div`
-  margin-top: -6px;
-  margin-right: 10px;
-  min-width: 40px;
-  min-height: 40px;
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    margin-top: -9px;
   }
 `;
 

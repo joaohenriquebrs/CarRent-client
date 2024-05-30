@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
+import { AuthContext, Role } from 'services/contexts/AuthContext';
+import HeaderAdmin from 'components/HeaderAdmin';
+import Alert from 'components/Alert';
+import { createCar } from 'services/VehicleService';
 import {
     MainContent,
     PageContainer,
@@ -10,11 +15,10 @@ import {
     BlockRight,
     Form
 } from './styles';
-import HeaderAdmin from 'components/HeaderAdmin';
-import Alert from 'components/Alert';
-import { createCar } from 'services/VehicleService';
 
-export default function AdminLogin() {
+const AdminLogin: React.FC = () => {
+    const { isAuthenticated, hasPermission } = useContext(AuthContext);
+    const router = useRouter();
     const [carData, setCarData] = useState({
         brand: '',
         name: '',
@@ -33,7 +37,7 @@ export default function AdminLogin() {
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCarData({ ...carData, [e.target.name]: e.target.value });
     };
 
@@ -65,6 +69,13 @@ export default function AdminLogin() {
 
         return () => clearTimeout(timer);
     }, [showAlert]);
+
+    useEffect(() => {
+        // Verifica se o usuário está autenticado e tem permissão de administrador
+        if (!isAuthenticated || !hasPermission(Role.ADMINISTRATOR)) {
+            router.push('/login'); // Redireciona para a página de login se não estiver autenticado ou não tiver permissão
+        }
+    }, [isAuthenticated, hasPermission, router]);
 
     return (
         <PageContainer>
@@ -130,3 +141,5 @@ export default function AdminLogin() {
         </PageContainer>
     );
 }
+
+export default AdminLogin;

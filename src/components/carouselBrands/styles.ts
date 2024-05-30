@@ -30,11 +30,11 @@ export const CardCarousel = styled.div`
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    max-width: 46vw;
+    max-width: 60vw;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    max-width: 42vw;
+    max-width: 60vw;
   }
 `;
 
