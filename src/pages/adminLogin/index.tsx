@@ -52,7 +52,7 @@ export default function AdminLogin() {
                 {user == null ? (
                     <MainContent>
                         <LoginTitle>Login</LoginTitle>
-                        <FormContainer className='login-form'>
+                        <FormContainer>
                             <BlockInputUser>
                                 <InputUserTitle>Usuário</InputUserTitle>
                                 <InputUser type="login"

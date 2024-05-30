@@ -192,7 +192,7 @@ export default function Home() {
 
           <SearchContainer>
             <CardsPerPage>
-              <LabelCards htmlFor="cardsPerPage">Cartões por página: </LabelCards>
+              <LabelCards htmlFor="cardsPerPage">Carros por página: </LabelCards>
               <select
                 id="cardsPerPage"
                 value={cardsPerPage}
