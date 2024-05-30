@@ -25,7 +25,11 @@ export default function HeaderAdmin() {
     return (
         <HeaderAdm>
             <LogoHeaderContainer href="/">
-                <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
+                <Image src={LogoHeader} alt="Logo da empresa"
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                    }} />
             </LogoHeaderContainer>
             <MenuAdm>
                 <LinkMenu href='/'>Home</LinkMenu>

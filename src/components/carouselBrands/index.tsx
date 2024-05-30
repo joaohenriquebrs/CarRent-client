@@ -106,7 +106,10 @@ export const CarouselComponent = () => {
                 <Image
                   src={logoMappings[brand]}
                   alt={brand}
-                  layout="responsive"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
                 />
               </BlockImage>
               <CardTitle>{brand}</CardTitle>
@@ -117,10 +120,18 @@ export const CarouselComponent = () => {
 
       <ButtonContainer>
         <ButtonLeft onClick={handleLeftClick}>
-          <Image src={RightArrow} alt="Left Arrow" layout="responsive" />
+          <Image src={RightArrow} alt="Left Arrow"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }} />
         </ButtonLeft>
         <ButtonRight onClick={handleRightClick}>
-          <Image src={RightArrow} alt="Right Arrow" layout="responsive" />
+          <Image src={RightArrow} alt="Right Arrow"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }} />
         </ButtonRight>
       </ButtonContainer>
     </CarouselContainer>

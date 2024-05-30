@@ -37,7 +37,10 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
             <Image
               src={RenagadeImage}
               alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}
-              layout="responsive"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </BlockImageCard>
 
@@ -45,7 +48,11 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
             <TopContentContainer>
               <TitleCard>
                 <BlockLogoCar>
-                  <Image src={JeepLogo} alt="Imagem da logo da Jeep" layout='responsive' />
+                  <Image src={JeepLogo} alt="Imagem da logo da Jeep"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockLogoCar>
                 {carData.brand} {carData.name}
               </TitleCard>
@@ -57,7 +64,10 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
 
                       src={YearIcon}
                       alt="Ícone de um calendário"
-                      layout="responsive"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                      }}
                     />
                   </BlockIconYearKm>
                   {carData.year}
@@ -68,7 +78,10 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
 
                       src={KmIcon}
                       alt="Ícone de um calendário"
-                      layout="responsive"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                      }}
                     />
                   </BlockIconKm>
                   {carData.km} km

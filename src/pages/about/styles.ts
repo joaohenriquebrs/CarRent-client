@@ -15,7 +15,7 @@ export const MainContent = styled.div`
 export const TitleContainer = styled.div`
   background: #f5f5f5;
   margin-bottom: 50px;
-  width: 90%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,6 @@ export const TitleContainer = styled.div`
   font-size: 34px;
   color: #616161;
   font-weight: 600;
-  width: 97%;
 
   @media (min-width: 700px) and (max-width: 800px) {
     font-size: 30px;

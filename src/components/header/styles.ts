@@ -87,29 +87,28 @@ export const OpeningHoursInfo = styled.div`
 `;
 
 export const LogoHeaderContainer = styled.a`
-
   @media (min-width: 768px) {
-    min-width: 147px;
+    width: 147px;
   }
 
   @media (min-width: 700px) and (max-width: 768px) {
-    min-width: 127px;
+    width: 127px;
   }
 
   @media (min-width: 600px) and (max-width: 700px) {
-    min-width: 117px;
+    width: 117px;
   }
 
   @media (min-width: 500px) and (max-width: 600px) {
-    min-width: 102px;
+    width: 102px;
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 87px;
+    width: 87px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    min-width: 77px;
+    width: 77px;
   }
 `;
 

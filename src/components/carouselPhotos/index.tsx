@@ -73,7 +73,10 @@ export const CarCarouselComponent = () => {
                 <Image
                   src={carImages[index]}
                   alt={`Image ${index + 1}`}
-                  layout="responsive"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
                 />
               </BlockImage>
             </Card>
@@ -83,10 +86,18 @@ export const CarCarouselComponent = () => {
 
       <ButtonContainer>
         <ButtonLeft onClick={handleLeftClick}>
-          <Image src={RightArrow} alt="Seta Esquerda" layout="responsive" />
+          <Image src={RightArrow} alt="Seta Esquerda"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }} />
         </ButtonLeft>
         <ButtonRight onClick={handleRightClick}>
-          <Image src={RightArrow} alt="Seta Direita" layout="responsive" />
+          <Image src={RightArrow} alt="Seta Direita"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }} />
         </ButtonRight>
       </ButtonContainer>
     </CarouselContainer>

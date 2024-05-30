@@ -62,37 +62,61 @@ export default function Finance() {
             <BlockFinanciers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={BradescoLogo} alt="Logo do banco Bradesco" layout='responsive' />
+                  <Image src={BradescoLogo} alt="Logo do banco Bradesco"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockImageFinanciers>
                 <FinanciersName>Bradesco</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={ItauLogo} alt="Logo do banco Itaú" layout='responsive' />
+                  <Image src={ItauLogo} alt="Logo do banco Itaú"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockImageFinanciers>
                 <FinanciersName>Itaú</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={SantanderLogo} alt="Logo do banco Santander" layout='responsive' />
+                  <Image src={SantanderLogo} alt="Logo do banco Santander"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockImageFinanciers>
                 <FinanciersName>Santander</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={PanLogo} alt="Logo do banco Pan" layout='responsive' />
+                  <Image src={PanLogo} alt="Logo do banco Pan"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockImageFinanciers>
                 <FinanciersName>Banco Pan</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={SafraLogo} alt="Logo do banco Safra" layout='responsive' />
+                  <Image src={SafraLogo} alt="Logo do banco Safra"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockImageFinanciers>
                 <FinanciersName>Banco Safra</FinanciersName>
               </Financiers>
               <Financiers>
                 <BlockImageFinanciers>
-                  <Image src={BvLogo} alt="Logo do banco BV Financeira" layout='responsive' />
+                  <Image src={BvLogo} alt="Logo do banco BV Financeira"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }} />
                 </BlockImageFinanciers>
                 <FinanciersName>BV Financeira</FinanciersName>
               </Financiers>

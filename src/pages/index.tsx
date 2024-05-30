@@ -178,7 +178,10 @@ export default function Home() {
           <Image
             src={BannerFirst}
             alt="Banner com um texto no meio"
-            layout="responsive"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
           />
         </BannerContainer>
 
@@ -212,7 +215,10 @@ export default function Home() {
               <Image
                 src={OrderIcon}
                 alt="Icone de ordenamento"
-                layout="Responsive"
+                style={{
+                  width: '15px',
+                  height: '15px',
+                }}
               />
             </OrderByContainer>
           </SearchContainer>

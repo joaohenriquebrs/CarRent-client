@@ -41,7 +41,11 @@ export default function Header() {
       <SecondHeader>
         <ContentSecondHeader>
           <LogoHeaderContainer href="/">
-            <Image src={LogoHeader} alt="Logo da empresa" layout="responsive" />
+            <Image src={LogoHeader} alt="Logo da empresa"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }} />
           </LogoHeaderContainer>
           <Menu>
             <LinkMenu href="/">Home</LinkMenu>
