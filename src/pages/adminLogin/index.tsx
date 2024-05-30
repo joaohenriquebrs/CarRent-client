@@ -72,7 +72,6 @@ export default function AdminLogin() {
                             </BlockInputPassword>
                             <ParagraphError>{error}</ParagraphError>
                             <AcessButton type="submit"
-                                className='btn-login'
                                 onClick={(e) => handleLogin(e)}>Login</AcessButton>
                         </FormContainer>
                     </MainContent>

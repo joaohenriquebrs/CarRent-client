@@ -51,17 +51,17 @@ const CloseButton = styled.button`
 `;
 
 interface AlertProps {
-    message: string;
-    onClose: () => void;
+  message: string;
+  onClose: () => void;
 }
 
 const Alert: React.FC<AlertProps> = ({ message, onClose }) => {
-    return (
-        <AlertContainer>
-            <AlertText>{message}</AlertText>
-            <CloseButton onClick={onClose}>Fechar</CloseButton>
-        </AlertContainer>
-    );
+  return (
+    <AlertContainer>
+      <AlertText>{message}</AlertText>
+      <CloseButton onClick={onClose}>Fechar</CloseButton>
+    </AlertContainer>
+  );
 };
 
 export default Alert;

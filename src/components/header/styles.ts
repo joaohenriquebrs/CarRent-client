@@ -216,7 +216,7 @@ export const ContentSecondHeader = styled.div`
 
 export const LinkMenuAdm = styled.a`
   cursor: pointer;
-  color: #212121;
+  color: #FFF;
   text-decoration: none;
   background: #6A6C6A;
   font-size: 16px;
@@ -227,7 +227,6 @@ export const LinkMenuAdm = styled.a`
   flex-direction: row;
 
   &:hover {
-    color: #000;
     transform: scale(1.07);
   }
 

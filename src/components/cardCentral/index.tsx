@@ -54,6 +54,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
                 <CarDate>
                   <BlockIconYearKm>
                     <Image
+
                       src={YearIcon}
                       alt="Ícone de um calendário"
                       layout="responsive"
@@ -64,6 +65,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
                 <KmText>
                   <BlockIconKm>
                     <Image
+
                       src={KmIcon}
                       alt="Ícone de um calendário"
                       layout="responsive"
@@ -77,7 +79,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
               <CarPrice>
                 R$ <PriceEmphasis>{carData.price}</PriceEmphasis>
               </CarPrice>
-              <SeeMore href="/CarPage">Ver mais</SeeMore>
+              <SeeMore href={`/CarPage?id=${carData.id}`} onClick={handleClick}>Ver mais</SeeMore>
             </FooterCard>
           </ContentContainer>
         </>
