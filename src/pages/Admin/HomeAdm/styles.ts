@@ -30,27 +30,61 @@ export const ButtonActions = styled.button`
   @media (max-width: 768px) {
     font-size: 12px;
   }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
 `;
 
 export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 30px;
+  font-size: 16px;
 
-  @media (max-width: 768px) {
-    margin-bottom: 10px;
+  @media (min-width: 700px) and (max-width: 800px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 600px) and (max-width: 700px) {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
 export const SearchInput = styled.input`
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  height: 40px;
+  padding-left: 15px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
 
-  @media (max-width: 768px) {
-    padding: 6px;
-    font-size: 14px;
+  @media (min-width: 600px) and (max-width: 800px) {
+    padding-left: 5px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    width: 30%;
+  }
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    width: 100%;
+    height: 40px;
   }
 `;
 
@@ -74,32 +108,29 @@ export const CardsPerPage = styled.div`
   justify-content: center;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
-  margin-top: 10px;
   padding: 15px;
+  text-align: center;
 
   @media (min-width: 700px) and (max-width: 800px) {
-    padding: 10px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
     font-size: 14px;
     padding: 8px;
   }
 
-  @media (min-width: 500px) and (max-width: 600px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     font-size: 12px;
-    padding: 8px;
+    padding: 8px 4px;
   }
 
-  @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 10px;
-    padding: 8px;
+  @media (min-width: 500px) and (max-width: 600px) {
+    font-size: 12px;
+    padding: 8px 4px;
+    width: 30%;
   }
 
   @media (min-width: 300px) and (max-width: 500px) {
-    padding: 8px;
     font-size: 10px;
-    max-width: 100px;
+    padding: 5px;
+    height: 41px;
   }
 `;
 
@@ -126,6 +157,10 @@ export const SelectContainer = styled.select`
   font-weight: 700;
   color: #616161;
   cursor: pointer;
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    font-size: 10px;
+  }
 `;
 
 export const HeaderTable = styled.div`
@@ -133,6 +168,15 @@ export const HeaderTable = styled.div`
   justify-content: space-between;
   flex-direction: row;
   width: 100%;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
+  }
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    gap: 15px;
+  }
 `;
 
 export const TableContainer = styled.div`
