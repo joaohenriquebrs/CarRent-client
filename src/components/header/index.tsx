@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import {
   HeaderContainer,
   FirstHeader,
@@ -18,16 +19,30 @@ import {
   MobileMenuLink,
   HamburgerContainer,
   HamburgerBar,
-  MobileIconMenuLink
+  MobileIconMenuLink,
+  HeaderAdm,
+  MenuAdm
 } from './styles';
 import { LogoHeader } from 'assets';
 import { FaPhone, FaUser } from 'react-icons/fa';
+import { AuthContext } from 'services/contexts/AuthContext';
 
 export default function Header() {
   const [showHamburger, setShowHamburger] = useState(false);
+  const { user, signOut } = useContext(AuthContext);
+  const router = useRouter();
 
   const toggleHamburger = () => {
     setShowHamburger(!showHamburger);
+  };
+
+  const handleLogout = () => {
+    try {
+      signOut();
+      router.push('/');
+    } catch (error) {
+      console.error('Erro ao efetuar logout:', error);
+    }
   };
 
   return (
@@ -51,18 +66,30 @@ export default function Header() {
             <LinkMenu href="/">Home</LinkMenu>
             <LinkMenu href="/Finance">Financie</LinkMenu>
             <LinkMenu href="/About">Sobre</LinkMenu>
+
             <PhoneLinkMenu href="https://wa.me/55119983251154" target='_blank'>
               <IconLink>
                 <FaPhone />
               </IconLink>
               Telefone
             </PhoneLinkMenu>
-            <LinkMenuAdm href="/Login">
-              <IconLink>
-                <FaUser />
-              </IconLink>
-              Login
-            </LinkMenuAdm>
+            {
+              user == null &&
+              <LinkMenuAdm href='/Login'>
+                <IconLink>
+                  <FaUser />
+                </IconLink>
+                Login
+              </LinkMenuAdm>
+            }
+            {
+              user != null &&
+              <>
+                <LinkMenu href='/Admin/HomeAdm'>Painel admnistrativo</LinkMenu>
+                <LinkMenu href='/Admin/CreateCar'>Adicionar carro</LinkMenu>
+                <LinkMenu onClick={handleLogout}>Sair</LinkMenu>
+              </>
+            }
           </Menu>
           <HamburgerContainer>
             <HamburgerIcon onClick={toggleHamburger}>
@@ -75,6 +102,15 @@ export default function Header() {
       </SecondHeader>
       {showHamburger && (
         <MobileMenu>
+          {
+            user != null &&
+            <>
+              <MobileMenuLink href="/">Home</MobileMenuLink>
+              <MobileMenuLink href="/Admin/homeAdm">Painel admnistrativo</MobileMenuLink>
+              <MobileMenuLink href="/Admin/CreateCar">Adicionar carro</MobileMenuLink>
+              <MobileMenuLink onClick={handleLogout}>Sair</MobileMenuLink>
+            </>
+          }
           <MobileMenuLink href="/">Home</MobileMenuLink>
           <MobileMenuLink href="/Finance">Financie</MobileMenuLink>
           <MobileMenuLink href="/About">Sobre</MobileMenuLink>
@@ -92,5 +128,5 @@ export default function Header() {
         </MobileMenu>
       )}
     </HeaderContainer>
-  );
-}
+  )
+};

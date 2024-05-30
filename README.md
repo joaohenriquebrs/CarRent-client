@@ -4,7 +4,6 @@
 - #### Repository: https://github.com/joaohenriquebrs/CarRent-server
 
 ## Tools
-- React
 - Next
 - Simple-react-lightbox
 - React-icons
@@ -12,12 +11,12 @@
 - Styled-components
 
 ## Make login using:
-- Email = admin@email.com
-- PASSWORD = admin123
+- Login = admin
+- Password = henrique123
 
 ## Running the project
 
-1. Be sure you have **node** and **yarn** (or **npm**, if you use it) installed.
+1. Be sure you have **node** and **npm** (or **yarn**, if you use it) installed.
 2. Clone the repository by running
 ```bash
 git clone https://github.com/joaohenriquebrs/CarRent-client.git

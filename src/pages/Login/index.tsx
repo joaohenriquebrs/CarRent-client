@@ -28,7 +28,7 @@ export default function AdminLogin() {
 
             console.log(usuario)
 
-            Router.push('/Admin/HomeAdm');
+            Router.push('/Admin/homeAdm');
         } catch (error: any) {
             console.log(error.data)
             setError(error?.response?.data?.message ?? 'Erro na requisiçao')

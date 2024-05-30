@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AuthContext, Role } from 'services/contexts/AuthContext';
-import HeaderAdmin from 'components/HeaderAdmin';
+import Header from 'components/Header';
 import Alert from 'components/Alert';
 import { createCar } from 'services/VehicleService';
 import {
@@ -78,7 +78,7 @@ const AdminLogin: React.FC = () => {
 
     return (
         <PageContainer>
-            <HeaderAdmin />
+            <Header />
             <MainContent>
                 {showAlert && <Alert message={alertMessage} onClose={() => setShowAlert(false)} />}
                 <Form onSubmit={handleSubmit}>

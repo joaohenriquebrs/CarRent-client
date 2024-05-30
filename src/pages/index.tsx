@@ -18,7 +18,11 @@ import {
   CardsPerPage,
   LabelCards,
   OptionSelect,
-  SelectContainer
+  SelectContainer,
+  SearchInput,
+  SearchContainerContent,
+  LeftSearch,
+  RightSearch
 } from './style';
 import { BannerFirst, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/CarouselBrands';
@@ -72,15 +76,16 @@ export default function Home() {
   const [cardsPerPage, setCardsPerPage] = useState(9);
   const [countTotal, setCountTotal] = useState<number>(0);
   const [pageButtons, setPageButtons] = useState<(number | null)[]>([1]);
-  const [totalPages, setTotalPages] = useState<number>(1)
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [searchText, setSearchText] = useState('');
 
   const mainContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const orderDirection = ascendingOrder == true ? 'asc' : 'desc';
-        const { data, meta } = await getCarsData(currentPage, cardsPerPage, `price-${orderDirection}`);
+        const orderDirection = ascendingOrder ? 'asc' : 'desc';
+        const { data, meta } = await getCarsData(currentPage, cardsPerPage, `price-${orderDirection}`, searchText);
         setDataVehicle(data);
         setCountTotal(meta.total);
 
@@ -93,7 +98,7 @@ export default function Home() {
     };
 
     fetchData();
-  }, [ascendingOrder, currentPage, cardsPerPage]);
+  }, [ascendingOrder, currentPage, cardsPerPage, searchText]);
 
 
   const toggleOrder = () => {
@@ -197,33 +202,46 @@ export default function Home() {
           </ContentMain>
 
           <SearchContainer>
-            <CardsPerPage>
-              <LabelCards htmlFor="cardsPerPage">Carros por página: </LabelCards>
-              <SelectContainer
-                id="cardsPerPage"
-                value={cardsPerPage}
-                onChange={handleCardsPerPageChange}
-              >
-                <OptionSelect value={9}>9</OptionSelect>
-                <OptionSelect value={18}>18</OptionSelect>
-                <OptionSelect value={27}>27</OptionSelect>
-                <OptionSelect value={54}>54</OptionSelect>
-              </SelectContainer>
-            </CardsPerPage>
+            <LeftSearch>
+              <SearchContainerContent>
+                <SearchInput
+                  type="text"
+                  placeholder="Pesquisar por nome..."
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                />
+              </SearchContainerContent>
+            </LeftSearch>
 
-            <OrderByContainer onClick={toggleOrder}>
-              <OrderByText>
-                Ordenar por preço: {ascendingOrder ? 'menor a maior' : 'maior a menor'}
-              </OrderByText>
-              <Image
-                src={OrderIcon}
-                alt="Icone de ordenamento"
-                style={{
-                  width: '15px',
-                  height: '15px',
-                }}
-              />
-            </OrderByContainer>
+            <RightSearch>
+              <CardsPerPage>
+                <LabelCards htmlFor="cardsPerPage">Carros por página: </LabelCards>
+                <SelectContainer
+                  id="cardsPerPage"
+                  value={cardsPerPage}
+                  onChange={handleCardsPerPageChange}
+                >
+                  <OptionSelect value={9}>9</OptionSelect>
+                  <OptionSelect value={18}>18</OptionSelect>
+                  <OptionSelect value={27}>27</OptionSelect>
+                  <OptionSelect value={54}>54</OptionSelect>
+                </SelectContainer>
+              </CardsPerPage>
+
+              <OrderByContainer onClick={toggleOrder}>
+                <OrderByText>
+                  Ordenar por preço: {ascendingOrder ? 'menor a maior' : 'maior a menor'}
+                </OrderByText>
+                <Image
+                  src={OrderIcon}
+                  alt="Icone de ordenamento"
+                  style={{
+                    width: '15px',
+                    height: '15px',
+                  }}
+                />
+              </OrderByContainer>
+            </RightSearch>
           </SearchContainer>
           <MainContent>
             <ProductsFound>
@@ -259,4 +277,3 @@ export default function Home() {
     </>
   );
 }
-

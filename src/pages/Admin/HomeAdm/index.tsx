@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DataTable, { TableColumn } from 'react-data-table-component';
 import {
     MainContent,
@@ -12,10 +12,9 @@ import {
     PaginationContainer,
     OptionSelect,
     SelectContainer,
-    HeaderTable,
-    TableContainer
+    HeaderTable
 } from './styles';
-import HeaderAdmin from 'components/HeaderAdmin';
+import Header from 'components/Header';
 import Alert from 'components/Alert';
 import { editCarData, deleteCar, getCarsData } from 'services/VehicleService';
 import { CarData } from 'services/interfaces';
@@ -62,7 +61,6 @@ const PaginationEllipsis = styled.span`
 export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
     const [filterText, setFilterText] = useState('');
-    const [filteredData, setFilteredData] = useState<CarData[]>([]);
     const [editableRowId, setEditableRowId] = useState<number | null>(null);
     const [editData, setEditData] = useState<Partial<CarData>>({});
     const [showAlert, setShowAlert] = useState(false);
@@ -87,40 +85,20 @@ export default function AdminHome() {
         setShowEditConfirmModal(false);
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data, meta } = await getCarsData(currentPage, perPage);
-                setData(data);
-                setFilteredData(data);
-                setTotalPages(Math.ceil(meta.total / perPage));
-                setCountTotal(meta.total);
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-            }
-        };
+    const fetchData = useCallback(async () => {
+        try {
+            const { data, meta } = await getCarsData(currentPage, perPage, 'id-desc', filterText);
+            setData(data);
+            setTotalPages(Math.ceil(meta.total / perPage));
+            setCountTotal(meta.total);
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+        }
+    }, [currentPage, perPage, filterText]);
 
+    useEffect(() => {
         fetchData();
-    }, [currentPage, perPage]);
-
-    useEffect(() => {
-        const filteredItems = data.filter(
-            item =>
-                item.id.toString().includes(filterText) ||
-                item.brand.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.name.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.price.toString().includes(filterText) ||
-                item.specifications.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.km.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.year.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.color.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.fuel.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.fuelUrban.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.fuelRoad.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.dataSheet.toLowerCase().includes(filterText.toLowerCase())
-        );
-        setFilteredData(filteredItems);
-    }, [filterText, data]);
+    }, [fetchData]);
 
     const handleEditRow = (id: number, rowData: CarData) => {
         setEditableRowId(id);
@@ -144,7 +122,6 @@ export default function AdminHome() {
                     item.id === editableRowId ? { ...item, ...editData } : item
                 );
                 setData(updatedData);
-                setFilteredData(updatedData);
                 setEditableRowId(null);
                 setEditData({});
                 setAlertMessage('Carro editado com sucesso!');
@@ -167,9 +144,7 @@ export default function AdminHome() {
     const handleDeleteConfirmed = async (id: number) => {
         try {
             await deleteCar(id);
-            const updatedData = data.filter(item => item.id !== id);
-            setData(updatedData);
-            setFilteredData(updatedData);
+            await fetchData();
             setAlertMessage('Carro excluído com sucesso!');
             setShowAlert(true);
         } catch (error) {
@@ -199,7 +174,7 @@ export default function AdminHome() {
                     onChange={(e) => setEditData({ ...editData, image: e.target.value })}
                 />
             ) : (
-                <span title={row.image}>{`${row.image.slice(0, 50)}${row.image.length > 50 ? '...' : ''}`}</span>
+                <a href={row.image} target='_blank'>{'Abrir imagem'}</a>
             )}
             </div>
             ),
@@ -317,13 +292,13 @@ export default function AdminHome() {
 
     return (
         <PageContainer>
-            <HeaderAdmin />
+            <Header />
             <MainContent>
                 <HeaderTable>
                     <SearchContainer>
                         <SearchInput
                             type="text"
-                            placeholder="Buscar..."
+                            placeholder="Buscar por nome..."
                             value={filterText}
                             onChange={e => setFilterText(e.target.value)}
                         />
@@ -350,7 +325,7 @@ export default function AdminHome() {
                 </HeaderTable>
                 <DataTable
                     columns={columns}
-                    data={filteredData}
+                    data={data}
                     paginationPerPage={perPage}
                     paginationTotalRows={totalPages * perPage}
                     paginationRowsPerPageOptions={[10, 20, 30]}
