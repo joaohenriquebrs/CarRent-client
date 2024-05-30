@@ -52,8 +52,9 @@ export const SearchContainer = styled.div`
   margin-bottom: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 0 2.4%;
+  justify-content: flex-end;
+  gap: 10px;
 
   @media (min-width: 600px) and (max-width: 700px) {
     margin-top: 80px;
@@ -66,12 +67,13 @@ export const SearchContainer = styled.div`
 
 export const CardsPerPage = styled.div`
   font-size: 16px;
-  background: #f5f5f5;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0px 15px;
   border-radius: 10px;
+  border: 1px solid #e0e0e0;
 
   @media (min-width: 700px) and (max-width: 800px) {
     padding: 10px;
@@ -101,6 +103,8 @@ export const CardsPerPage = styled.div`
 
 export const LabelCards = styled.label`
   margin-right: 5px;
+  font-weight: 700;
+  color: #616161;
 `;
 
 export const OrderByContainer = styled.button`
@@ -199,4 +203,15 @@ export const PaginationContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+`;
+
+export const OptionSelect = styled.option`
+  cursor: pointer;
+`;
+
+export const SelectContainer = styled.select`
+  padding: 2px;
+  font-weight: 700;
+  color: #616161;
+  cursor: pointer;
 `;

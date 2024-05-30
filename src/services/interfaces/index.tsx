@@ -1,5 +1,5 @@
 export interface CarData {
-    id: string;
+    id: number;
     brand: string;
     name: string;
     year: string;

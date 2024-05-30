@@ -121,7 +121,7 @@ export default function AdminHome() {
         { name: 'Consumo Rodoviário', selector: (row: CarData) => row.fuelRoad, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuelRoad} onChange={(e) => setEditData({ ...editData, fuelRoad: e.target.value })} /> : row.fuelRoad) },
         { name: 'Ficha Técnica', selector: (row: CarData) => row.dataSheet, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.dataSheet} onChange={(e) => setEditData({ ...editData, dataSheet: e.target.value })} /> : row.dataSheet) },
         {
-            name: 'Ações',
+            name: '',
             cell: (row: CarData) =>
                 editableRowId === row.id ? (
                     <ActionButtonsWrapper>
@@ -133,7 +133,7 @@ export default function AdminHome() {
                 ),
         },
         {
-            name: 'Excluir',
+            name: '',
             cell: (row: CarData) => (
                 <ButtonActions onClick={() => handleDeleteRow(row.id)}>Excluir</ButtonActions>
             ),

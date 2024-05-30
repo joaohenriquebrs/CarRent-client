@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CarData } from './interfaces';
 
 export type Car = {
-  id: string;
+  id: number;
   brand: string;
   name: string;
   price: number;
@@ -17,17 +17,12 @@ export type Car = {
 };
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://localhost:5454'
 });
 
 export const createCar = async (carData: Omit<CarData, 'id'>): Promise<CarData> => {
   try {
-    const newCarData: CarData = {
-      id: '',
-      ...carData
-    };
-
-    const response = await api.post('/cars', newCarData);
+    const response = await api.post('/cars', carData);
     return response.data;
   } catch (error) {
     throw new Error('Erro ao adicionar carro');
@@ -36,14 +31,14 @@ export const createCar = async (carData: Omit<CarData, 'id'>): Promise<CarData> 
 
 export const getCarsData = async (): Promise<CarData[]> => {
   try {
-    const response = await api.get('/static/test.json');
+    const response = await api.get('');
     return response.data;
   } catch (error) {
     throw new Error('Error fetching data');
   }
 };
 
-export const editCarData = async (id: string, carData: Partial<CarData>): Promise<void> => {
+export const editCarData = async (id: number, carData: Partial<CarData>): Promise<void> => {
   try {
     await api.put(`/cars/${id}`, carData);
   } catch (error) {
@@ -51,7 +46,7 @@ export const editCarData = async (id: string, carData: Partial<CarData>): Promis
   }
 };
 
-export const deleteCar = async (id: string): Promise<void> => {
+export const deleteCar = async (id: number): Promise<void> => {
   try {
     await api.delete(`/cars/${id}`);
   } catch (error) {
@@ -80,9 +75,9 @@ export async function fetchCarsData(): Promise<CarData[]> {
 }
 
 
-export async function fetchCarDataById(id: string): Promise<Car | null> {
+export async function fetchCarDataById(id: number): Promise<Car | null> {
   try {
-    const response = await axios.get<Car[]>('http://localhost:3000/static/test.json');
+    const response = await api.get<Car[]>('/static/test.json');
     const car = response.data.find((car) => car.id === id);
     return car || null;
   } catch (error) {

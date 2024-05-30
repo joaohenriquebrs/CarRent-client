@@ -17,7 +17,9 @@ import {
   AdjustMargin,
   PaginationContainer,
   CardsPerPage,
-  LabelCards
+  LabelCards,
+  OptionSelect,
+  SelectContainer
 } from './style';
 import { BannerFirst, OrderIcon } from 'assets';
 import { CarouselComponent } from 'components/CarouselBrands';
@@ -197,16 +199,16 @@ export default function Home() {
           <SearchContainer>
             <CardsPerPage>
               <LabelCards htmlFor="cardsPerPage">Cartões por página: </LabelCards>
-              <select
+              <SelectContainer
                 id="cardsPerPage"
                 value={cardsPerPage}
                 onChange={handleCardsPerPageChange}
               >
-                <option value={6}>6</option>
-                <option value={12}>12</option>
-                <option value={18}>18</option>
-                <option value={100}>100</option>
-              </select>
+                <OptionSelect value={6}>6</OptionSelect>
+                <OptionSelect value={12}>12</OptionSelect>
+                <OptionSelect value={18}>18</OptionSelect>
+                <OptionSelect value={100}>100</OptionSelect>
+              </SelectContainer>
             </CardsPerPage>
 
             <OrderByContainer onClick={toggleOrder}>

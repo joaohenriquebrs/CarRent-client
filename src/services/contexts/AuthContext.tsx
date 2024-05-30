@@ -5,20 +5,20 @@ import { signInRequest } from '../auth';
 import api from 'services/api';
 
 type User = {
-    id: string;
+    id: number;
     name: string;
-    email: string;
+    login: string;
 };
 
 type SignInData = {
-    email: string;
+    login: string;
     password: string;
 };
 
 type AuthContextType = {
     isAuthenticated: boolean;
     user?: User | null;
-    signIn: ({ email, password }: SignInData) => Promise<void>;
+    signIn: ({ login, password }: SignInData) => Promise<void>;
     signOut: () => void;
 };
 
@@ -49,8 +49,8 @@ export function AuthProvider({ children }: AuthProviderType) {
         fetchData();
     }, []);
 
-    async function signIn({ email, password }: SignInData) {
-        const data = await signInRequest({ email, password });
+    async function signIn({ login, password }: SignInData) {
+        const data = await signInRequest({ login, password });
         const { loggedUser, accessToken } = data.data;
 
         localStorage.setItem('authData', JSON.stringify({ loggedUser }));

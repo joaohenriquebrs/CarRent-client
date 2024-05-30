@@ -1,13 +1,13 @@
 import api from './api';
 
 type signInRequestType = {
-    email: string;
+    login: string;
     password: string;
 };
 
-export async function signInRequest({ email, password }: signInRequestType) {
+export async function signInRequest({ login, password }: signInRequestType) {
     const response = await api.post('/sessions', {
-        email,
+        login,
         password,
     });
     return response.data;

@@ -9,11 +9,12 @@ export const PageContainer = styled.div`
 
 export const MainContent = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; 
   width: 100vw;
   margin-top: 30px;
+  padding: 0px 40px;
 
   @media (max-width: 768px) {
     margin-top: 20px;
