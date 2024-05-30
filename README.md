@@ -6,6 +6,7 @@
 ## Tools
 - React
 - Next
+- Typescript
 - Simple-react-lightbox
 - React-icons
 - React-data-table-component
