@@ -178,6 +178,7 @@ export default function Home() {
           <Image
             src={BannerFirst}
             alt="Banner com um texto no meio"
+            priority
             style={{
               width: '100%',
               height: 'auto',
