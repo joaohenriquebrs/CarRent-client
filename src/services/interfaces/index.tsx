@@ -1,5 +1,5 @@
 export interface CarData {
-    id: string;
+    id: number;
     brand: string;
     name: string;
     year: string;
@@ -12,4 +12,14 @@ export interface CarData {
     fuelUrban: string;
     fuelRoad: string;
     dataSheet: string;
+}
+
+export interface CarDataPagination {
+    data: CarData[],
+    meta: {
+        total: number,
+        lastPage: number,
+        currentPage: number,
+        perPage: number,
+    }
 }

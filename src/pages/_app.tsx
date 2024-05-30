@@ -6,20 +6,26 @@ import SimpleReactLightbox from 'simple-react-lightbox';
 
 import GlobalStyles from 'styles/global';
 import theme from 'styles/theme';
+import { AxiosInterceptor } from 'services/AxiosInstance';
+import { AuthContext, AuthProvider } from 'services/contexts/AuthContext';
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <StyleSheetManager shouldForwardProp={isPropValid}>
-      <ThemeProvider theme={theme}>
-        <Head>
-          <title>CarRent Verzel</title>
-        </Head>
-        <GlobalStyles />
-        <SimpleReactLightbox>
-          <Component {...pageProps} />
-        </SimpleReactLightbox>
-      </ThemeProvider>
-    </StyleSheetManager>
+    <AxiosInterceptor>
+      <StyleSheetManager shouldForwardProp={isPropValid}>
+        <AuthProvider>
+          <ThemeProvider theme={theme}>
+            <Head>
+              <title>CarRent Verzel</title>
+            </Head>
+            <GlobalStyles />
+            <SimpleReactLightbox>
+              <Component {...pageProps} />
+            </SimpleReactLightbox>
+          </ThemeProvider>
+        </AuthProvider>
+      </StyleSheetManager>
+    </AxiosInterceptor>
   );
 }
 

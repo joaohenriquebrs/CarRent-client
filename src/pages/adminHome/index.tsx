@@ -10,15 +10,14 @@ import {
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
 import Alert from 'components/Alert';
-import { editCarData, deleteCar } from 'services/api';
+import { editCarData, deleteCar, getCarsData } from 'services/VehicleService';
 import { CarData } from 'services/interfaces';
-import { fetchCarsData } from 'services/api';
 
 export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
     const [filterText, setFilterText] = useState('');
     const [filteredData, setFilteredData] = useState<CarData[]>([]);
-    const [editableRowId, setEditableRowId] = useState<string | null>(null);
+    const [editableRowId, setEditableRowId] = useState<number | null>(null);
     const [editData, setEditData] = useState<Partial<CarData>>({});
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
@@ -26,9 +25,9 @@ export default function AdminHome() {
     useEffect(() => {
         const fetchDataAndSetState = async () => {
             try {
-                const fetchedData = await fetchCarsData();
-                setData(fetchedData);
-                setFilteredData(fetchedData);
+                const { data, meta } = await getCarsData(1, 10);
+                setData(data);
+                setFilteredData(data);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
@@ -40,7 +39,7 @@ export default function AdminHome() {
     useEffect(() => {
         const filteredItems = data.filter(
             item =>
-                item.id.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.id.toString().includes(filterText) ||
                 item.brand.toLowerCase().includes(filterText.toLowerCase()) ||
                 item.name.toLowerCase().includes(filterText.toLowerCase()) ||
                 item.price.toString().includes(filterText) ||
@@ -56,7 +55,7 @@ export default function AdminHome() {
         setFilteredData(filteredItems);
     }, [filterText, data]);
 
-    const handleEditRow = (id: string, rowData: CarData) => {
+    const handleEditRow = (id: number, rowData: CarData) => {
         setEditableRowId(id);
         setEditData(rowData);
     };
@@ -87,7 +86,7 @@ export default function AdminHome() {
         }
     };
 
-    const handleDeleteRow = async (id: string) => {
+    const handleDeleteRow = async (id: number) => {
         try {
             await deleteCar(id);
             const updatedData = data.filter(item => item.id !== id);
@@ -107,7 +106,7 @@ export default function AdminHome() {
     };
 
     const columns: TableColumn<CarData>[] = [
-        { name: 'ID', selector: (row: CarData) => row.id, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.id} onChange={(e) => setEditData({ ...editData, id: e.target.value })} /> : row.id) },
+        { name: 'ID', selector: (row: CarData) => row.id.toString(), cell: (row: CarData) => (editableRowId === row.id ? <input type="number" value={editData.id?.toString() || ''} onChange={(e) => setEditData({ ...editData, id: parseInt(e.target.value) })} /> : row.id) },
         { name: 'Marca', selector: (row: CarData) => row.brand, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.brand} onChange={(e) => setEditData({ ...editData, brand: e.target.value })} /> : row.brand) },
         { name: 'Nome', selector: (row: CarData) => row.name, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} /> : row.name) },
         { name: 'Preço', selector: (row: CarData) => row.price, cell: (row: CarData) => (editableRowId === row.id ? <input type="number" value={editData.price} onChange={(e) => setEditData({ ...editData, price: parseFloat(e.target.value) })} /> : row.price) },
@@ -121,7 +120,7 @@ export default function AdminHome() {
         { name: 'Consumo Rodoviário', selector: (row: CarData) => row.fuelRoad, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuelRoad} onChange={(e) => setEditData({ ...editData, fuelRoad: e.target.value })} /> : row.fuelRoad) },
         { name: 'Ficha Técnica', selector: (row: CarData) => row.dataSheet, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.dataSheet} onChange={(e) => setEditData({ ...editData, dataSheet: e.target.value })} /> : row.dataSheet) },
         {
-            name: 'Ações',
+            name: '',
             cell: (row: CarData) =>
                 editableRowId === row.id ? (
                     <ActionButtonsWrapper>
@@ -133,7 +132,7 @@ export default function AdminHome() {
                 ),
         },
         {
-            name: 'Excluir',
+            name: '',
             cell: (row: CarData) => (
                 <ButtonActions onClick={() => handleDeleteRow(row.id)}>Excluir</ButtonActions>
             ),

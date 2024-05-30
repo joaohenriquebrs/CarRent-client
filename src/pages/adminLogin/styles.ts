@@ -72,7 +72,6 @@ export const AcessButton = styled.button`
   cursor: pointer;
   transition: transform 0.3s ease;
   text-decoration: none;
-  width: 100%;
 
   &:hover {
     transform: scale(1.07);

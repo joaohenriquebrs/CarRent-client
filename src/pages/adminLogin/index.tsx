@@ -1,78 +1,65 @@
-import React, { useState, MouseEvent } from 'react';
-import axios from 'axios';
+import React, { useState, MouseEvent, useContext } from 'react';
 import Header from 'components/Header';
-import {
-    MainContent,
-    PageContainer,
-    LoginTitle,
-    BlockInputUser,
-    InputUserTitle,
-    InputUser,
-    BlockInputPassword,
-    InputPasswordTitle,
-    InputPassword,
-    AcessButton,
-    ParagraphError,
-    FormContainer
-} from './styles';
+import { MainContent, PageContainer, LoginTitle, BlockInputUser, InputUserTitle, InputUser, BlockInputPassword, InputPasswordTitle, InputPassword, AcessButton, ParagraphError, FormContainer } from './styles';
 import AdminHome from 'pages/AdminHome';
+import { AuthContext, TSignInData } from 'services/contexts/AuthContext';
+import { signInRequest } from 'services/AuthenticationService';
+import Router from 'next/router';
+import { USER_DATA_KEY, ACCESS_TOKEN_KEY } from 'services/constants';
 
 export default function AdminLogin() {
-    const [email, setEmail] = useState('');
+    const { user, setUser, setIsAuthenticated } = useContext(AuthContext);
+
+    const [login, setlogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState(null);
+
+
+    async function signIn({ login, password }: TSignInData) {
+        try {
+            const data = await signInRequest({ login, password });
+            const { usuario, token } = data;
+
+            localStorage.setItem(USER_DATA_KEY, JSON.stringify(usuario));
+            localStorage.setItem(ACCESS_TOKEN_KEY, token);
+
+            setUser(usuario);
+            setIsAuthenticated(true);
+
+            console.log(usuario)
+            const isAdmin = usuario?.role == "ADMININISTRADOR";
+
+            console.log('Is Admin', isAdmin)
+
+            Router.push('/AdminHome');
+        } catch (error: any) {
+            console.log(error.data)
+            setError(error?.response?.data?.message ?? 'Erro na requisiçao')
+        }
+
+    }
 
     const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        console.log(email, password);
-
-        try {
-            const response = await axios.post(
-                'http://localhost:3000/login',
-                JSON.stringify({ email, password }),
-                {
-                    headers: { 'Content-Type': 'application/json' }
-                }
-            );
-
-            console.log(response.data);
-            setUser(response.data);
-        } catch (error: any) {
-            if (error.response) {
-                if (error.response.status === 401) {
-                    setError('Usuário ou senha inválidos');
-                } else {
-                    setError('Erro ao acessar o servidor');
-                }
-            } else {
-                setError('Erro ao acessar o servidor');
-            }
-        }
-    };
-
-    const handleLogout = async (e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        setUser(null);
-        setError('');
+        signIn({ login, password });
     };
 
     return (
         <>
             <PageContainer>
                 <Header />
-                {user === null ? (
+                {user == null ? (
                     <MainContent>
                         <LoginTitle>Login</LoginTitle>
-                        <FormContainer className='login-form'>
+                        <FormContainer>
                             <BlockInputUser>
                                 <InputUserTitle>Usuário</InputUserTitle>
-                                <InputUser type="email"
-                                    name="email"
-                                    placeholder="Email"
+                                <InputUser type="login"
+                                    name="login"
+                                    placeholder="login"
                                     required
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setlogin(e.target.value)}
                                 />
                             </BlockInputUser>
                             <BlockInputPassword>

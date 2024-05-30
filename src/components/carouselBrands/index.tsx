@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
+import axios from 'axios';
 import {
   CarouselContainer,
   CardCarousel,
@@ -27,7 +28,16 @@ import {
   ToyotaLogo,
   VolkswagenLogo
 } from 'assets';
-import { fetchCarData } from 'services/api';
+
+async function fetchCarData() {
+  try {
+    const response = await axios.get('/static/test.json');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}
 
 export const CarouselComponent = () => {
   const [data, setData] = useState([]);

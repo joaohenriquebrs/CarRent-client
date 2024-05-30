@@ -9,11 +9,12 @@ export const PageContainer = styled.div`
 
 export const MainContent = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; 
   width: 100vw;
   margin-top: 30px;
+  padding: 0px 40px;
 
   @media (max-width: 768px) {
     margin-top: 20px;
@@ -21,14 +22,12 @@ export const MainContent = styled.div`
 `;
 
 export const ButtonActions = styled.button`
-  padding: 3px;
+  padding: 8px;
   margin-bottom: 3px;
-  width: 50px;
   cursor: pointer;
 
   @media (max-width: 768px) {
-    width: 40px;
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 
@@ -56,6 +55,7 @@ export const ActionButtonsWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  gap: 5px;
 `;
 
 export const InputField = styled.input`
