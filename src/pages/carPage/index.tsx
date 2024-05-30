@@ -63,7 +63,7 @@ import Footer from 'components/Footer';
 import Loading from 'components/Loading';
 import OthersDetailsComponent from 'components/OthersDetails';
 import { useRouter } from 'next/router';
-import { fetchCarDataById, Car } from 'services/api';
+import { fetchCarDataById, Car } from 'services/VehicleService';
 
 export default function CarPage() {
   const [carData, setCarData] = useState<Car | null>(null);

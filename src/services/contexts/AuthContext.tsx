@@ -1,24 +1,26 @@
 import { createContext, useEffect, useState } from 'react';
-import { setCookie, destroyCookie } from 'nookies';
 import Router from 'next/router';
-import { signInRequest } from '../auth';
-import api from 'services/api';
+import { USER_DATA_KEY } from 'services/constants';
 
-type User = {
-    id: number;
-    name: string;
-    login: string;
+export type TUser = {
+    id: number,
+    name: string,
+    login: string,
+    createdAt: Date,
+    status: string,
+    role: string,
 };
 
-type SignInData = {
+export type TSignInData = {
     login: string;
     password: string;
 };
 
 type AuthContextType = {
     isAuthenticated: boolean;
-    user?: User | null;
-    signIn: ({ login, password }: SignInData) => Promise<void>;
+    user?: TUser | null;
+    setUser: (user: TUser) => void;
+    setIsAuthenticated: (isAuthenticated: boolean) => void;
     signOut: () => void;
 };
 
@@ -29,54 +31,27 @@ type AuthProviderType = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider({ children }: AuthProviderType) {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<TUser | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(!!user);
 
     useEffect(() => {
         async function fetchData() {
-            const authData = localStorage.getItem('authData');
+            const authData = localStorage.getItem(USER_DATA_KEY);
             if (authData) {
-                const { loggedUser } = JSON.parse(authData);
-                const userId = loggedUser?.id;
-                if (userId) {
-                    const updatedUserResponse = await api.get(`/user/${userId}`);
-                    const updatedUser = updatedUserResponse.data.data;
-                    setUser(updatedUser);
-                    setIsAuthenticated(true);
-                }
+                const loggedUser = JSON.parse(authData);
+
+                setUser(loggedUser);
+                setIsAuthenticated(true);
             }
         }
+
         fetchData();
     }, []);
 
-    async function signIn({ login, password }: SignInData) {
-        const data = await signInRequest({ login, password });
-        const { loggedUser, accessToken } = data.data;
-
-        localStorage.setItem('authData', JSON.stringify({ loggedUser }));
-
-        api.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
-
-        setUser(loggedUser);
-        setIsAuthenticated(true);
-
-        const isAdmin = loggedUser?.isAdmin === true;
-        const redirectPath = isAdmin ? '/admin' : `/user/${loggedUser.id}`;
-        setCookie(undefined, 'nextauth.isAdmin', isAdmin ? 'true' : 'false', {
-            maxAge: 60 * 60 * 1 // 1 hour
-        });
-
-        Router.push(redirectPath);
-    }
-
-    async function signOut() {
+    const signOut = () => {
         localStorage.clear();
-        destroyCookie(undefined, 'nextauth.token');
-        destroyCookie(undefined, 'nextauth.isAdmin');
-        setIsAuthenticated(false);
-        delete api.defaults.headers['Authorization'];
-
         setUser(null);
+        setIsAuthenticated(false);
         Router.push('/');
     }
 
@@ -85,7 +60,8 @@ export function AuthProvider({ children }: AuthProviderType) {
             value={{
                 user,
                 isAuthenticated,
-                signIn,
+                setUser,
+                setIsAuthenticated,
                 signOut
             }}
         >

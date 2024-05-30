@@ -10,9 +10,8 @@ import {
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
 import Alert from 'components/Alert';
-import { editCarData, deleteCar } from 'services/api';
+import { editCarData, deleteCar, getCarsData } from 'services/VehicleService';
 import { CarData } from 'services/interfaces';
-import { fetchCarsData } from 'services/api';
 
 export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
@@ -26,9 +25,9 @@ export default function AdminHome() {
     useEffect(() => {
         const fetchDataAndSetState = async () => {
             try {
-                const fetchedData = await fetchCarsData();
-                setData(fetchedData);
-                setFilteredData(fetchedData);
+                const { data, meta } = await getCarsData(1, 10);
+                setData(data);
+                setFilteredData(data);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }

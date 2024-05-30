@@ -13,3 +13,13 @@ export interface CarData {
     fuelRoad: string;
     dataSheet: string;
 }
+
+export interface CarDataPagination {
+    data: CarData[],
+    meta: {
+        total: number,
+        lastPage: number,
+        currentPage: number,
+        perPage: number,
+    }
+}

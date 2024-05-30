@@ -12,7 +12,7 @@ import {
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
 import Alert from 'components/Alert';
-import { createCar } from 'services/api';
+import { createCar } from 'services/VehicleService';
 
 export default function AdminLogin() {
     const [carData, setCarData] = useState({
