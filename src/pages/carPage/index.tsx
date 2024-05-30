@@ -31,7 +31,6 @@ import {
   AdressText,
   TitleCarLocation,
   ButtonContactDown,
-  BlockLogoCar,
   BorderTitleContainer,
   ContentTitle,
   Emphasis,
@@ -75,11 +74,16 @@ export default function CarPage() {
         const { id } = router.query;
         console.log('ID do carro:', id);
         if (typeof id === 'string') {
-          const car = await fetchCarDataById(id);
-          if (car) {
-            setCarData(car);
+          const carId = parseInt(id, 10);
+          if (!isNaN(carId)) {
+            const car = await fetchCarDataById(carId);
+            if (car) {
+              setCarData(car);
+            } else {
+              console.error('Carro não encontrado');
+            }
           } else {
-            console.error('Carro não encontrado');
+            console.error('ID do carro inválido:', id);
           }
         }
       } catch (error) {
@@ -110,9 +114,6 @@ export default function CarPage() {
           <LeftContainer key={carData.id}>
             <TitleCarContainer>
               <ContentTitle>
-                <BlockLogoCar>
-                  <Image src={JeepLogo} alt={`Imagem da logo da ${carData.brand}`} />
-                </BlockLogoCar>
                 <UnderContent>
                   <NamesCarContainer>
                     <TitleCar>

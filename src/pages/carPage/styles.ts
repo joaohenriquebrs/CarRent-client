@@ -111,8 +111,6 @@ export const NamesCarContainer = styled.div`
   flex-direction: column;
 `;
 
-export const BlockLogoCar = styled.div``;
-
 export const Emphasis = styled.div`
   font-weight: bold;
 `;

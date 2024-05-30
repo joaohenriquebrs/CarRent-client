@@ -71,9 +71,8 @@ const AdminLogin: React.FC = () => {
     }, [showAlert]);
 
     useEffect(() => {
-        // Verifica se o usuário está autenticado e tem permissão de administrador
         if (!isAuthenticated || !hasPermission(Role.ADMINISTRATOR)) {
-            router.push('/login'); // Redireciona para a página de login se não estiver autenticado ou não tiver permissão
+            router.push('/login');
         }
     }, [isAuthenticated, hasPermission, router]);
 
