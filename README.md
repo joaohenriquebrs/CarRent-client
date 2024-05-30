@@ -1,4 +1,4 @@
-# Catálogo de Carros
+# Catálogo de Carros client
 
 ## Back-end
 - #### Repository: https://github.com/joaohenriquebrs/CarRent-server
