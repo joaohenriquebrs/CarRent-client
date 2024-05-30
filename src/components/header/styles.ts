@@ -48,11 +48,11 @@ export const OpeningHoursLabel = styled.div`
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 5px;
+    font-size: 8px;
   }
 `;
 
@@ -76,13 +76,13 @@ export const OpeningHoursInfo = styled.div`
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 7px;
-    margin-right: 20px;
+    font-size: 9px;
+    margin-right: 0px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 5px;
-    margin-right: 15px;
+    font-size: 8px;
+    margin-right: 0px;
   }
 `;
 

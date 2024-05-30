@@ -44,19 +44,30 @@ export const BlockImage = styled.div`
   min-width: 20px;
   min-height: 15px;
 
+  @media (min-width: 600px) {
+    width: 40px;
+    height: 40px;
+  }
+
   @media (min-width: 500px) and (max-width: 600px) {
-    min-width: 18px;
-    min-height: 14px;
+    width: 18px;
+    height: 14px;
+    margin-bottom: 5px;
+    margin-top: -3px;
 }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 16px;
-    min-height: 13px;
+    width: 16px;
+    height: 13px;
+    margin-bottom: 5px;
+    margin-top: -3px;
 }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    min-width: 14px;
-    min-height: 12px;
+    width: 14px;
+    height: 12px;
+    margin-bottom: 5px;
+    margin-top: -3px;
 }
 `;
 
@@ -135,15 +146,25 @@ export const ButtonRight = styled.button`
   max-width: 40px;
   max-height: 40px;
 
+  @media (min-width: 600px) and (max-width: 700px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    width: 25px;
+    height: 25px;
+  }
+
   @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 20px;
-    min-height: 20px;
+    width: 20px;
+    height: 20px;
     right: -40px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    min-width: 20px;
-    min-height: 20px;
+    width: 20px;
+    height: 20px;
     right: -40px;
   }
 `;
@@ -161,15 +182,25 @@ export const ButtonLeft = styled.button`
   max-width: 40px;
   max-height: 40px;
 
+  @media (min-width: 600px) and (max-width: 700px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    width: 25px;
+    height: 25px;
+  }
+
   @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 20px;
-    min-height: 20px;
+    width: 20px;
+    height: 20px;
     left: -40px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    min-width: 20px;
-    min-height: 20px;
+    width: 20px;
+    height: 20px;
     left: -40px;
   }
 `;

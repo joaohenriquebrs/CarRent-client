@@ -60,6 +60,7 @@ export const SubtitleMain = styled.div`
   color: #616161;
   font-weight: 400;
   text-align: center;
+  padding: 0px 25px;
 
   @media (min-width: 700px) and (max-width: 800px) {
     font-size: 16px;
