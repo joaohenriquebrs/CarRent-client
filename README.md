@@ -12,8 +12,8 @@
 - Styled-components
 
 ## Make login using:
-- Email = admin@email.com
-- PASSWORD = admin123
+- Login = admin
+- PASSWORD = henrique123
 
 ## Running the project
 
