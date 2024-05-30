@@ -7,12 +7,59 @@ import {
     SearchInput,
     ButtonActions,
     ActionButtonsWrapper,
+    CardsPerPage,
+    LabelCards,
+    PaginationContainer,
+    OptionSelect,
+    SelectContainer,
+    HeaderTable,
+    TableContainer
 } from './styles';
 import HeaderAdmin from 'components/HeaderAdmin';
 import Alert from 'components/Alert';
 import { editCarData, deleteCar, getCarsData } from 'services/VehicleService';
 import { CarData } from 'services/interfaces';
 import Modal from 'components/Modal';
+import styled, { css } from 'styled-components';
+
+interface PaginationButtonProps {
+    active?: boolean;
+}
+
+const PaginationButton = styled.button<PaginationButtonProps>`
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  background: #f5f5f5;
+  outline: none;
+  border-radius: 4px;
+
+  ${props =>
+        props.active &&
+        css`
+      font-weight: bold;
+    `}
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    font-size: 13px;
+    margin: -3px;
+  }
+`;
+
+const PaginationEllipsis = styled.span`
+  font-size: 16px;
+  color: #333;
+
+  @media (min-width: 300px) and (max-width: 500px) {
+    font-size: 13px;
+    margin: 0px -10px;
+  }
+`;
+
+
 
 export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
@@ -22,15 +69,14 @@ export default function AdminHome() {
     const [editData, setEditData] = useState<Partial<CarData>>({});
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [perPage, setPerPage] = useState(10);
+    const [countTotal, setCountTotal] = useState<number>(0);
+    const [pageButtons, setPageButtons] = useState<(number | null)[]>([1]);
     const [showModal, setShowModal] = useState(false);
     const [confirmMessage, setConfirmMessage] = useState('');
     const [carIdToDelete, setCarIdToDelete] = useState<number | null>(null);
-
-    const openConfirmationModal = (id: number) => {
-        setCarIdToDelete(id);
-        setConfirmMessage('Tem certeza de que deseja excluir este carro?');
-        setShowModal(true);
-    };
 
     const closeConfirmationModal = () => {
         setShowModal(false);
@@ -39,18 +85,20 @@ export default function AdminHome() {
     };
 
     useEffect(() => {
-        const fetchDataAndSetState = async () => {
+        const fetchData = async () => {
             try {
-                const { data, meta } = await getCarsData(1, 10);
+                const { data, meta } = await getCarsData(currentPage, perPage);
                 setData(data);
                 setFilteredData(data);
+                setTotalPages(Math.ceil(meta.total / perPage));
+                setCountTotal(meta.total);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
         };
 
-        fetchDataAndSetState();
-    }, []);
+        fetchData();
+    }, [currentPage, perPage]);
 
     useEffect(() => {
         const filteredItems = data.filter(
@@ -179,6 +227,74 @@ export default function AdminHome() {
         selectAllRowsItemText: 'Todos',
     };
 
+    const goToPage = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handlePerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setPerPage(Number(event.target.value));
+        setCurrentPage(1);
+    };
+
+    const getPageButtons = (countTotal: number) => {
+        const currentPageIndex = currentPage - 1;
+        const pageButtons: (number | null)[] = [];
+
+        if (totalPages <= countTotal) {
+            for (let i = 1; i <= totalPages; i++) {
+                pageButtons.push(i);
+            }
+        } else {
+            if (currentPageIndex < countTotal - 1 || totalPages <= countTotal + 1) {
+                for (let i = 1; i <= countTotal; i++) {
+                    pageButtons.push(i);
+                }
+                if (totalPages > countTotal + 1) {
+                    pageButtons.push(null);
+                    pageButtons.push(totalPages);
+                }
+            } else if (currentPageIndex >= totalPages - countTotal + 1) {
+                pageButtons.push(1);
+                pageButtons.push(null);
+                for (let i = totalPages - countTotal + 2; i <= totalPages; i++) {
+                    pageButtons.push(i);
+                }
+            } else {
+                pageButtons.push(1);
+                pageButtons.push(null);
+                const middlePage = currentPageIndex + 1;
+                const offset = Math.floor(countTotal / 2);
+                for (let i = middlePage - offset; i <= middlePage + offset; i++) {
+                    pageButtons.push(i);
+                }
+                if (totalPages > countTotal + 1) {
+                    pageButtons.push(null);
+                    pageButtons.push(totalPages);
+                }
+            }
+        }
+        return pageButtons;
+    };
+
+    useEffect(() => {
+        const pageButtons = getPageButtons(countTotal);
+        if (pageButtons) {
+            setPageButtons(pageButtons);
+        }
+    }, [countTotal, totalPages])
+
     useEffect(() => {
         let timer: NodeJS.Timeout;
 
@@ -195,26 +311,72 @@ export default function AdminHome() {
         <PageContainer>
             <HeaderAdmin />
             <MainContent>
-                <SearchContainer>
-                    <SearchInput
-                        type="text"
-                        placeholder="Buscar..."
-                        value={filterText}
-                        onChange={e => setFilterText(e.target.value)}
-                    />
-                    {editableRowId && (
-                        <ActionButtonsWrapper>
-                            <ButtonActions onClick={handleConfirmEditRow}>Confirmar</ButtonActions>
-                            <ButtonActions onClick={handleCancelEditRow}>Cancelar</ButtonActions>
-                        </ActionButtonsWrapper>
-                    )}
-                </SearchContainer>
+                <HeaderTable>
+                    <SearchContainer>
+                        <SearchInput
+                            type="text"
+                            placeholder="Buscar..."
+                            value={filterText}
+                            onChange={e => setFilterText(e.target.value)}
+                        />
+                        {editableRowId && (
+                            <ActionButtonsWrapper>
+                                <ButtonActions onClick={handleConfirmEditRow}>Confirmar</ButtonActions>
+                                <ButtonActions onClick={handleCancelEditRow}>Cancelar</ButtonActions>
+                            </ActionButtonsWrapper>
+                        )}
+                    </SearchContainer>
+                    <CardsPerPage>
+                        <LabelCards htmlFor="cardsPerPage">Carros por página: </LabelCards>
+                        <SelectContainer
+                            id="perPage"
+                            value={perPage}
+                            onChange={handlePerPageChange}
+                        >
+                            <OptionSelect value={10}>10</OptionSelect>
+                            <OptionSelect value={20}>20</OptionSelect>
+                            <OptionSelect value={50}>50</OptionSelect>
+                            <OptionSelect value={100}>100</OptionSelect>
+                        </SelectContainer>
+                    </CardsPerPage>
+                </HeaderTable>
                 <DataTable
                     columns={columns}
                     data={filteredData}
-                    pagination
-                    paginationComponentOptions={paginationComponentOptions}
+                    paginationPerPage={perPage}
+                    paginationTotalRows={totalPages * perPage}
+                    paginationRowsPerPageOptions={[10, 20, 30]}
+                    onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
+                        setPerPage(currentRowsPerPage);
+                        setCurrentPage(currentPage);
+                    }}
+                    paginationComponentOptions={{
+                        rowsPerPageText: 'Linhas por página',
+                        rangeSeparatorText: 'de',
+                        noRowsPerPage: false,
+                        selectAllRowsItem: true,
+                        selectAllRowsItemText: 'Todos',
+                    }}
+
                 />
+                <PaginationContainer>
+                    <PaginationButton onClick={prevPage}>Anterior</PaginationButton>
+                    {pageButtons.map((pageNumber, index) => (
+                        <React.Fragment key={index}>
+                            {pageNumber === null ? (
+                                <PaginationEllipsis>...</PaginationEllipsis>
+                            ) : (
+                                <PaginationButton
+                                    onClick={() => goToPage(pageNumber as number)}
+                                    active={pageNumber === currentPage}
+                                >
+                                    {pageNumber}
+                                </PaginationButton>
+                            )}
+                        </React.Fragment>
+                    ))}
+                    <PaginationButton onClick={nextPage}>Próxima</PaginationButton>
+                </PaginationContainer>
             </MainContent>
             <Modal
                 show={showModal}
@@ -227,13 +389,17 @@ export default function AdminHome() {
                 }}
                 onCancel={closeConfirmationModal}
             />
-            {showAlert && (
-                <Alert message={alertMessage} onClose={handleCloseAlert} />
-            )}
+            {
+                showAlert && (
+                    <Alert message={alertMessage} onClose={handleCloseAlert} />
+                )
+            }
 
-            {showAlert && (
-                <Alert message={alertMessage} onClose={handleCloseAlert} />
-            )}
-        </PageContainer>
+            {
+                showAlert && (
+                    <Alert message={alertMessage} onClose={handleCloseAlert} />
+                )
+            }
+        </PageContainer >
     );
 }
