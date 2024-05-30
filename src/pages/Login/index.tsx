@@ -27,9 +27,6 @@ export default function AdminLogin() {
             setIsAuthenticated(true);
 
             console.log(usuario)
-            const isAdmin = usuario?.role == "ADMININISTRADOR";
-
-            console.log('Is Admin', isAdmin)
 
             Router.push('/Admin/HomeAdm');
         } catch (error: any) {
@@ -41,7 +38,6 @@ export default function AdminLogin() {
 
     const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
         signIn({ login, password });
     };
 

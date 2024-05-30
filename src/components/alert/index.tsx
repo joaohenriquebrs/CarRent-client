@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaCheck } from 'react-icons/fa';
 
 const AlertContainer = styled.div`
   position: fixed;
@@ -31,13 +32,18 @@ const AlertText = styled.p`
 `;
 
 const CloseButton = styled.button`
-  background-color: #ff6347;
+  background-color: green;
   color: #fff;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 
   @media (min-width: 400px) and (max-width: 500px) {
     font-size: 14px;
@@ -59,7 +65,7 @@ const Alert: React.FC<AlertProps> = ({ message, onClose }) => {
   return (
     <AlertContainer>
       <AlertText>{message}</AlertText>
-      <CloseButton onClick={onClose}>Fechar</CloseButton>
+      <CloseButton onClick={onClose}><FaCheck /> Fechar</CloseButton>
     </AlertContainer>
   );
 };

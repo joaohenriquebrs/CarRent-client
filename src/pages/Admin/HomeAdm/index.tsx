@@ -59,8 +59,6 @@ const PaginationEllipsis = styled.span`
   }
 `;
 
-
-
 export default function AdminHome() {
     const [data, setData] = useState<CarData[]>([]);
     const [filterText, setFilterText] = useState('');
@@ -77,11 +75,16 @@ export default function AdminHome() {
     const [showModal, setShowModal] = useState(false);
     const [confirmMessage, setConfirmMessage] = useState('');
     const [carIdToDelete, setCarIdToDelete] = useState<number | null>(null);
+    const [showEditConfirmModal, setShowEditConfirmModal] = useState(false);
 
     const closeConfirmationModal = () => {
         setShowModal(false);
         setConfirmMessage('');
         setCarIdToDelete(null);
+    };
+
+    const closeEditConfirmModal = () => {
+        setShowEditConfirmModal(false);
     };
 
     useEffect(() => {
@@ -129,7 +132,11 @@ export default function AdminHome() {
         setEditData({});
     };
 
-    const handleConfirmEditRow = async () => {
+    const handleConfirmEditRow = () => {
+        setShowEditConfirmModal(true);
+    };
+
+    const handleSaveEditRow = async () => {
         if (editableRowId && editData) {
             try {
                 await editCarData(editableRowId, editData);
@@ -148,6 +155,7 @@ export default function AdminHome() {
                 setShowAlert(true);
             }
         }
+        closeEditConfirmModal();
     };
 
     const handleDeleteRow = async (id: number) => {
@@ -389,17 +397,13 @@ export default function AdminHome() {
                 }}
                 onCancel={closeConfirmationModal}
             />
-            {
-                showAlert && (
-                    <Alert message={alertMessage} onClose={handleCloseAlert} />
-                )
-            }
-
-            {
-                showAlert && (
-                    <Alert message={alertMessage} onClose={handleCloseAlert} />
-                )
-            }
-        </PageContainer >
+            <Modal
+                show={showEditConfirmModal}
+                message="Tem certeza de que deseja salvar as alterações?"
+                onConfirm={handleSaveEditRow}
+                onCancel={closeEditConfirmModal}
+            />
+            {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert} />}
+        </PageContainer>
     );
 }

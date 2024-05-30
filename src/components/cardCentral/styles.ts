@@ -61,6 +61,8 @@ export const BlockImageCard = styled.a`
 export const ImgCard = styled.img`
   width: 100%;
   height: 320px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 
   @media (min-width: 2200px) {
     height: 380px;
