@@ -65,7 +65,7 @@
     "jest-styled-components": "^7.0.8",
     "lint-staged": "^13.2.3",
     "plop": "^3.0.5",
-    "prettier": "3.0.3",
+    "prettier": "3.2.5",
     "typescript": "^5.2.2"
   }
 }
