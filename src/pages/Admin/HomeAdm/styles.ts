@@ -23,7 +23,6 @@ export const MainContent = styled.div`
 
 export const ButtonActions = styled.button`
   padding: 8px 14px;
-  margin-bottom: 3px;
   cursor: pointer;
   border-radius: 5px;
   border: none;
@@ -59,8 +58,8 @@ export const ActionButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
   gap: 5px;
+  height: 40px;
 `;
 
 export const InputField = styled.input`
