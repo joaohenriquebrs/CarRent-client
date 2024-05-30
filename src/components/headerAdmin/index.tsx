@@ -25,7 +25,7 @@ export default function HeaderAdmin() {
 
     return (
         <HeaderAdm>
-            <LogoHeaderContainer href="/">
+            <LogoHeaderContainer href="/Admin/HomeAdm">
                 <Image src={LogoHeader} alt="Logo da empresa"
                     style={{
                         width: '100%',
@@ -33,7 +33,6 @@ export default function HeaderAdmin() {
                     }} />
             </LogoHeaderContainer>
             <MenuAdm>
-                <LinkMenu href='/'>Home</LinkMenu>
                 <LinkMenu href='/Admin/HomeAdm'>Adm Home</LinkMenu>
                 <LinkMenu href='/Admin/CreateCar'>Adicionar carro</LinkMenu>
                 <LinkMenu onClick={handleLogout}>Sair</LinkMenu>
@@ -47,7 +46,6 @@ export default function HeaderAdmin() {
             </HamburgerContainer>
             {showHamburger && (
                 <MobileMenu>
-                    <MobileMenuLink href="/">Home</MobileMenuLink>
                     <MobileMenuLink href="/Admin/HomeAdm">Adm Home</MobileMenuLink>
                     <MobileMenuLink href="/Admin/CreateCar">Adicionar carro</MobileMenuLink>
                     <MobileMenuLink onClick={handleLogout}>Sair</MobileMenuLink>
