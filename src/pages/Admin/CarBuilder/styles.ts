@@ -13,10 +13,6 @@ export const MainContent = styled.div`
   justify-content: center;
   width: 100vw;
   margin-top: 173px;
-
-  @media (max-width: 768px) {
-    margin-top: 20px;
-  }
 `;
 
 export const Form = styled.form`

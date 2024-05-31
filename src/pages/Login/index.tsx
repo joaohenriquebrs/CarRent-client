@@ -1,5 +1,4 @@
 import React, { useState, MouseEvent, useContext } from 'react';
-import Header from 'components/Header';
 import { MainContent, PageContainer, LoginTitle, BlockInputUser, InputUserTitle, InputUser, BlockInputPassword, InputPasswordTitle, InputPassword, AcessButton, ParagraphError, FormContainer } from './styles';
 import AdminHome from 'pages/Admin/ControlPanel';
 import { AuthContext, TSignInData } from 'services/contexts/AuthContext';
@@ -7,7 +6,7 @@ import { signInRequest } from 'services/AuthenticationService';
 import Router from 'next/router';
 import { USER_DATA_KEY, ACCESS_TOKEN_KEY } from 'services/constants';
 
-export default function AdminLogin() {
+export default function Login() {
     const { user, setUser, setIsAuthenticated } = useContext(AuthContext);
 
     const [login, setlogin] = useState('');

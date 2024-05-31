@@ -21,7 +21,7 @@ import {
     KmLText
 } from './styles';
 
-const AdminLogin: React.FC = () => {
+const CarBuilder: React.FC = () => {
     const { isAuthenticated, hasPermission } = useContext(AuthContext);
     const router = useRouter();
     const [showAlert, setShowAlert] = useState(false);
@@ -253,4 +253,4 @@ const AdminLogin: React.FC = () => {
     );
 }
 
-export default AdminLogin;
+export default CarBuilder;

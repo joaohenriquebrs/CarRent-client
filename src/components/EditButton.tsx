@@ -31,7 +31,7 @@ const EditButton: React.FC<EditButtonProps> = ({ carId }) => {
     const router = useRouter();
 
     const handleEditClick = () => {
-        router.push(`/Admin/CreateCar?id=${carId}`);
+        router.push(`/Admin/CarBuilder?id=${carId}`);
     };
 
     return (
