@@ -20,16 +20,7 @@ import {
   RenegadeSexthImage
 } from 'assets';
 
-export const CarCarouselComponent = () => {
-  const [data] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 }
-  ]);
-
+export const CarCarouselComponent = (props: { media: string[] }) => {
   const carousel = useRef<HTMLDivElement | null>(null);
 
   const handleLeftClick = (e: React.MouseEvent) => {
@@ -54,25 +45,16 @@ export const CarCarouselComponent = () => {
     }
   };
 
-  const carImages = [
-    RenegadeMainImage,
-    RenegadeSecondImage,
-    RenegadeThirdImage,
-    RenegadeFourthImage,
-    RenegadeFifthImage,
-    RenegadeSexthImage
-  ];
-
   return (
     <CarouselContainer>
       <SRLWrapper>
         <CardCarousel ref={carousel}>
-          {data.map((item, index) => (
-            <Card key={item.id}>
-              <BlockImage href={carImages[index].src}>
-                <Image
-                  src={carImages[index]}
-                  alt={`Image ${index + 1}`}
+          {props?.media?.length > 0 && props?.media?.map((item, index) => (
+            <Card key={index}>
+              <BlockImage href={item}>
+                <img
+                  src={item}
+                  alt={'Imagem do carro'}
                   style={{
                     width: '100%',
                     height: 'auto',

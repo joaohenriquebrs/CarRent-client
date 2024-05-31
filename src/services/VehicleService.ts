@@ -9,6 +9,7 @@ export type Car = {
   specifications: string;
   dataSheet: string;
   year: number;
+  image: string;
   km: number;
   color: string;
   fuel: string;

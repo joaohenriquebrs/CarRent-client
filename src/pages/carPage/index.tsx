@@ -57,8 +57,6 @@ import {
 } from 'assets';
 
 import { CarCarouselComponent } from 'components';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import Loading from 'components/Loading';
 import OthersDetailsComponent from 'components/OthersDetails';
 import { useRouter } from 'next/router';
@@ -108,7 +106,7 @@ export default function CarPage() {
       <PageContainer>
         <PhotosCarContainer>
           <PhotoMainContainer>
-            <CarCarouselComponent />
+            <CarCarouselComponent media={[carData.image, carData.image, carData.image, carData.image, carData.image, carData.image]} />
           </PhotoMainContainer>
         </PhotosCarContainer>
 

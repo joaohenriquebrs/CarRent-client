@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { AuthContext, Role } from 'services/contexts/AuthContext';
 import Header from 'components/Header';
 import Alert from 'components/Alert';
-import { createCar } from 'services/VehicleService';
+import { createCar, editCarData, fetchCarDataById } from 'services/VehicleService';
 import {
     MainContent,
     PageContainer,
@@ -26,14 +26,15 @@ const AdminLogin: React.FC = () => {
     const router = useRouter();
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+    const [id, setId] = useState<number | null>(null)
 
     const [carData, setCarData] = useState({
         brand: '',
         name: '',
-        price: '',
+        price: 0,
         specifications: '',
-        km: '',
-        year: '',
+        km: 0,
+        year: 0,
         image: '',
         color: '',
         fuel: '',
@@ -41,6 +42,37 @@ const AdminLogin: React.FC = () => {
         fuelRoad: '',
         dataSheet: '',
     });
+
+    useEffect(() => {
+        const fetchCarData = async () => {
+            try {
+                const { id } = router.query;
+                const carId = Number(id);
+                const car = await fetchCarDataById(carId);
+                setCarData({
+                    brand: car.brand,
+                    name: car.name,
+                    price: car.price,
+                    specifications: car.specifications,
+                    km: car.km,
+                    year: car.year,
+                    image: car.image,
+                    color: car.color,
+                    fuel: car.fuel,
+                    fuelUrban: car.fuelUrban,
+                    fuelRoad: car.fuelRoad,
+                    dataSheet: car.dataSheet,
+                })
+            } catch (error) {
+                console.error('Erro ao buscar os dados do carro:', error);
+            }
+        };
+
+        if (router.query.id) {
+            setId(Number(router.query.id));
+            fetchCarData();
+        }
+    }, [router.query]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -76,16 +108,22 @@ const AdminLogin: React.FC = () => {
         }
 
         try {
-            const carDataWithParsedPrice = {
+            const carDTO = {
                 ...carData,
-                price: parseFloat(carData.price)
+                km: carData.km.toString(),
+                year: carData.year.toString(),
             };
-            await createCar(carDataWithParsedPrice);
-            setAlertMessage('Carro adicionado com sucesso!');
+            if (id) {
+                await editCarData(id, carDTO)
+                setAlertMessage('Carro editado com sucesso!');
+            } else {
+                await createCar(carDTO);
+                setAlertMessage('Carro adicionado com sucesso!');
+            }
             setShowAlert(true);
         } catch (error) {
             console.error('Erro ao adicionar carro:', error);
-            setAlertMessage('Erro ao adicionar carro. Por favor, tente novamente mais tarde.');
+            setAlertMessage(`Erro ao ${id ? 'editar' : 'adicionar'} carro. Por favor, tente novamente mais tarde.`);
             setShowAlert(true);
         }
     };
@@ -205,7 +243,9 @@ const AdminLogin: React.FC = () => {
                         </CarBlock>
                     </BlockLeft>
                     <BlockRight>
-                        <SubmitButton type="submit">Adicionar Carro</SubmitButton>
+                        <SubmitButton type="submit">
+                            {id ? 'Editar carro' : 'Criar carro'}
+                        </SubmitButton>
                     </BlockRight>
                 </Form>
             </MainContent>

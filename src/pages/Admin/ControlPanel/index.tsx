@@ -16,12 +16,13 @@ import {
     LinkImage,
     SpanDataTable
 } from './styles';
-import Header from 'components/Header';
 import Alert from 'components/Alert';
 import { editCarData, deleteCar, getCarsData } from 'services/VehicleService';
 import { CarData } from 'services/interfaces';
 import Modal from 'components/Modal';
 import styled, { css } from 'styled-components';
+import { useRouter } from 'next/router';
+import EditButton from 'components/EditButton';
 
 interface PaginationButtonProps {
     active?: boolean;
@@ -76,6 +77,7 @@ export default function ControlPanel() {
     const [carIdToDelete, setCarIdToDelete] = useState<number | null>(null);
     const [showEditConfirmModal, setShowEditConfirmModal] = useState(false);
     const [searchText, setSearchText] = useState('');
+    const router = useRouter();
 
     const closeConfirmationModal = () => {
         setShowModal(false);
@@ -217,13 +219,9 @@ export default function ControlPanel() {
         { name: 'Ficha Técnica', selector: (row: CarData) => row.dataSheet, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.dataSheet} onChange={(e) => setEditData({ ...editData, dataSheet: e.target.value })} /> : row.dataSheet) },
         {
             name: '',
-            cell: (row: CarData) =>
-                editableRowId === row.id ? (
-                    <></>
-                ) : (
-                    <ButtonActions onClick={() => handleEditRow(row.id, row)
-                    } > Editar</ButtonActions >
-                ),
+            cell: (row: CarData) => (
+                <EditButton carId={row.id} />
+            ),
         },
         {
             name: '',
