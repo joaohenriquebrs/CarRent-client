@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 80vh;
   font-family: Montserrat, sans-serif;
 `;
 
@@ -12,7 +12,7 @@ export const MainContent = styled.div`
   align-items: center;
   justify-content: center;
   width: 100vw;
-  margin-top: 30px;
+  margin-top: 173px;
 
   @media (max-width: 768px) {
     margin-top: 20px;
@@ -83,4 +83,54 @@ export const SubmitButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+export const CarSelect = styled.select`
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  background: #f5f5f5;
+  padding: 0px 10px;
+  cursor: pointer;
+`;
+
+export const OptionButton = styled.option`
+  cursor: pointer;
+`;
+
+export const KmLInputContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background: #f5f5f5;
+    padding: 0px 10px;
+    cursor: pointer;
+`;
+
+export const KmLInput = styled.input`
+  width: 90%;
+  height: 30px;
+  border: none;
+  background: #f5f5f5;
+  padding: 0px 10px;
+  cursor: pointer;
+`;
+
+export const KmLText = styled.span`
+  width: 10%;
+  height: 30px;
+  border-radius-top-right: 10px;
+  border-radius-bottom-right: 10px;
+  border: none;
+  background: #f5f5f5;
+  padding: 0px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

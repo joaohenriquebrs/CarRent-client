@@ -31,7 +31,6 @@ import {
   AdressText,
   TitleCarLocation,
   ButtonContactDown,
-  BlockLogoCar,
   BorderTitleContainer,
   ContentTitle,
   Emphasis,
@@ -58,8 +57,6 @@ import {
 } from 'assets';
 
 import { CarCarouselComponent } from 'components';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import Loading from 'components/Loading';
 import OthersDetailsComponent from 'components/OthersDetails';
 import { useRouter } from 'next/router';
@@ -75,11 +72,16 @@ export default function CarPage() {
         const { id } = router.query;
         console.log('ID do carro:', id);
         if (typeof id === 'string') {
-          const car = await fetchCarDataById(id);
-          if (car) {
-            setCarData(car);
+          const carId = parseInt(id, 10);
+          if (!isNaN(carId)) {
+            const car = await fetchCarDataById(carId);
+            if (car) {
+              setCarData(car);
+            } else {
+              console.error('Carro não encontrado');
+            }
           } else {
-            console.error('Carro não encontrado');
+            console.error('ID do carro inválido:', id);
           }
         }
       } catch (error) {
@@ -92,17 +94,19 @@ export default function CarPage() {
     }
   }, [router.query]);
 
+  const formatPrice = (price: number) => {
+    return price.toFixed(0).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
 
   if (!carData) return <Loading />;
 
   return (
     <>
       <PageContainer>
-        <Header />
-
         <PhotosCarContainer>
           <PhotoMainContainer>
-            <CarCarouselComponent />
+            <CarCarouselComponent media={[carData.image, carData.image, carData.image, carData.image, carData.image, carData.image]} />
           </PhotoMainContainer>
         </PhotosCarContainer>
 
@@ -110,9 +114,6 @@ export default function CarPage() {
           <LeftContainer key={carData.id}>
             <TitleCarContainer>
               <ContentTitle>
-                <BlockLogoCar>
-                  <Image src={JeepLogo} alt={`Imagem da logo da ${carData.brand}`} />
-                </BlockLogoCar>
                 <UnderContent>
                   <NamesCarContainer>
                     <TitleCar>
@@ -123,7 +124,7 @@ export default function CarPage() {
                     </TitleCarText>
                   </NamesCarContainer>
                   <PricesBlock>
-                    <NewPrice> R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
+                    <NewPrice> R$ <EmphasisPrice>{formatPrice(carData.price)}</EmphasisPrice>
                     </NewPrice>
                   </PricesBlock>
                 </UnderContent>
@@ -165,8 +166,8 @@ export default function CarPage() {
                     </BlockIconContainer>
                     {carData.fuel}
                   </FuelType>
-                  <ConsuptionUrban>{carData.fuelUrban} urbano</ConsuptionUrban>
-                  <ConsuptionHighway>{carData.fuelRoad} rodovia</ConsuptionHighway>
+                  <ConsuptionUrban>{carData.fuelUrban} km/l urbano</ConsuptionUrban>
+                  <ConsuptionHighway>{carData.fuelRoad} km/l rodovia</ConsuptionHighway>
                 </Info5Datasheet>
               </DetailsDatasheet>
             </DatasheetContainer>
@@ -245,7 +246,6 @@ export default function CarPage() {
             <ButtonContactDown href="https://wa.me/55119983251154r" target='_blank'>Avalie seu carro</ButtonContactDown>
           </CardContact>
         </CardContactMobile>
-        <Footer />
       </PageContainer>
     </>
   );

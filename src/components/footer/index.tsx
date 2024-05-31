@@ -48,14 +48,20 @@ export default function Footer() {
             <Image
               src={InstaIcon}
               alt="Imagem da logo do instagram"
-              layout="responsive"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </BlockInsta>
           <BlockFace href="#">
             <Image
               src={FaceIcon}
               alt="Imagem da logo do facebook"
-              layout="responsive"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </BlockFace>
         </SocialMedias>
@@ -141,7 +147,10 @@ export default function Footer() {
             <Image
               src={AutoConf}
               alt="Imagem da logo da empresa autoconf"
-              layout="responsive"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </BlockContentBase>
         </AdjustFooter>

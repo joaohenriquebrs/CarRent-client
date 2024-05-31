@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   font-family: Montserrat, sans-serif;
 `;
 
@@ -110,8 +110,6 @@ export const NamesCarContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export const BlockLogoCar = styled.div``;
 
 export const Emphasis = styled.div`
   font-weight: bold;

@@ -14,7 +14,11 @@ export const FirstHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 20px;
+  padding: 20px;
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    padding: 15px;
+  }
 `;
 
 export const SecondHeader = styled.div`
@@ -48,11 +52,12 @@ export const OpeningHoursLabel = styled.div`
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 5px;
+    font-size: 8px;
+    margin-right: 2px;
   }
 `;
 
@@ -76,40 +81,13 @@ export const OpeningHoursInfo = styled.div`
   }
 
   @media (min-width: 400px) and (max-width: 500px) {
-    font-size: 7px;
-    margin-right: 20px;
+    font-size: 9px;
+    margin-right: 0px;
   }
 
   @media (min-width: 300px) and (max-width: 400px) {
-    font-size: 5px;
-    margin-right: 15px;
-  }
-`;
-
-export const LogoHeaderContainer = styled.a`
-
-  @media (min-width: 768px) {
-    min-width: 147px;
-  }
-
-  @media (min-width: 700px) and (max-width: 768px) {
-    min-width: 127px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    min-width: 117px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    min-width: 102px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    min-width: 87px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    min-width: 77px;
+    font-size: 8px;
+    margin-right: 0px;
   }
 `;
 
@@ -126,46 +104,9 @@ export const Menu = styled.div`
   }
 `;
 
-export const LinkMenu = styled.a`
-  margin-right: 30px;
-  cursor: pointer;
-  color: #212121;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.07);
-  }
-
-  &:hover {
-    color: #6a6c6a;
-  }
-
-  @media (min-width: 700px) and (max-width: 800px) {
-    margin-right: 26px;
-  }
-
-  @media (min-width: 600px) and (max-width: 700px) {
-    margin-right: 24px;
-  }
-
-  @media (min-width: 500px) and (max-width: 600px) {
-    margin-right: 22px;
-  }
-
-  @media (min-width: 400px) and (max-width: 500px) {
-    margin-right: 10px;
-  }
-
-  @media (min-width: 300px) and (max-width: 400px) {
-    margin-right: 8px;
-  }
-`;
-
 export const PhoneLinkMenu = styled.a`
   display: flex;
   flex-direction: row;
-  padding-top: 5px;
   cursor: pointer;
   margin-right: 30px;
   color: #212121;
@@ -216,7 +157,7 @@ export const ContentSecondHeader = styled.div`
 
 export const LinkMenuAdm = styled.a`
   cursor: pointer;
-  color: #212121;
+  color: #FFF;
   text-decoration: none;
   background: #6A6C6A;
   font-size: 16px;
@@ -227,7 +168,6 @@ export const LinkMenuAdm = styled.a`
   flex-direction: row;
 
   &:hover {
-    color: #000;
     transform: scale(1.07);
   }
 
@@ -347,3 +287,82 @@ export const MobileIconMenuLink = styled.a`
     font-size: 12px;
   }
 `;
+
+export const HeaderAdm = styled.div`
+  background: #f5f5f5;
+  width: 100vw;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: row;
+  flex-direction: space-between;
+  align-items: center;
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    margin-bottom: 20px;
+  }
+`;
+
+export const LogoHeaderContainer = styled.a`
+  @media (min-width: 800px) {
+    min-width: 147px;
+  }
+
+  @media (min-width: 700px) and (max-width: 800px) {
+    min-width: 127px;
+  }
+
+  @media (min-width: 600px) and (max-width: 700px) {
+    min-width: 117px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    min-width: 92px;
+  }
+
+  @media (min-width: 400px) and (max-width: 500px) {
+    min-width: 87px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    min-width: 57px;
+  }
+`;
+
+export const MenuAdm = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 15px;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+`;
+
+export const LinkMenu = styled.a`
+  margin-right: 40px;
+  color: #212121;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  font-weight: 700;
+
+  &:hover {
+    transform: scale(1.07);
+  }
+
+  &:hover {
+    color: #6a6c6a;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
+    font-size: 15px;
+    margin-right: 20px;
+  }
+`;
+

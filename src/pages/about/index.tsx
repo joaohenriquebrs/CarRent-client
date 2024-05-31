@@ -26,7 +26,6 @@ import { IconPhone, LogoWppService, ServiceImage } from 'assets';
 export default function About() {
   return (
     <PageContainer>
-      <Header />
       <MainContent>
         <TitleContainer>Sobre nós</TitleContainer>
         <TextAboutContent>
@@ -87,7 +86,6 @@ export default function About() {
           </ServiceDown>
         </ServiveContainer>
       </MainContent>
-      <Footer />
     </PageContainer>
   );
 }

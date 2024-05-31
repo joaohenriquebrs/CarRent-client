@@ -12,13 +12,13 @@ import {
   ContentContainer,
   YearKmContainer,
   KmText,
-  BlockLogoCar,
   BlockIconYearKm,
   PriceEmphasis,
   BlockIconKm,
-  TopContentContainer
+  TopContentContainer,
+  ImgCard
 } from './styles';
-import { YearIcon, KmIcon, JeepLogo, RenagadeImage } from 'assets';
+import { YearIcon, KmIcon } from 'assets';
 import { CarData } from 'services/interfaces';
 
 interface CardCentralProps {
@@ -29,24 +29,26 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
   const handleClick = () => {
     console.log('ID do carro:', carData.id);
   };
+
+  const formatPrice = (price: number) => {
+    return price.toFixed(0).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
   return (
     <CardContainer>
       {carData && (
         <>
           <BlockImageCard href={`/CarPage?id=${carData.id}`} onClick={handleClick}>
-            <Image
-              src={RenagadeImage}
-              alt={`Imagem de um carro, um ${carData.brand} ${carData.name}`}
-              layout="responsive"
+            <ImgCard src={carData.image}
+              style={{
+                width: '100%',
+              }}
             />
           </BlockImageCard>
 
           <ContentContainer>
             <TopContentContainer>
               <TitleCard>
-                <BlockLogoCar>
-                  <Image src={JeepLogo} alt="Imagem da logo da Jeep" layout='responsive' />
-                </BlockLogoCar>
                 {carData.brand} {carData.name}
               </TitleCard>
               <CarSpecifications>{carData.specifications}</CarSpecifications>
@@ -54,9 +56,13 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
                 <CarDate>
                   <BlockIconYearKm>
                     <Image
+
                       src={YearIcon}
                       alt="Ícone de um calendário"
-                      layout="responsive"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                      }}
                     />
                   </BlockIconYearKm>
                   {carData.year}
@@ -64,9 +70,13 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
                 <KmText>
                   <BlockIconKm>
                     <Image
+
                       src={KmIcon}
                       alt="Ícone de um calendário"
-                      layout="responsive"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                      }}
                     />
                   </BlockIconKm>
                   {carData.km} km
@@ -75,9 +85,9 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
             </TopContentContainer>
             <FooterCard>
               <CarPrice>
-                R$ <PriceEmphasis>{carData.price}</PriceEmphasis>
+                R$ <PriceEmphasis>{formatPrice(carData.price)}</PriceEmphasis>
               </CarPrice>
-              <SeeMore href="/CarPage">Ver mais</SeeMore>
+              <SeeMore href={`/CarPage?id=${carData.id}`} onClick={handleClick}>Ver mais</SeeMore>
             </FooterCard>
           </ContentContainer>
         </>

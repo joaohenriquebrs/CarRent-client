@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent, useContext } from 'react';
 import Header from 'components/Header';
 import { MainContent, PageContainer, LoginTitle, BlockInputUser, InputUserTitle, InputUser, BlockInputPassword, InputPasswordTitle, InputPassword, AcessButton, ParagraphError, FormContainer } from './styles';
-import AdminHome from 'pages/AdminHome';
+import AdminHome from 'pages/Admin/ControlPanel';
 import { AuthContext, TSignInData } from 'services/contexts/AuthContext';
 import { signInRequest } from 'services/AuthenticationService';
 import Router from 'next/router';
@@ -27,11 +27,8 @@ export default function AdminLogin() {
             setIsAuthenticated(true);
 
             console.log(usuario)
-            const isAdmin = usuario?.role == "ADMININISTRADOR";
 
-            console.log('Is Admin', isAdmin)
-
-            Router.push('/AdminHome');
+            Router.push('/Admin/ControlPanel');
         } catch (error: any) {
             console.log(error.data)
             setError(error?.response?.data?.message ?? 'Erro na requisiçao')
@@ -41,14 +38,12 @@ export default function AdminLogin() {
 
     const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
         signIn({ login, password });
     };
 
     return (
         <>
             <PageContainer>
-                <Header />
                 {user == null ? (
                     <MainContent>
                         <LoginTitle>Login</LoginTitle>
@@ -72,7 +67,6 @@ export default function AdminLogin() {
                             </BlockInputPassword>
                             <ParagraphError>{error}</ParagraphError>
                             <AcessButton type="submit"
-                                className='btn-login'
                                 onClick={(e) => handleLogin(e)}>Login</AcessButton>
                         </FormContainer>
                     </MainContent>

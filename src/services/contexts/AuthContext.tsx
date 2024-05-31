@@ -2,13 +2,18 @@ import { createContext, useEffect, useState } from 'react';
 import Router from 'next/router';
 import { USER_DATA_KEY } from 'services/constants';
 
+
+export enum Role {
+    ADMINISTRATOR = 'ADMINISTRATOR',
+}
+
 export type TUser = {
     id: number,
     name: string,
     login: string,
     createdAt: Date,
     status: string,
-    role: string,
+    role: Role,
 };
 
 export type TSignInData = {
@@ -22,6 +27,7 @@ type AuthContextType = {
     setUser: (user: TUser) => void;
     setIsAuthenticated: (isAuthenticated: boolean) => void;
     signOut: () => void;
+    hasPermission: (requiredRole: Role) => boolean
 };
 
 type AuthProviderType = {
@@ -55,6 +61,12 @@ export function AuthProvider({ children }: AuthProviderType) {
         Router.push('/');
     }
 
+    const hasPermission = (requiredRole: Role): boolean => {
+        if (!user) return false;
+        return user.role === requiredRole;
+    };
+
+
     return (
         <AuthContext.Provider
             value={{
@@ -62,7 +74,8 @@ export function AuthProvider({ children }: AuthProviderType) {
                 isAuthenticated,
                 setUser,
                 setIsAuthenticated,
-                signOut
+                signOut,
+                hasPermission
             }}
         >
             {children}

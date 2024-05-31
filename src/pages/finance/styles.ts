@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   font-family: Montserrat, sans-serif;
 `;
 
@@ -60,6 +60,7 @@ export const SubtitleMain = styled.div`
   color: #616161;
   font-weight: 400;
   text-align: center;
+  padding: 0px 25px;
 
   @media (min-width: 700px) and (max-width: 800px) {
     font-size: 16px;

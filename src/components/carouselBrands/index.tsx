@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
-import axios from 'axios';
+import React, { useRef } from 'react';
+import Image, { StaticImageData } from 'next/image';
 import {
   CarouselContainer,
   CardCarousel,
@@ -29,32 +28,27 @@ import {
   VolkswagenLogo
 } from 'assets';
 
-async function fetchCarData() {
-  try {
-    const response = await axios.get('/static/test.json');
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-}
+type Brand = 'Chevrolet' | 'Fiat' | 'Ford' | 'Honda' | 'Jeep' | 'Mercedes' | 'Nissan' | 'Peugeot' | 'Renault' | 'Toyota' | 'Audi' | 'BMW' | 'Cherry' | 'Volkswagen';
+
+const logoMappings: Record<Brand, StaticImageData> = {
+  Chevrolet: ChrevroletLogo,
+  Fiat: FiatLogo,
+  Ford: FordLogo,
+  Honda: HondaLogo,
+  Jeep: JeepLogo,
+  Mercedes: MercedesLogo,
+  Nissan: NissanLogo,
+  Peugeot: PeugeotLogo,
+  Renault: RenaultLogo,
+  Toyota: ToyotaLogo,
+  Audi: AudiLogo,
+  BMW: BmwLogo,
+  Cherry: CherryLogo,
+  Volkswagen: VolkswagenLogo
+};
 
 export const CarouselComponent = () => {
-  const [data, setData] = useState([]);
   const carousel = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const fetchDataAndSetState = async () => {
-      try {
-        const data = await fetchCarData();
-        setData(data);
-      } catch (error) {
-        console.error('Error setting car data:', error);
-      }
-    };
-
-    fetchDataAndSetState();
-  }, []);
 
   const handleLeftClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -78,49 +72,40 @@ export const CarouselComponent = () => {
     }
   };
 
-  const logoMappings = {
-    Chevrolet: ChrevroletLogo,
-    Fiat: FiatLogo,
-    Ford: FordLogo,
-    Honda: HondaLogo,
-    Jeep: JeepLogo,
-    Mercedes: MercedesLogo,
-    Nissan: NissanLogo,
-    Peugeot: PeugeotLogo,
-    Renault: RenaultLogo,
-    Toyota: ToyotaLogo,
-    Audi: AudiLogo,
-    BMW: BmwLogo,
-    Cherry: CherryLogo,
-    Volkswagen: VolkswagenLogo
-  };
-
   return (
     <CarouselContainer>
       <CardCarousel ref={carousel}>
-        {data.map((item) => {
-          const { id, brand } = item;
-          return (
-            <Card key={id}>
-              <BlockImage>
-                <Image
-                  src={logoMappings[brand]}
-                  alt={brand}
-                  layout="responsive"
-                />
-              </BlockImage>
-              <CardTitle>{brand}</CardTitle>
-            </Card>
-          );
-        })}
+        {Object.keys(logoMappings).map((brand) => (
+          <Card key={brand}>
+            <BlockImage>
+              <Image
+                src={logoMappings[brand as Brand]}
+                alt={brand}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </BlockImage>
+            <CardTitle>{brand}</CardTitle>
+          </Card>
+        ))}
       </CardCarousel>
 
       <ButtonContainer>
         <ButtonLeft onClick={handleLeftClick}>
-          <Image src={RightArrow} alt="Left Arrow" layout="responsive" />
+          <Image src={RightArrow} alt="Left Arrow"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }} />
         </ButtonLeft>
         <ButtonRight onClick={handleRightClick}>
-          <Image src={RightArrow} alt="Right Arrow" layout="responsive" />
+          <Image src={RightArrow} alt="Right Arrow"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }} />
         </ButtonRight>
       </ButtonContainer>
     </CarouselContainer>
