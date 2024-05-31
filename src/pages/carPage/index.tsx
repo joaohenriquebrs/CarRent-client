@@ -96,6 +96,10 @@ export default function CarPage() {
     }
   }, [router.query]);
 
+  const formatPrice = (price: number) => {
+    return price.toFixed(0).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
 
   if (!carData) return <Loading />;
 
@@ -124,7 +128,7 @@ export default function CarPage() {
                     </TitleCarText>
                   </NamesCarContainer>
                   <PricesBlock>
-                    <NewPrice> R$ <EmphasisPrice>{carData.price}</EmphasisPrice>
+                    <NewPrice> R$ <EmphasisPrice>{formatPrice(carData.price)}</EmphasisPrice>
                     </NewPrice>
                   </PricesBlock>
                 </UnderContent>
@@ -166,8 +170,8 @@ export default function CarPage() {
                     </BlockIconContainer>
                     {carData.fuel}
                   </FuelType>
-                  <ConsuptionUrban>{carData.fuelUrban} urbano</ConsuptionUrban>
-                  <ConsuptionHighway>{carData.fuelRoad} rodovia</ConsuptionHighway>
+                  <ConsuptionUrban>{carData.fuelUrban} km/l urbano</ConsuptionUrban>
+                  <ConsuptionHighway>{carData.fuelRoad} km/l rodovia</ConsuptionHighway>
                 </Info5Datasheet>
               </DetailsDatasheet>
             </DatasheetContainer>

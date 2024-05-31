@@ -13,11 +13,10 @@ export const MainContent = styled.div`
   flex-direction: column;
   align-items: flex-start; 
   width: 100vw;
-  margin-top: 30px;
-  padding: 0px 40px;
+  padding: 0px 60px;
+  margin-top: 173px;
 
   @media (max-width: 768px) {
-    margin-top: 20px;
   }
 `;
 
@@ -76,10 +75,12 @@ export const SearchInput = styled.input`
 
   @media (min-width: 600px) and (max-width: 800px) {
     padding-left: 5px;
+    height: 30px;
   }
 
   @media (min-width: 500px) and (max-width: 600px) {
-    width: 30%;
+    width: 100%;
+    height: 40px;
   }
 
   @media (min-width: 300px) and (max-width: 500px) {
@@ -184,4 +185,19 @@ export const TableContainer = styled.div`
   flex-direction: column; 
   align-items: center;
   justify-content: center;
+`;
+
+export const LinkImage = styled.a`
+  display: flex;
+  color: #000;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+`;
+
+export const SpanDataTable = styled.span`
+  font-size: 15px;
+  margin-top: 20px;
 `;

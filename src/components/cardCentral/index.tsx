@@ -30,6 +30,10 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
     console.log('ID do carro:', carData.id);
   };
 
+  const formatPrice = (price: number) => {
+    return price.toFixed(0).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
   return (
     <CardContainer>
       {carData && (
@@ -81,7 +85,7 @@ export const CardCentral: React.FC<CardCentralProps> = ({ carData }) => {
             </TopContentContainer>
             <FooterCard>
               <CarPrice>
-                R$ <PriceEmphasis>{carData.price}</PriceEmphasis>
+                R$ <PriceEmphasis>{formatPrice(carData.price)}</PriceEmphasis>
               </CarPrice>
               <SeeMore href={`/CarPage?id=${carData.id}`} onClick={handleClick}>Ver mais</SeeMore>
             </FooterCard>

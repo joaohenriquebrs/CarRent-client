@@ -63,6 +63,7 @@ export const ImgCard = styled.img`
   height: 320px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 
   @media (min-width: 2200px) {
     height: 380px;

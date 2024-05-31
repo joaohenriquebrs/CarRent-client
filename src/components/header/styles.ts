@@ -107,7 +107,6 @@ export const Menu = styled.div`
 export const PhoneLinkMenu = styled.a`
   display: flex;
   flex-direction: row;
-  padding-top: 5px;
   cursor: pointer;
   margin-right: 30px;
   color: #212121;

@@ -85,7 +85,7 @@ export default function Header() {
             {
               user != null &&
               <>
-                <LinkMenu href='/Admin/HomeAdm'>Painel admnistrativo</LinkMenu>
+                <LinkMenu href='/Admin/ControlPanel'>Painel admnistrativo</LinkMenu>
                 <LinkMenu href='/Admin/CreateCar'>Adicionar carro</LinkMenu>
                 <LinkMenu onClick={handleLogout}>Sair</LinkMenu>
               </>
@@ -105,8 +105,7 @@ export default function Header() {
           {
             user != null &&
             <>
-              <MobileMenuLink href="/">Home</MobileMenuLink>
-              <MobileMenuLink href="/Admin/homeAdm">Painel admnistrativo</MobileMenuLink>
+              <MobileMenuLink href="/Admin/ControlPanel">Painel admnistrativo</MobileMenuLink>
               <MobileMenuLink href="/Admin/CreateCar">Adicionar carro</MobileMenuLink>
               <MobileMenuLink onClick={handleLogout}>Sair</MobileMenuLink>
             </>

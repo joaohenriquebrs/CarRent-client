@@ -187,7 +187,7 @@ export const MainContent = styled.div`
 export const BlockCards = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0 2.4%;
 `;
 

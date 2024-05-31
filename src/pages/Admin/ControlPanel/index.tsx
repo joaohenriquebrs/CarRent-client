@@ -12,7 +12,9 @@ import {
     PaginationContainer,
     OptionSelect,
     SelectContainer,
-    HeaderTable
+    HeaderTable,
+    LinkImage,
+    SpanDataTable
 } from './styles';
 import Header from 'components/Header';
 import Alert from 'components/Alert';
@@ -58,9 +60,8 @@ const PaginationEllipsis = styled.span`
   }
 `;
 
-export default function AdminHome() {
+export default function ControlPanel() {
     const [data, setData] = useState<CarData[]>([]);
-    const [filterText, setFilterText] = useState('');
     const [editableRowId, setEditableRowId] = useState<number | null>(null);
     const [editData, setEditData] = useState<Partial<CarData>>({});
     const [showAlert, setShowAlert] = useState(false);
@@ -74,6 +75,7 @@ export default function AdminHome() {
     const [confirmMessage, setConfirmMessage] = useState('');
     const [carIdToDelete, setCarIdToDelete] = useState<number | null>(null);
     const [showEditConfirmModal, setShowEditConfirmModal] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     const closeConfirmationModal = () => {
         setShowModal(false);
@@ -87,14 +89,14 @@ export default function AdminHome() {
 
     const fetchData = useCallback(async () => {
         try {
-            const { data, meta } = await getCarsData(currentPage, perPage, 'id-desc', filterText);
+            const { data, meta } = await getCarsData(currentPage, perPage, 'id-desc', searchText);
             setData(data);
             setTotalPages(Math.ceil(meta.total / perPage));
             setCountTotal(meta.total);
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
         }
-    }, [currentPage, perPage, filterText]);
+    }, [currentPage, perPage, searchText]);
 
     useEffect(() => {
         fetchData();
@@ -158,13 +160,26 @@ export default function AdminHome() {
         setShowAlert(false);
     };
 
+    const formatPrice = (price: number) => {
+        return price.toFixed(0).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    };
+
     const columns: TableColumn<CarData>[] = [
         { name: 'ID', selector: (row: CarData) => row.id.toString(), cell: (row: CarData) => (editableRowId === row.id ? <input type="number" value={editData.id?.toString() || ''} onChange={(e) => setEditData({ ...editData, id: parseInt(e.target.value) })} /> : row.id) },
         { name: 'Marca', selector: (row: CarData) => row.brand, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.brand} onChange={(e) => setEditData({ ...editData, brand: e.target.value })} /> : row.brand) },
         { name: 'Nome', selector: (row: CarData) => row.name, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} /> : row.name) },
-        { name: 'Preço', selector: (row: CarData) => row.price, cell: (row: CarData) => (editableRowId === row.id ? <input type="number" value={editData.price} onChange={(e) => setEditData({ ...editData, price: parseFloat(e.target.value) })} /> : row.price) },
+        { name: 'Preço', selector: (row: CarData) => formatPrice(row.price), cell: (row: CarData) => (editableRowId === row.id ? <input type="number" value={editData.price} onChange={(e) => setEditData({ ...editData, price: parseFloat(e.target.value) })} /> : formatPrice(row.price)) },
         { name: 'Especificações', selector: (row: CarData) => row.specifications, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.specifications} onChange={(e) => setEditData({ ...editData, specifications: e.target.value })} /> : row.specifications) },
-        { name: 'Quilometragem', selector: (row: CarData) => row.km, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.km} onChange={(e) => setEditData({ ...editData, km: e.target.value })} /> : row.km) },
+        {
+            name: 'Quilometragem (km)',
+            selector: (row: CarData) => `${row.km} km`,
+            cell: (row: CarData) => (
+                editableRowId === row.id
+                    ? <input type="text" value={editData.km} onChange={(e) => setEditData({ ...editData, km: e.target.value })} />
+                    : `${row.km} km`
+            )
+        }
+        ,
         { name: 'Ano', selector: (row: CarData) => row.year, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.year} onChange={(e) => setEditData({ ...editData, year: e.target.value })} /> : row.year) },
         {
             name: 'Imagem', selector: (row: CarData) => row.image, cell: (row: CarData) => (<div>{editableRowId === row.id ? (
@@ -174,15 +189,31 @@ export default function AdminHome() {
                     onChange={(e) => setEditData({ ...editData, image: e.target.value })}
                 />
             ) : (
-                <a href={row.image} target='_blank'>{'Abrir imagem'}</a>
+                <LinkImage href={row.image} target='_blank'>{'Abrir imagem'}</LinkImage>
             )}
             </div>
             ),
         },
         { name: 'Cor', selector: (row: CarData) => row.color, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.color} onChange={(e) => setEditData({ ...editData, color: e.target.value })} /> : row.color) },
         { name: 'Combustível', selector: (row: CarData) => row.fuel, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuel} onChange={(e) => setEditData({ ...editData, fuel: e.target.value })} /> : row.fuel) },
-        { name: 'Consumo Urbano', selector: (row: CarData) => row.fuelUrban, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuelUrban} onChange={(e) => setEditData({ ...editData, fuelUrban: e.target.value })} /> : row.fuelUrban) },
-        { name: 'Consumo Rodoviário', selector: (row: CarData) => row.fuelRoad, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.fuelRoad} onChange={(e) => setEditData({ ...editData, fuelRoad: e.target.value })} /> : row.fuelRoad) },
+        {
+            name: 'Consumo Urbano (km/l)',
+            selector: (row: CarData) => `${row.fuelUrban} km/l`,
+            cell: (row: CarData) => (
+                editableRowId === row.id
+                    ? <input type="text" value={editData.fuelUrban} onChange={(e) => setEditData({ ...editData, fuelUrban: e.target.value })} />
+                    : `${row.fuelUrban} km/l`
+            )
+        },
+        {
+            name: 'Consumo Rodoviário (Km/l)',
+            selector: (row: CarData) => `${row.fuelRoad} km/l`,
+            cell: (row: CarData) => (
+                editableRowId === row.id
+                    ? <input type="text" value={editData.fuelRoad} onChange={(e) => setEditData({ ...editData, fuelRoad: e.target.value })} />
+                    : `${row.fuelRoad} km/l`
+            )
+        },
         { name: 'Ficha Técnica', selector: (row: CarData) => row.dataSheet, cell: (row: CarData) => (editableRowId === row.id ? <input type="text" value={editData.dataSheet} onChange={(e) => setEditData({ ...editData, dataSheet: e.target.value })} /> : row.dataSheet) },
         {
             name: '',
@@ -299,8 +330,8 @@ export default function AdminHome() {
                         <SearchInput
                             type="text"
                             placeholder="Buscar por nome..."
-                            value={filterText}
-                            onChange={e => setFilterText(e.target.value)}
+                            value={searchText}
+                            onChange={(e) => setSearchText(e.target.value)}
                         />
                         {editableRowId && (
                             <ActionButtonsWrapper>
@@ -340,7 +371,7 @@ export default function AdminHome() {
                         selectAllRowsItem: true,
                         selectAllRowsItemText: 'Todos',
                     }}
-
+                    noDataComponent={<SpanDataTable>Não há registros para exibir</SpanDataTable>}
                 />
                 <PaginationContainer>
                     <PaginationButton onClick={prevPage}>Anterior</PaginationButton>
