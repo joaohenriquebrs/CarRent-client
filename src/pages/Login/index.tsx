@@ -44,7 +44,6 @@ export default function AdminLogin() {
     return (
         <>
             <PageContainer>
-                <Header />
                 {user == null ? (
                     <MainContent>
                         <LoginTitle>Login</LoginTitle>

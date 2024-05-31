@@ -42,42 +42,6 @@ const AdminLogin: React.FC = () => {
         dataSheet: '',
     });
 
-    useEffect(() => {
-        // Extrair os parâmetros da URL
-        const { query } = router;
-        const {
-            brand,
-            name,
-            price,
-            specifications,
-            km,
-            year,
-            image,
-            color,
-            fuel,
-            fuelUrban,
-            fuelRoad,
-            dataSheet
-        } = query;
-
-        if (brand && name && price && specifications && km && year && image && color && fuel && fuelUrban && fuelRoad && dataSheet) {
-            setCarData({
-                brand: brand as string,
-                name: name as string,
-                price: price as string,
-                specifications: specifications as string,
-                km: km as string,
-                year: year as string,
-                image: image as string,
-                color: color as string,
-                fuel: fuel as string,
-                fuelUrban: fuelUrban as string,
-                fuelRoad: fuelRoad as string,
-                dataSheet: dataSheet as string,
-            });
-        }
-    }, [router.query]);
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
@@ -146,7 +110,6 @@ const AdminLogin: React.FC = () => {
 
     return (
         <PageContainer>
-            <Header />
             <MainContent>
                 {showAlert && <Alert message={alertMessage} onClose={() => setShowAlert(false)} />}
                 <Form onSubmit={handleSubmit}>

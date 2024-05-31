@@ -106,8 +106,6 @@ export default function CarPage() {
   return (
     <>
       <PageContainer>
-        <Header />
-
         <PhotosCarContainer>
           <PhotoMainContainer>
             <CarCarouselComponent />
@@ -250,7 +248,6 @@ export default function CarPage() {
             <ButtonContactDown href="https://wa.me/55119983251154r" target='_blank'>Avalie seu carro</ButtonContactDown>
           </CardContact>
         </CardContactMobile>
-        <Footer />
       </PageContainer>
     </>
   );

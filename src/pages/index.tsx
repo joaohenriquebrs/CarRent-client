@@ -180,7 +180,6 @@ export default function Home() {
   return (
     <>
       <PageContainer>
-        <Header />
         <BannerContainer>
           <Image
             src={BannerFirst}
@@ -272,7 +271,6 @@ export default function Home() {
             </PaginationContainer>
           </MainContent>
         </AdjustMargin>
-        <Footer />
       </PageContainer>
     </>
   );

@@ -42,7 +42,6 @@ import {
 export default function Finance() {
   return (
     <PageContainer>
-      <Header />
       <MainContent>
         <TitlesContainer>
           <TitleMain>Financiar</TitleMain>
@@ -172,7 +171,6 @@ export default function Finance() {
           </BlockProcess>
         </ProcessContainer>
       </MainContent>
-      <Footer />
     </PageContainer>
   );
 }

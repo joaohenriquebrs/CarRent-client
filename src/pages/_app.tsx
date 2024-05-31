@@ -7,6 +7,9 @@ import GlobalStyles from 'styles/global';
 import theme from 'styles/theme';
 import { AxiosInterceptor } from 'services/AxiosInstance';
 import { AuthProvider } from 'services/contexts/AuthContext';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,9 +21,11 @@ function App({ Component, pageProps }: AppProps) {
               <title>CarRent Verzel</title>
             </Head>
             <GlobalStyles />
+            <Header />
             <SimpleReactLightbox>
               <Component {...pageProps} />
             </SimpleReactLightbox>
+            <Footer />
           </ThemeProvider>
         </AuthProvider>
       </StyleSheetManager>
@@ -29,3 +34,4 @@ function App({ Component, pageProps }: AppProps) {
 }
 
 export default App;
+

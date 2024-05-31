@@ -323,7 +323,6 @@ export default function ControlPanel() {
 
     return (
         <PageContainer>
-            <Header />
             <MainContent>
                 <HeaderTable>
                     <SearchContainer>
