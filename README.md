@@ -1,10 +1,11 @@
-# Catálogo de Carros
+# Catálogo de Carros client
 
 ## Back-end
 - #### Repository: https://github.com/joaohenriquebrs/CarRent-server
 
 ## Tools
 - Next
+- Typescript
 - Simple-react-lightbox
 - React-icons
 - React-data-table-component
@@ -40,7 +41,6 @@ http://localhost:3000
 # or
 http://localhost:3001
 ```
-
 ## Próximas tarefas mapeadas
 
 - Implementação do sistema de refreshToken para melhorar a segurança e a experiência do usuário.
@@ -59,9 +59,4 @@ http://localhost:3001
 - Durante o desenvolvimento do projeto de catálogo de carros, pude aprimorar minhas habilidades ao trabalhar com tecnologias como Next.js, React, Nest.js, Express, TypeScript, Prisma e PostgreSQL. Implementar um sistema de autenticação reforçou meu entendimento sobre segurança em aplicações web, enquanto a construção de uma API completa me permitiu solidificar meus conhecimentos em desenvolvimento de back-end. Além disso, a organização cuidadosa do código e a prática da escrita limpa e legível me ajudaram a melhorar a manutenção e escalabilidade da aplicação, ao mesmo tempo que aumentaram minha confiança como desenvolvedor.
 
 - Essas experiências foram cruciais para meu crescimento profissional e serão fundamentais em meus próximos projetos. 
-
-
-
-
-
 
